@@ -11,5 +11,5 @@ WIP: This is personal web service, memo and bookmark site for dev
 
 ### Run
 ```
-% docker-compose run --rm --service-ports node npm start
+% docker-compose run --rm --service-ports node yarn start
 ```
