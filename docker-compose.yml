@@ -2,8 +2,6 @@ version: "2"
 services:
   node:
     build: ./docker/node
-    environment:
-      - NODE_ENV=production
     volumes:
       - ./memomemo/:/usr/src/app
     ports:
