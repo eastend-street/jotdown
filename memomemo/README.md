@@ -1,9 +1,9 @@
 # memomemo
+
 ## Summary
-WIP: This is my web private service, memo and bookmark service for dev
+WIP: This is personal web service, memo and bookmark site for dev
 
 ## Commands
-
 ### Build
 ```
 % docker-compose build
