@@ -1,13 +1,11 @@
 import * as React from 'react';
-import './App.css';
+import Header from './components/Header/Header';
 
 class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">MemoMemo</h1>
-        </header>
+        <Header />
         <p className="App-intro">
           This is memo and bookmark web service
         </p>
