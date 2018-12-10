@@ -1,14 +1,21 @@
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import * as React from "react";
 import "./Header.css";
 
-class App extends React.Component {
+class Header extends React.Component {
   public render() {
     return (
-      <header className="header">
-        <h1 className="title">MemoMemo</h1>
-      </header>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="title" color="inherit">
+            MemoMemo
+          </Typography>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
 
-export default App;
+export default Header;

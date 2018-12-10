@@ -1,14 +1,14 @@
 import * as React from "react";
-import "./Header.css";
+import "./Footer.css";
 
-class App extends React.Component {
+class Footer extends React.Component {
   public render() {
     return (
-      <header className="header">
-        <h1 className="title">MemoMemo</h1>
-      </header>
+      <footer className="footer">
+        <p>Copyright &copy; 2018 MemoMemo All rights reserved.</p>
+      </footer>
     );
   }
 }
 
-export default App;
+export default Footer;

@@ -1,11 +1,6 @@
-.header {
-  background-color: #222;
+.footer {
+  background-color: #424242;
   height: 50px;
   color: white;
   padding: 10px;
-}
-
-.title {
-  font-size: 1.5em;
-  margin: 0 auto 0 30px;
 }
