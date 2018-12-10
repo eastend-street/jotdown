@@ -1,7 +1,7 @@
 import * as React from "react";
-import Editor from "./components/Editor/Editor";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import MemoEditor from "./components/MemoEditor/MemoEditor";
 
 class App extends React.Component {
   public render() {
@@ -9,7 +9,7 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <p className="App-intro">This is memo and bookmark web service</p>
-        <Editor />
+        <MemoEditor />
         <Footer />
       </div>
     );
