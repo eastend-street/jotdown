@@ -7,7 +7,7 @@ import "./Header.css";
 class Header extends React.Component {
   public render() {
     return (
-      <AppBar position="static">
+      <AppBar position="static" className="header">
         <Toolbar>
           <Typography variant="title" color="inherit">
             MemoMemo
