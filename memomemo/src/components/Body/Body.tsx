@@ -1,14 +1,10 @@
-import * as React from 'react';
+import * as React from "react";
 import MemoEditor from "../MemoEditor/MemoEditor";
+import "./Body.css";
 
 class Body extends React.Component {
   render() {
-    return (
-      <div className="body">
-        <p>Body</p>
-        <MemoEditor />
-      </div>
-    );
+    return <MemoEditor />;
   }
 }
 

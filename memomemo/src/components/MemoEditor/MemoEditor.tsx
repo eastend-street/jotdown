@@ -1,21 +1,38 @@
-import { Editor, EditorState } from 'draft-js';
-import * as React from 'react';
+import { Editor, EditorState, RichUtils } from "draft-js";
+import * as React from "react";
+import "./MemoEditor.css";
 
-interface MemoEditorProps {
-}
+interface MemoEditorProps {}
 
 class MemoEditor extends React.Component<MemoEditorProps, any> {
   constructor(props: MemoEditorProps) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
-    this.handleChange = this.handleChange.bind(this)
+    this.onChange = (editorState) => this.setState({editorState});
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
-  handleChange(e: EditorState) {
-    this.setState({ editorState: e });
+  onChange(editorState: EditorState) {
+    this.setState({ editorState });
+  }
+  handleKeyCommand(command:any, editorState:any) {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
+    }
+    return 'not-handled';
   }
   render() {
     return (
-      <Editor editorState={this.state.editorState} onChange={this.handleChange} />
+      <div>
+        <div className="wrap_editor">
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            handleKeyCommand={this.handleKeyCommand}
+          />
+        </div>
+      </div>
     );
   }
 }
