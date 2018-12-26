@@ -1,8 +1,8 @@
 import { EditorState } from "draft-js";
 import Editor from "draft-js-plugins-editor";
 import createMarkdownPlugin from "draft-js-markdown-plugin";
-// import Prism from "prismjs";
-// import createPrismPlugin from "draft-js-prism-plugin";
+import * as Prism from "prismjs";
+import createPrismPlugin from "draft-js-prism-plugin";
 import * as React from "react";
 import "./MemoEditor.css";
 
@@ -14,6 +14,9 @@ class MemoEditor extends React.Component<MemoEditorProps, any> {
     this.state = {
       editorState: EditorState.createEmpty(),
       plugins: [
+        createPrismPlugin({
+          prism: Prism
+        }),
         createMarkdownPlugin()
       ]
     };
