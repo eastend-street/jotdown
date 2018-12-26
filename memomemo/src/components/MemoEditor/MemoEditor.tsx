@@ -1,7 +1,8 @@
-// import { Editor, EditorState, RichUtils } from "draft-js";
-import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
-import createMarkdownPlugin from 'draft-js-markdown-plugin';
+import { EditorState } from "draft-js";
+import Editor from "draft-js-plugins-editor";
+import createMarkdownPlugin from "draft-js-markdown-plugin";
+// import Prism from "prismjs";
+// import createPrismPlugin from "draft-js-prism-plugin";
 import * as React from "react";
 import "./MemoEditor.css";
 
@@ -10,11 +11,13 @@ interface MemoEditorProps {}
 class MemoEditor extends React.Component<MemoEditorProps, any> {
   constructor(props: MemoEditorProps) {
     super(props);
-    this.state = { 
+    this.state = {
       editorState: EditorState.createEmpty(),
-      plugins: [createMarkdownPlugin()]
+      plugins: [
+        createMarkdownPlugin()
+      ]
     };
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = editorState => this.setState({ editorState });
     // this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
   onChange(editorState: EditorState) {
