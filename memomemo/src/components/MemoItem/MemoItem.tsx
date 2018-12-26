@@ -1,9 +1,10 @@
 import * as React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import "./MemoItem.css";
-import getOgpImage from "../../utils/ogpGetter/getOgpImage";
+// import getOgpImage from "../../utils/ogpGetter/getOgpImage";
 
 class MemoItem extends React.Component {
   constructor(props: any) {
@@ -12,7 +13,7 @@ class MemoItem extends React.Component {
   render() {
     return (
       <div>
-        <Card className="MemoItem">
+        <Card className="memo-item">
           <CardContent>
             <Typography variant="h5" component="h3">
               This is a card.
@@ -20,8 +21,12 @@ class MemoItem extends React.Component {
             <Typography component="p">
               Here is a memo. Here is a memo. Here is a memo.
             </Typography>
-            <input type="button" value="aaaaaaaaaaaa" onClick={getOgpImage}/>
           </CardContent>
+          <CardMedia
+            className="card-media"
+            image={require("../../assets/images/hatena_ogp.jpeg")}
+            title="hatena ogp"
+          />
         </Card>
       </div>
     );
