@@ -2,6 +2,17 @@ import { EditorState } from "draft-js";
 import Editor from "draft-js-plugins-editor";
 import createMarkdownPlugin from "draft-js-markdown-plugin";
 import * as Prism from "prismjs";
+import "prismjs/components/prism-java";
+import "prismjs/components/prism-scala";
+import "prismjs/components/prism-go";
+import "prismjs/components/prism-sql";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-c";
+import "prismjs/components/prism-cpp";
+import "prismjs/components/prism-kotlin";
+import "prismjs/components/prism-perl";
+import "prismjs/components/prism-ruby";
+import "prismjs/components/prism-swift";
 import createPrismPlugin from "draft-js-prism-plugin";
 import * as React from "react";
 import "./MemoEditor.css";
@@ -21,19 +32,10 @@ class MemoEditor extends React.Component<MemoEditorProps, any> {
       ]
     };
     this.onChange = editorState => this.setState({ editorState });
-    // this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
   onChange(editorState: EditorState) {
     this.setState({ editorState });
   }
-  // handleKeyCommand(command:any, editorState:any) {
-  //   const newState = RichUtils.handleKeyCommand(editorState, command);
-  //   if (newState) {
-  //     this.onChange(newState);
-  //     return 'handled';
-  //   }
-  //   return 'not-handled';
-  // }
   render() {
     return (
       <div>
@@ -41,7 +43,6 @@ class MemoEditor extends React.Component<MemoEditorProps, any> {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            // handleKeyCommand={this.handleKeyCommand}
             plugins={this.state.plugins}
           />
         </div>
