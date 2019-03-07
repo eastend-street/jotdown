@@ -6,3 +6,9 @@ services:
       - ./node/:/usr/src/app
     ports:
       - "3000:3000"
+  django:
+    build: ./docker/django
+    volumes:
+      - ./django/:/usr/src/app
+    ports:
+      - "8000:8000"
