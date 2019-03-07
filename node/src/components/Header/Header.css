@@ -1,0 +1,3 @@
+.header:not(:root) {
+  background-color: #222;
+}
