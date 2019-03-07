@@ -1,8 +1,0 @@
-version: "2"
-services:
-  node:
-    build: ./docker/node
-    volumes:
-      - ./memomemo/:/usr/src/app
-    ports:
-      - "3000:3000"
