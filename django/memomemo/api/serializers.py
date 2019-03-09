@@ -1,14 +1,15 @@
-from django.contrib.auth.models import User, Group
+from .models import User, Bookmark
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('name', 'mail')
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class BookmarkSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only= True)
     class Meta:
-        model = Group
-        fields = ('url', 'name')
+        model = Bookmark
+        fields = ('url', 'memo', 'created_at', 'updated_at', 'user')
