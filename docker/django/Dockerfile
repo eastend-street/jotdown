@@ -12,7 +12,8 @@ pip \
 django==2.1.7 \
 django-debug-toolbar \
 djangorestframework \
-django-filter
+django-filter \
+django-cors-headers
 
 EXPOSE 8000
 
