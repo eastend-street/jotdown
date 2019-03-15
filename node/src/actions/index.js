@@ -7,7 +7,6 @@ const ROOT_URL = "http://localhost:8000/api";
 
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-
 export const readBookmarks = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/bookmarks`);
   dispatch({ type: READ_BOOKMARKS, response });
