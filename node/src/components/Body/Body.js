@@ -12,9 +12,10 @@ class Body extends Component {
   }
 
   renderBookmarks() {
-    return _.map(this.props.bookmarks, bookmark => (
-      <div>{bookmark}</div>
-    ));
+    console.log(this.props.bookmarks[0]);
+    return (
+      <div>ffffffffffff</div>
+    );
   }
 
   render() {
@@ -22,15 +23,16 @@ class Body extends Component {
       <div className="body">
         aaaaaaaaaaaa
         <Button variant="contained" color="primary">
-          GetBookmarkData
+          GetBookmarkD
         </Button>
+        {this.renderBookmarks()}
       </div>
     );
   }
 }
 
 // stateの中からどの値を子コンポーネントに渡すのかを定義する。
-const mapStateToProps = state => ({ bookmarks: state });
+const mapStateToProps = state => ({ bookmarks: state.bookmarks });
 
 const mapDispatchToProps = { readBookmarks };
 
