@@ -12,10 +12,10 @@ class Body extends Component {
   }
 
   renderBookmarks() {
-    console.log(this.props.bookmarks[0]);
-    return (
-      <div>ffffffffffff</div>
-    );
+    console.log(this.props.bookmarks);
+    return (_.map(this.props.bookmarks, bookmark => (
+      <div key={bookmark.id}>{bookmark.url}</div>
+    )))
   }
 
   render() {
