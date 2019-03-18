@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 import { readBookmarks } from "../../actions";
 import _ from "lodash";
+import BookmarkCard from "../BookmarkCard/BookmarkCard";
 
 import "./Body.css";
 
@@ -13,19 +14,19 @@ class Body extends Component {
 
   renderBookmarks() {
     console.log(this.props.bookmarks);
-    return (_.map(this.props.bookmarks, bookmark => (
-      <div key={bookmark.id}>{bookmark.url}</div>
-    )))
+    return _.map(this.props.bookmarks, bookmark => (
+      <Grid item={true} xs={6} key={bookmark.id}>
+        <BookmarkCard />
+      </Grid>
+    ));
   }
 
   render() {
     return (
       <div className="body">
-        aaaaaaaaaaaa
-        <Button variant="contained" color="primary">
-          GetBookmarkD
-        </Button>
-        {this.renderBookmarks()}
+        <Grid container={true} spacing={16}>
+          {this.renderBookmarks()}
+        </Grid>
       </div>
     );
   }
