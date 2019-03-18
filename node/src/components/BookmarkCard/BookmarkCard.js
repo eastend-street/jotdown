@@ -14,18 +14,16 @@ class BookmarkCard extends Component {
       <Card>
         <CardMedia
           className="media"
-          image="https://placehold.jp/800x800.png?text=OGP image"
-          title="Qiita"
+          image={this.props.ogp.image}
+          title={this.props.ogp.title}
         />
         <CardContent>
-          <Typography variant="h5" component="h2">
-            Qiita
+          <Typography component="h4">
+            {this.props.ogp.title}
           </Typography>
-          <Typography component="p">
-            Qiitaは、プログラマのための技術情報共有サービスです。
-            プログラミングに関するTips、ノウハウ、メモを簡単に記録 &
-            公開することができます。
-          </Typography>
+          {/* <Typography component="p">
+            {this.props.ogp.description}
+          </Typography> */}
         </CardContent>
       </Card>
     );

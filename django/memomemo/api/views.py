@@ -1,4 +1,5 @@
 import django_filters
+import opengraph_py3
 from rest_framework import viewsets, filters
 from rest_framework.response import Response
 from .models import User, Bookmark
@@ -16,6 +17,9 @@ class BookmarkViewSet(viewsets.ModelViewSet):
     filter_fields = ('user',)
 
     def list(self, request):
-        print('届いた！')
         data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
+        # get OGP data
+        for bookmark in data:
+            ogp = opengraph_py3.OpenGraph(url=bookmark['url'])
+            bookmark['ogp'] = ogp
         return Response(status=200, data=data)

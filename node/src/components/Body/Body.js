@@ -13,10 +13,9 @@ class Body extends Component {
   }
 
   renderBookmarks() {
-    console.log(this.props.bookmarks);
     return _.map(this.props.bookmarks, bookmark => (
-      <Grid item={true} xs={6} key={bookmark.id}>
-        <BookmarkCard />
+      <Grid item={true} xs={6} sm={4} md={3} lg={2} key={bookmark.id}>
+        <BookmarkCard ogp={bookmark.ogp}/>
       </Grid>
     ));
   }
@@ -24,7 +23,7 @@ class Body extends Component {
   render() {
     return (
       <div className="body">
-        <Grid container={true} spacing={16}>
+        <Grid container={true} spacing={8}>
           {this.renderBookmarks()}
         </Grid>
       </div>

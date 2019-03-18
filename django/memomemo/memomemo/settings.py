@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'api',
     'django_filters',
     'corsheaders',
+    'opengraph_py3',
 ]
 
 MIDDLEWARE = [
