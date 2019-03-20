@@ -23,3 +23,10 @@ class BookmarkViewSet(viewsets.ModelViewSet):
             ogp = opengraph_py3.OpenGraph(url=bookmark['url'])
             bookmark['ogp'] = ogp
         return Response(status=200, data=data)
+    
+    def getOgpData(self, request):
+        data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
+        for bookmark in data:
+            ogp = opengraph_py3.OpenGraph(url=bookmark['url'])
+            bookmark['ogp'] = ogp
+        return Response(status=200, data=data)
