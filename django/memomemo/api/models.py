@@ -16,6 +16,7 @@ class User(models.Model):
 class Bookmark(models.Model):
     url = models.CharField(max_length=300)
     title = models.CharField(max_length=300)
+    image = models.ImageField(blank=True, null=True)
     memo = models.TextField()
     created_at = models.DateTimeField(
         auto_now_add=True,

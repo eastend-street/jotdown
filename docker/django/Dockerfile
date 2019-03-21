@@ -14,7 +14,8 @@ django-debug-toolbar \
 djangorestframework \
 django-filter \
 django-cors-headers \
-opengraph_py3
+opengraph_py3 \
+pillow
 
 EXPOSE 8000
 
