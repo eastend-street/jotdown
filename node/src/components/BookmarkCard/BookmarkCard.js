@@ -10,16 +10,17 @@ import "./BookmarkCard.css";
 
 class BookmarkCard extends Component {
   render() {
+    console.log(this.props.bookmark)
     return (
       <Card>
         <CardMedia
           className="media"
-          image={this.props.ogp.image}
-          title={this.props.ogp.title}
+          image={this.props.bookmark.image}
+          title={this.props.bookmark.title}
         />
         <CardContent>
           <Typography component="h4">
-            {this.props.ogp.title}
+            {this.props.bookmark.title}
           </Typography>
           {/* <Typography component="p">
             {this.props.ogp.description}
