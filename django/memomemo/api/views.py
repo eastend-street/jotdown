@@ -1,3 +1,4 @@
+import os
 import django_filters
 import opengraph_py3
 from rest_framework import viewsets, filters
@@ -18,10 +19,8 @@ class BookmarkViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
-        # get OGP data
         for bookmark in data:
-            ogp = opengraph_py3.OpenGraph(url=bookmark['url'])
-            bookmark['ogp'] = ogp
+            bookmark['image'] = os.environ.get('HOST') + bookmark['image']
         return Response(status=200, data=data)
 
     def getOgpData(self, request):

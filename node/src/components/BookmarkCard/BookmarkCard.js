@@ -10,7 +10,6 @@ import "./BookmarkCard.css";
 
 class BookmarkCard extends Component {
   render() {
-    console.log(this.props.bookmark)
     return (
       <Card>
         <CardMedia
