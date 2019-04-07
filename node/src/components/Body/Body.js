@@ -13,7 +13,6 @@ class Body extends Component {
   }
 
   renderBookmarks() {
-    console.log(this.props.bookmarks)    
     return _.map(this.props.bookmarks, bookmark => (
       <Grid item={true} xs={6} sm={4} md={3} lg={2} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark}/>
