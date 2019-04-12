@@ -3,11 +3,13 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import "./index.css";
-import App from "./components/App/App";
+import Header from "./components/Header/Header";
+import Body from "./components/Body/Body";
+import Footer from "./components/Footer/Footer";
 import reducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 
@@ -20,7 +22,11 @@ const store = createStore(reducer, enhancer);
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <Header />
+      <Switch>
+        <Route path="/" component={Body} />
+      </Switch>
+      <Footer />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

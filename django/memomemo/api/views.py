@@ -7,6 +7,12 @@ from .models import User, Bookmark
 from .serializers import UserSerializer, BookmarkSerializer
 
 
+# 1つのブックマークのみ受け取る
+def getOgpData(bookmark):
+    ogp = opengraph_py3.OpenGraph(url=bookmark['url'])
+    return ogp
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -23,9 +29,6 @@ class BookmarkViewSet(viewsets.ModelViewSet):
             bookmark['image'] = os.environ.get('HOST') + bookmark['image']
         return Response(status=200, data=data)
 
-    def getOgpData(self, request):
-        data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
-        for bookmark in data:
-            ogp = opengraph_py3.OpenGraph(url=bookmark['url'])
-            bookmark['ogp'] = ogp
-        return Response(status=200, data=data)
+    def create(self, validated_data):
+        print('ccccreated!')
+        return Response(status=204)
