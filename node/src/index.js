@@ -8,7 +8,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import "./index.css";
 import Header from "./components/Header/Header";
-import Body from "./components/Body/Body";
+import BookmarkList from "./components/BookmarkList/BookmarkList";
+import BookmarkForm from "./components/BookmarkForm/BookmarkForm";
 import Footer from "./components/Footer/Footer";
 import reducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
@@ -24,7 +25,8 @@ ReactDOM.render(
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route path="/" component={Body} />
+        <Route path="/" exact component={BookmarkList} />
+        <Route path="/new" component={BookmarkForm} />
       </Switch>
       <Footer />
     </BrowserRouter>

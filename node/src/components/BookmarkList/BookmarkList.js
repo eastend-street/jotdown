@@ -5,9 +5,9 @@ import { readBookmarks } from "../../actions";
 import _ from "lodash";
 import BookmarkCard from "../BookmarkCard/BookmarkCard";
 
-import "./Body.css";
+import "./BookmarkList.css";
 
-class Body extends Component {
+class BookmarkList extends Component {
   componentDidMount() {
     this.props.readBookmarks();
   }
@@ -15,14 +15,14 @@ class Body extends Component {
   renderBookmarks() {
     return _.map(this.props.bookmarks, bookmark => (
       <Grid item={true} xs={6} sm={4} md={3} lg={2} key={bookmark.id}>
-        <BookmarkCard bookmark={bookmark}/>
+        <BookmarkCard bookmark={bookmark} />
       </Grid>
     ));
   }
 
   render() {
     return (
-      <div className="body">
+      <div className="BookmarkList">
         <Grid container={true} spacing={8}>
           {this.renderBookmarks()}
         </Grid>
@@ -39,4 +39,4 @@ const mapDispatchToProps = { readBookmarks };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Body);
+)(BookmarkList);
