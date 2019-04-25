@@ -14,7 +14,7 @@ django-debug-toolbar \
 djangorestframework \
 django-filter \
 django-cors-headers \
-opengraph_py3
+beautifulsoup4
 
 EXPOSE 8000
 

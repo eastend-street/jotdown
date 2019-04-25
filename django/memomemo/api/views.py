@@ -1,15 +1,15 @@
 import os
 import django_filters
-import opengraph_py3
 from rest_framework import viewsets, filters
 from rest_framework.response import Response
+from .lib.opengraph import opengraph
 from .models import User, Bookmark
 from .serializers import UserSerializer, BookmarkSerializer
 
 
 # 1つのブックマークのみ受け取る
 def getOgpData(url):
-    ogp = opengraph_py3.OpenGraph(url=url)
+    ogp = opengraph.OpenGraph(url=url)
     return ogp
 
 class UserViewSet(viewsets.ModelViewSet):
