@@ -30,6 +30,7 @@ class BookmarkViewSet(viewsets.ModelViewSet):
 
     def create(self, validated_data):
         print('reached create method!')
+        # URL, memoが存在するか確認する処理
         url = self.request.data['url']
         ogp_data = getOgpData(url)
         # OGPが取得できなかった場合の通過処理
