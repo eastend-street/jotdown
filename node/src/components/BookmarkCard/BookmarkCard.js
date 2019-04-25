@@ -23,14 +23,14 @@ class BookmarkCard extends Component {
         <CardActionArea target="_blank" href={this.props.bookmark.url}>
             <CardMedia
               className="media"
-              image={this.props.bookmark.image}
+              image={this.props.bookmark.img_url}
               title={this.props.bookmark.title}
             />
             <CardContent>
               <Title variant="title">{this.props.bookmark.title}</Title>
-              <Typography variant="subheading">
+              {/* <Typography variant="subheading">
                 {this.props.bookmark.description}
-              </Typography>
+              </Typography> */}
             </CardContent>
         </CardActionArea>
       </Card>

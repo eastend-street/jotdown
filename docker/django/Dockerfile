@@ -15,7 +15,8 @@ djangorestframework \
 django-filter \
 django-cors-headers \
 opengraph_py3 \
-pillow
+pillow \
+requests
 
 EXPOSE 8000
 
