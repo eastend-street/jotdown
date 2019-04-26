@@ -8,7 +8,11 @@ import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-import "./Header.css";
+const StyledAppBar = styled(AppBar)`
+  && {
+    background-color: #222;
+  }
+`;
 
 const AddButton = styled(Fab)`
   && {
@@ -17,18 +21,22 @@ const AddButton = styled(Fab)`
 `;
 
 const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;
 
 class Header extends Component {
   render() {
     return (
-      <AppBar position="static" className="header">
+      <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
             <Typography variant="title" color="inherit">
@@ -45,7 +53,7 @@ class Header extends Component {
             <AddIcon />
           </AddButton>
         </Toolbar>
-      </AppBar>
+      </StyledAppBar>
     );
   }
 }
