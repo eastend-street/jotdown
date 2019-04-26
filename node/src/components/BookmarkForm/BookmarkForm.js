@@ -63,7 +63,7 @@ class BookmarkForm extends Component {
             component={this.renderField}
           />
           <SubmitButton variant="contained" color="primary" type="submit">
-            create
+            save
           </SubmitButton>
         </form>
       </div>

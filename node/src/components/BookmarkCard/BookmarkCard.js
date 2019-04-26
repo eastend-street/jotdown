@@ -8,9 +8,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
-
 const StyledCard = styled(Card)`
-    height: 100%;
+  height: 100%;
 `;
 
 const StyledCardMedia = styled(CardMedia)`
@@ -18,7 +17,7 @@ const StyledCardMedia = styled(CardMedia)`
     min-height: 10rem;
     object-fit: contain;
   }
-`
+`;
 
 const Title = styled(Typography)`
   && {
@@ -32,7 +31,7 @@ const Title = styled(Typography)`
 
 const Memo = styled(Typography)`
   && {
-    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
     word-wrap: break-word;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -43,6 +42,7 @@ const Memo = styled(Typography)`
 
 const StyledHr = styled.hr`
   border: 0.05rem solid #f5f5f5;
+  margin: 0rem 0.5rem;
 `;
 
 class BookmarkCard extends Component {
@@ -56,12 +56,12 @@ class BookmarkCard extends Component {
           />
           <CardContent>
             <Title variant="subheading">{this.props.bookmark.title}</Title>
-            <StyledHr />
-            <Memo variant="body1" component="p">
-              {this.props.bookmark.memo}
-            </Memo>
           </CardContent>
         </CardActionArea>
+        <StyledHr />
+        <Memo variant="body1" component="p">
+          {this.props.bookmark.memo}
+        </Memo>
       </StyledCard>
     );
   }
