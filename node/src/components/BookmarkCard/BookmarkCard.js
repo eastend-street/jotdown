@@ -16,22 +16,29 @@ const Title = styled(Typography)`
   }
 `;
 
+const Memo = styled(Typography)`
+  && {
+    margin-top: 0.5rem;
+    word-wrap: break-word;
+  }
+`;
+
 class BookmarkCard extends Component {
   render() {
     return (
       <Card>
         <CardActionArea target="_blank" href={this.props.bookmark.url}>
-            <CardMedia
-              className="media"
-              image={this.props.bookmark.img_url}
-              title={this.props.bookmark.title}
-            />
-            <CardContent>
-              <Title variant="title">{this.props.bookmark.title}</Title>
-              {/* <Typography variant="subheading">
-                {this.props.bookmark.description}
-              </Typography> */}
-            </CardContent>
+          <CardMedia
+            className="media"
+            image={this.props.bookmark.img_url}
+            title={this.props.bookmark.title}
+          />
+          <CardContent>
+            <Title variant="subheading">{this.props.bookmark.title}</Title>
+            <Memo variant="body1" component="p">
+              {this.props.bookmark.memo}
+            </Memo>
+          </CardContent>
         </CardActionArea>
       </Card>
     );
