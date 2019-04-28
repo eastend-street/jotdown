@@ -26,17 +26,17 @@ const Title = styled(Typography)`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    min-height: 4.5rem;
   }
 `;
 
 const Memo = styled(Typography)`
   && {
-    padding: 0.5rem 1rem;
-    word-wrap: break-word;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    margin: 0.5rem 1rem;
   }
 `;
 
