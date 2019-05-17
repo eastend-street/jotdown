@@ -8,6 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import "./index.css";
 import Header from "./components/Header/Header";
+import BookmarkEdit from "./components/BookmarkEdit/BookmarkEdit";
 import BookmarkList from "./components/BookmarkList/BookmarkList";
 import BookmarkForm from "./components/BookmarkForm/BookmarkForm";
 import Footer from "./components/Footer/Footer";
@@ -27,6 +28,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact component={BookmarkList} />
         <Route path="/new" component={BookmarkForm} />
+        <Route path="/edit/:id" component={BookmarkEdit} />
       </Switch>
       <Footer />
     </BrowserRouter>

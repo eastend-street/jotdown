@@ -67,7 +67,7 @@ const GridActions = styled(Grid)`
   }
 `;
 
-const SeeMore = styled(Button)`
+const ActionButton = styled(Button)`
   && {
     text-transform: none;
     padding: 0;
@@ -94,8 +94,17 @@ class BookmarkCard extends Component {
         </Memo>
         <GridActions container>
           <Grid item>
+            <StyledLink
+              to={{
+                pathname: "/edit/"+ this.props.bookmark.id
+              }}
+            >
+              <ActionButton>Edit</ActionButton>
+            </StyledLink>
+          </Grid>
+          <Grid item>
             <StyledLink to="/new">
-              <SeeMore>see more</SeeMore>
+              <ActionButton>See more</ActionButton>
             </StyledLink>
           </Grid>
         </GridActions>
