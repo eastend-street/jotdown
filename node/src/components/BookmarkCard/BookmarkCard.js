@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 const StyledCard = styled(Card)`
@@ -45,6 +48,33 @@ const StyledHr = styled.hr`
   margin: 0rem 0.5rem;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
+
+const GridActions = styled(Grid)`
+  && {
+    padding: 0rem 0.5rem 1rem;
+  }
+`;
+
+const SeeMore = styled(Button)`
+  && {
+    text-transform: none;
+    padding: 0;
+    color: #757575;
+  }
+`;
+
 class BookmarkCard extends Component {
   render() {
     return (
@@ -62,6 +92,13 @@ class BookmarkCard extends Component {
         <Memo variant="body1" component="p">
           {this.props.bookmark.memo}
         </Memo>
+        <GridActions container>
+          <Grid item>
+            <StyledLink to="/new">
+              <SeeMore>see more</SeeMore>
+            </StyledLink>
+          </Grid>
+        </GridActions>
       </StyledCard>
     );
   }

@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 const StyledAppBar = styled(AppBar)`
   && {
     background-color: #222;
+    box-shadow: none;
   }
 `;
 
