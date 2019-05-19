@@ -1,5 +1,6 @@
 from rest_framework import routers
 from .views import UserViewSet, BookmarkViewSet
+from django.conf.urls import url
 
 
 router = routers.DefaultRouter()

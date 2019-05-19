@@ -12,12 +12,13 @@ def getOgpData(url):
     ogp = opengraph.OpenGraph(url=url)
     return ogp
 
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class BookmarkViewSet(viewsets.ModelViewSet):
+class BookmarkViewSet(viewsets.ViewSet):
     queryset = Bookmark.objects.all()
     serializer_class = BookmarkSerializer
     filter_fields = ('user',)
@@ -29,7 +30,6 @@ class BookmarkViewSet(viewsets.ModelViewSet):
         return Response(status=200, data=data)
 
     def create(self, validated_data):
-        print('reached create method!')
         # URL, memoが存在するか確認する処理
         url = self.request.data['url']
         ogp_data = getOgpData(url)
@@ -43,3 +43,7 @@ class BookmarkViewSet(viewsets.ModelViewSet):
             user=User.objects.get(id=1)
         )
         return Response(status=204)
+
+    def retrieve(self, request, pk=None):
+        data = BookmarkSerializer(Bookmark.objects.get(id=pk)).data
+        return Response(status=200, data=data)

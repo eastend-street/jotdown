@@ -13,7 +13,7 @@ export const readBookmarks = () => async dispatch => {
 };
 
 export const getBookmark = (id) => async dispatch => {
-  const response = await axios.get(`${ROOT_URL}/bookmarks/${id}`);
+  const response = await axios.get(`${ROOT_URL}/bookmarks/${id}/`);
   dispatch({ type: READ_BOOKMARK, response });
 };
 
