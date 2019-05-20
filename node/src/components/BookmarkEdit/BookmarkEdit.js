@@ -7,7 +7,9 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import _ from "lodash";
 
 const StyledCard = styled(Card)`
   height: 100%;
@@ -37,24 +39,33 @@ class BookmarkEdit extends Component {
     this.props.getBookmark(id);
   }
 
+  renderBookmark() {
+    return _.map(this.props.bookmarks, bookmark => (
+      <StyledCard key={bookmark.id}>
+        <CardActionArea target="_blank" href={bookmark.url}>
+          <StyledCardMedia image={bookmark.img_url} title={bookmark.title} />
+          <CardContent>
+            <Title variant="subheading">{bookmark.title}</Title>
+          </CardContent>
+        </CardActionArea>
+      </StyledCard>
+    ));
+  }
+
   render() {
     return (
-      <StyledCard>
-        {/* <CardActionArea target="_blank" href={this.props.bookmark.url}>
-          <StyledCardMedia
-            image={this.props.bookmark.img_url}
-            title={this.props.bookmark.title}
-          />
-          <CardContent>
-            <Title variant="subheading">{this.props.bookmark.title}</Title>
-          </CardContent>
-        </CardActionArea> */}
-      </StyledCard>
+      <Grid container justify="center">
+        <Grid xs={4}>
+          {this.renderBookmark()}
+        </Grid>
+        <Grid xs={12}>
+          ここにメモメモ
+        </Grid>
+      </Grid>
     );
   }
 }
 
-// stateの中からどの値を子コンポーネントに渡すのかを定義する。
 const mapStateToProps = state => ({ bookmarks: state.bookmarks });
 
 const mapDispatchToProps = { getBookmark };

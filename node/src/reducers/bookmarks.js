@@ -4,8 +4,10 @@ export default (bookmarks = {}, action) => {
   switch (action.type) {
     case CREATE_BOOKMARK:
     case READ_BOOKMARKS:
-    case READ_BOOKMARK:
       return action.response.data;
+    case READ_BOOKMARK:
+      const data = action.response.data;
+      return { [data.id]: data };
     default:
       return bookmarks;
   }
