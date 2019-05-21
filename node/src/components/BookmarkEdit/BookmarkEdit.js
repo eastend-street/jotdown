@@ -13,10 +13,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
-const EditBody = styled.div `
-  margin: 0.5rem 20rem;
-`
-
 const StyledCard = styled(Card)`
   height: 100%;
 `;
@@ -87,7 +83,7 @@ class BookmarkEdit extends Component {
             </Grid>
             <Grid item xs={5}>
               <CardContent>
-                <Title variant="Title">{bookmark.title}</Title>
+                <Title variant="title">{bookmark.title}</Title>
               </CardContent>
               <Description variant="body1" component="p">
                 {bookmark.description}
@@ -105,18 +101,14 @@ class BookmarkEdit extends Component {
 
   render() {
     return (
-      <EditBody>
       <Grid container justify="center">
-        <Grid item xs={12}>
+        <Grid item xs={12} md={6}>
           {this.renderBookmark()}
-        </Grid>
-        <Grid item xs={12}>
           <SubmitButton variant="contained" color="primary" type="submit">
             save
           </SubmitButton>
         </Grid>
       </Grid>
-      </EditBody>
     );
   }
 }
