@@ -33,6 +33,12 @@ const Title = styled(Typography)`
   }
 `;
 
+const Memo = styled(Typography)`
+  && {
+    margin: 1rem;
+  }
+`;
+
 class BookmarkEdit extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -48,6 +54,9 @@ class BookmarkEdit extends Component {
             <Title variant="subheading">{bookmark.title}</Title>
           </CardContent>
         </CardActionArea>
+        <Memo variant="body1" component="p">
+          {bookmark.memo}
+        </Memo>
       </StyledCard>
     ));
   }
@@ -55,12 +64,7 @@ class BookmarkEdit extends Component {
   render() {
     return (
       <Grid container justify="center">
-        <Grid xs={4}>
-          {this.renderBookmark()}
-        </Grid>
-        <Grid xs={12}>
-          ここにメモメモ
-        </Grid>
+        <Grid xs={4}>{this.renderBookmark()}</Grid>
       </Grid>
     );
   }
