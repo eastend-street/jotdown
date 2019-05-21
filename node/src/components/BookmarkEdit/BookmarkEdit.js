@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import { getBookmark } from "../../actions";
 import styled from "styled-components";
+
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -11,14 +13,19 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
+const EditBody = styled.div `
+  margin: 0.5rem 20rem;
+`
+
 const StyledCard = styled(Card)`
   height: 100%;
 `;
 
 const StyledCardMedia = styled(CardMedia)`
   && {
-    min-height: 10rem;
+    min-height: 15rem;
     object-fit: contain;
+    margin: 0.5rem;
   }
 `;
 
@@ -33,9 +40,31 @@ const Title = styled(Typography)`
   }
 `;
 
+const Description = styled(Typography)`
+  && {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow: hidden;
+    margin: 0.5rem;
+  }
+`;
+
+const StyledHr = styled.hr`
+  border: 0.05rem solid #f5f5f5;
+  margin: 0rem 0.5rem;
+`;
+
 const Memo = styled(Typography)`
   && {
+    min-height: 10rem;
     margin: 1rem;
+  }
+`;
+
+const SubmitButton = styled(Button)`
+  && {
+    margin-top: 1rem;
   }
 `;
 
@@ -49,11 +78,24 @@ class BookmarkEdit extends Component {
     return _.map(this.props.bookmarks, bookmark => (
       <StyledCard key={bookmark.id}>
         <CardActionArea target="_blank" href={bookmark.url}>
-          <StyledCardMedia image={bookmark.img_url} title={bookmark.title} />
-          <CardContent>
-            <Title variant="subheading">{bookmark.title}</Title>
-          </CardContent>
+          <Grid container>
+            <Grid item xs={7}>
+              <StyledCardMedia
+                image={bookmark.img_url}
+                title={bookmark.title}
+              />
+            </Grid>
+            <Grid item xs={5}>
+              <CardContent>
+                <Title variant="Title">{bookmark.title}</Title>
+              </CardContent>
+              <Description variant="body1" component="p">
+                {bookmark.description}
+              </Description>
+            </Grid>
+          </Grid>
         </CardActionArea>
+        <StyledHr />
         <Memo variant="body1" component="p">
           {bookmark.memo}
         </Memo>
@@ -63,9 +105,18 @@ class BookmarkEdit extends Component {
 
   render() {
     return (
+      <EditBody>
       <Grid container justify="center">
-        <Grid xs={4}>{this.renderBookmark()}</Grid>
+        <Grid item xs={12}>
+          {this.renderBookmark()}
+        </Grid>
+        <Grid item xs={12}>
+          <SubmitButton variant="contained" color="primary" type="submit">
+            save
+          </SubmitButton>
+        </Grid>
       </Grid>
+      </EditBody>
     );
   }
 }
