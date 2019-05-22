@@ -6,7 +6,10 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { postBookmark } from "../../actions";
 
-import "./BookmarkForm.css";
+
+const Form = styled.form`
+  padding: 1rem;
+`
 
 const SubmitButton = styled(Button)`
   && {
@@ -48,8 +51,7 @@ class BookmarkForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="BookmarkList">
-        <form onSubmit={handleSubmit(this.onSubmit)}>
+        <Form onSubmit={handleSubmit(this.onSubmit)}>
           <Field
             label="URL"
             name="url"
@@ -65,8 +67,7 @@ class BookmarkForm extends Component {
           <SubmitButton variant="contained" color="primary" type="submit">
             save
           </SubmitButton>
-        </form>
-      </div>
+        </Form>
     );
   }
 }

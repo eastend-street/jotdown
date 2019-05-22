@@ -4,8 +4,12 @@ import Grid from "@material-ui/core/Grid";
 import { readBookmarks } from "../../actions";
 import _ from "lodash";
 import BookmarkCard from "../BookmarkCard/BookmarkCard";
+import styled from "styled-components";
 
-import "./BookmarkList.css";
+
+const StyledBookmarkList = styled.div`
+  padding: 1rem;
+`
 
 class BookmarkList extends Component {
   componentDidMount() {
@@ -22,11 +26,11 @@ class BookmarkList extends Component {
 
   render() {
     return (
-      <div className="BookmarkList">
+      <StyledBookmarkList>
         <Grid container={true} spacing={8}>
           {this.renderBookmarks()}
         </Grid>
-      </div>
+      </StyledBookmarkList>
     );
   }
 }
