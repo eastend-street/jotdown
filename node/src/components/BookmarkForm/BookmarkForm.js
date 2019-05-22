@@ -6,10 +6,9 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { postBookmark } from "../../actions";
 
-
 const Form = styled.form`
   padding: 1rem;
-`
+`;
 
 const SubmitButton = styled(Button)`
   && {
@@ -38,6 +37,7 @@ class BookmarkForm extends Component {
         type={type}
         {...input}
         fullWidth={true}
+        variant="outlined"
       />
     );
   }
@@ -51,23 +51,23 @@ class BookmarkForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-        <Form onSubmit={handleSubmit(this.onSubmit)}>
-          <Field
-            label="URL"
-            name="url"
-            type="text"
-            component={this.renderField}
-          />
-          <Field
-            label="Memo"
-            name="memo"
-            type="text"
-            component={this.renderField}
-          />
-          <SubmitButton variant="contained" color="primary" type="submit">
-            save
-          </SubmitButton>
-        </Form>
+      <Form onSubmit={handleSubmit(this.onSubmit)}>
+        <Field
+          label="URL"
+          name="url"
+          type="text"
+          component={this.renderField}
+        />
+        <Field
+          label="Memo"
+          name="memo"
+          type="text"
+          component={this.renderField}
+        />
+        <SubmitButton variant="contained" color="primary" type="submit">
+          save
+        </SubmitButton>
+      </Form>
     );
   }
 }
