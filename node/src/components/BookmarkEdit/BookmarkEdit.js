@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
 
 import { getBookmark } from "../../actions";
 import styled from "styled-components";
@@ -10,12 +11,13 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
 const StyledBookmarkEdit = styled.div`
   padding: 1rem;
-`
+`;
 
 const StyledCard = styled(Card)`
   height: 100%;
@@ -50,14 +52,8 @@ const Description = styled(Typography)`
   }
 `;
 
-const StyledHr = styled.hr`
-  border: 0.05rem solid #f5f5f5;
-  margin: 0rem 0.5rem;
-`;
-
-const Memo = styled(Typography)`
+const FormTextField = styled(TextField)`
   && {
-    min-height: 10rem;
     margin: 1rem;
   }
 `;
@@ -71,35 +67,57 @@ const SubmitButton = styled(Button)`
 class BookmarkEdit extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.getBookmark(id);
+    const getBookmark = this.props.getBookmark(id);
+    getBookmark.then(response =>
+      this.props.initialize({ memo: response.data.memo })
+    );
+  }
+
+  renderField(field) {
+    const { input, label, type } = field;
+    return (
+      <FormTextField
+        placeholder={label}
+        type={type}
+        {...input}
+        fullWidth={true}
+        multiline
+        rows="4"
+        variant="outlined"
+      />
+    );
   }
 
   renderBookmark() {
     return _.map(this.props.bookmarks, bookmark => (
-      <StyledCard key={bookmark.id}>
-        <CardActionArea target="_blank" href={bookmark.url}>
-          <Grid container>
-            <Grid item xs={7}>
-              <StyledCardMedia
-                image={bookmark.img_url}
-                title={bookmark.title}
-              />
+      <div key={bookmark.id}>
+        <StyledCard>
+          <CardActionArea target="_blank" href={bookmark.url}>
+            <Grid container>
+              <Grid item xs={7}>
+                <StyledCardMedia
+                  image={bookmark.img_url}
+                  title={bookmark.title}
+                />
+              </Grid>
+              <Grid item xs={5}>
+                <CardContent>
+                  <Title variant="title">{bookmark.title}</Title>
+                </CardContent>
+                <Description variant="body1" component="p">
+                  {bookmark.description}
+                </Description>
+              </Grid>
             </Grid>
-            <Grid item xs={5}>
-              <CardContent>
-                <Title variant="title">{bookmark.title}</Title>
-              </CardContent>
-              <Description variant="body1" component="p">
-                {bookmark.description}
-              </Description>
-            </Grid>
-          </Grid>
-        </CardActionArea>
-        <StyledHr />
-        <Memo variant="body1" component="p">
-          {bookmark.memo}
-        </Memo>
-      </StyledCard>
+          </CardActionArea>
+        </StyledCard>
+        <Field
+          label="Memo"
+          name="memo"
+          type="text"
+          component={this.renderField}
+        />
+      </div>
     ));
   }
 
@@ -108,10 +126,12 @@ class BookmarkEdit extends Component {
       <StyledBookmarkEdit>
         <Grid container justify="center">
           <Grid item xs={12} md={6}>
-            {this.renderBookmark()}
-            <SubmitButton variant="contained" color="primary" type="submit">
-              save
-            </SubmitButton>
+            <form>
+              {this.renderBookmark()}
+              <SubmitButton variant="contained" color="primary" type="submit">
+                save
+              </SubmitButton>
+            </form>
           </Grid>
         </Grid>
       </StyledBookmarkEdit>
@@ -126,4 +146,4 @@ const mapDispatchToProps = { getBookmark };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BookmarkEdit);
+)(reduxForm({ form: "BookmarkEditForm" })(BookmarkEdit));

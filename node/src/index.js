@@ -24,18 +24,18 @@ const store = createStore(reducer, enhancer);
 
 const Content = styled.div`
   min-height: calc(100vh - 70px);
-`
+`;
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Header />
       <Content>
-      <Switch>
-        <Route path="/" exact component={BookmarkList} />
-        <Route path="/new" component={BookmarkForm} />
-        <Route path="/edit/:id" component={BookmarkEdit} />
-      </Switch>
+        <Switch>
+          <Route path="/" exact component={BookmarkList} />
+          <Route path="/new" component={BookmarkForm} />
+          <Route path="/edit/:id" component={BookmarkEdit} />
+        </Switch>
       </Content>
       <Footer />
     </BrowserRouter>
