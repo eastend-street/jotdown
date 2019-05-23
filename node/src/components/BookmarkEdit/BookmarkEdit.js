@@ -54,7 +54,7 @@ const Description = styled(Typography)`
 
 const FormTextField = styled(TextField)`
   && {
-    margin: 1rem;
+    margin-top: 1rem;
   }
 `;
 

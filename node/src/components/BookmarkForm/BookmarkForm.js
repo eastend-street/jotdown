@@ -29,8 +29,7 @@ class BookmarkForm extends Component {
   }
 
   renderField(field) {
-    const { input, label, type } = field;
-
+    const { input, label, type, multiline, rows } = field;
     return (
       <FormTextField
         placeholder={label}
@@ -38,6 +37,8 @@ class BookmarkForm extends Component {
         {...input}
         fullWidth={true}
         variant="outlined"
+        multiline={multiline}
+        rows={rows}
       />
     );
   }
@@ -57,12 +58,15 @@ class BookmarkForm extends Component {
           name="url"
           type="text"
           component={this.renderField}
+          multiline={false}
         />
         <Field
           label="Memo"
           name="memo"
           type="text"
           component={this.renderField}
+          multiline={true}
+          rows={6}
         />
         <SubmitButton variant="contained" color="primary" type="submit">
           save
