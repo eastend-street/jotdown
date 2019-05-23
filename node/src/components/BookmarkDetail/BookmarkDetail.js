@@ -15,7 +15,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
-const StyledBookmarkEdit = styled.div`
+const StyledBookmarkDetail = styled.div`
   padding: 1rem;
 `;
 
@@ -65,7 +65,7 @@ const SubmitButton = styled(Button)`
   }
 `;
 
-class BookmarkEdit extends Component {
+class BookmarkDetail extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     const getBookmark = this.props.getBookmark(id);
@@ -124,7 +124,7 @@ class BookmarkEdit extends Component {
 
   render() {
     return (
-      <StyledBookmarkEdit>
+      <StyledBookmarkDetail>
         <Grid container justify="center">
           <Grid item xs={12} md={6}>
             <form>
@@ -135,7 +135,7 @@ class BookmarkEdit extends Component {
             </form>
           </Grid>
         </Grid>
-      </StyledBookmarkEdit>
+      </StyledBookmarkDetail>
     );
   }
 }
@@ -147,4 +147,4 @@ const mapDispatchToProps = { getBookmark };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(reduxForm({ form: "BookmarkEditForm" })(BookmarkEdit));
+)(reduxForm({ form: "BookmarkDetailForm" })(BookmarkDetail));

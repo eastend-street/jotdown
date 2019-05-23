@@ -96,14 +96,18 @@ class BookmarkCard extends Component {
           <Grid item>
             <StyledLink
               to={{
-                pathname: "/edit/" + this.props.bookmark.id
+                pathname: "/detail/" + this.props.bookmark.id
               }}
             >
               <ActionButton>Edit</ActionButton>
             </StyledLink>
           </Grid>
           <Grid item>
-            <StyledLink to="/new">
+            <StyledLink
+              to={{
+                pathname: "/detail/" + this.props.bookmark.id
+              }}
+            >
               <ActionButton>See more</ActionButton>
             </StyledLink>
           </Grid>
