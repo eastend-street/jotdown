@@ -55,6 +55,7 @@ const Description = styled(Typography)`
 const FormTextField = styled(TextField)`
   && {
     margin-top: 1rem;
+    background-color: #fff;
   }
 `;
 
@@ -82,7 +83,7 @@ class BookmarkEdit extends Component {
         {...input}
         fullWidth={true}
         multiline
-        rows="4"
+        rows="8"
         variant="outlined"
       />
     );

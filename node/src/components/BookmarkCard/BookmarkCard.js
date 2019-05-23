@@ -63,7 +63,7 @@ const StyledLink = styled(Link)`
 
 const GridActions = styled(Grid)`
   && {
-    padding: 0rem 0.5rem 1rem;
+    padding: 0rem 0.5rem 0.5rem;
   }
 `;
 
@@ -96,7 +96,7 @@ class BookmarkCard extends Component {
           <Grid item>
             <StyledLink
               to={{
-                pathname: "/edit/"+ this.props.bookmark.id
+                pathname: "/edit/" + this.props.bookmark.id
               }}
             >
               <ActionButton>Edit</ActionButton>

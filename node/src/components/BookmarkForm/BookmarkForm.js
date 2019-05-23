@@ -19,6 +19,7 @@ const SubmitButton = styled(Button)`
 const FormTextField = styled(TextField)`
   && {
     margin: 1rem;
+    background-color: #fff;
   }
 `;
 
@@ -66,7 +67,7 @@ class BookmarkForm extends Component {
           type="text"
           component={this.renderField}
           multiline={true}
-          rows={6}
+          rows={8}
         />
         <SubmitButton variant="contained" color="primary" type="submit">
           save
