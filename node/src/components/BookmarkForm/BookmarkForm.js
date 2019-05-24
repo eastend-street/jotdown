@@ -13,6 +13,12 @@ const Form = styled.form`
 const SubmitButton = styled(Button)`
   && {
     margin-top: 1rem;
+    box-shadow: none;
+    color: #fff;
+    background-color: #8d6e63;
+    :hover {
+      background-color: #a1887f;
+    }
   }
 `;
 

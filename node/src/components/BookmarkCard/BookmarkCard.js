@@ -12,7 +12,10 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 const StyledCard = styled(Card)`
-  height: 100%;
+  && {
+    box-shadow: none;
+    height: 100%;
+  }
 `;
 
 const StyledCardMedia = styled(CardMedia)`

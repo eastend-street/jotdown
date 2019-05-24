@@ -18,6 +18,12 @@ const StyledAppBar = styled(AppBar)`
 const AddButton = styled(Fab)`
   && {
     margin-left: 4rem;
+    box-shadow: none;
+    color: #fff;
+    background-color: #8d6e63;
+    :hover {
+      background-color: #a1887f;
+    }
   }
 `;
 

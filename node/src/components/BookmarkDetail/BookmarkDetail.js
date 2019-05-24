@@ -20,7 +20,10 @@ const StyledBookmarkDetail = styled.div`
 `;
 
 const StyledCard = styled(Card)`
-  height: 100%;
+  && {
+    height: 100%;
+    box-shadow: none;
+  }
 `;
 
 const StyledCardMedia = styled(CardMedia)`
@@ -62,6 +65,12 @@ const FormTextField = styled(TextField)`
 const SubmitButton = styled(Button)`
   && {
     margin-top: 1rem;
+    box-shadow:none;
+    color: #fff;
+    background-color: #8d6e63;
+    :hover {
+      background-color: #a1887f;
+    }
   }
 `;
 
@@ -129,7 +138,7 @@ class BookmarkDetail extends Component {
           <Grid item xs={12} md={6}>
             <form>
               {this.renderBookmark()}
-              <SubmitButton variant="contained" color="primary" type="submit">
+              <SubmitButton variant="contained" type="submit">
                 save
               </SubmitButton>
             </form>
