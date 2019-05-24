@@ -3,7 +3,7 @@ import axios from "axios";
 export const READ_BOOKMARKS = "READ_BOOKMARKS";
 export const READ_BOOKMARK = "READ_BOOKMARK";
 export const CREATE_BOOKMARK = "CREATE_BOOKMARK";
-export const UPDATE_BOOKMARK = "UPDATE_BOOKMARK";
+export const UPDATE_BOOKMARK = "";
 
 const ROOT_URL = "http://localhost:8000/api";
 // const QUERYSTRING = "?token=token123";

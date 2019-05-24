@@ -47,3 +47,10 @@ class BookmarkViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         data = BookmarkSerializer(Bookmark.objects.get(id=pk)).data
         return Response(status=200, data=data)
+
+    def update(self, request, pk):
+        bookmark = Bookmark.objects.get(id=pk)
+        bookmark.memo = request.data.get("memo")
+        bookmark.save()
+        # data = BookmarkSerializer(bookmark).data
+        return Response(status=200)

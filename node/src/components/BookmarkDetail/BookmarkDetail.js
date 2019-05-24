@@ -139,7 +139,7 @@ class BookmarkDetail extends Component {
   async onSubmit(values) {
     const id = this.props.match.params.id
     await this.props.putBookmark(id, values);
-    // this.props.history.push("/");
+    this.props.history.push("/");
   }
 
   render() {
