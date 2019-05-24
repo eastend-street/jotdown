@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
-import { getBookmark } from "../../actions";
+import { getBookmark, putBookmark } from "../../actions";
 import styled from "styled-components";
 
 import Button from "@material-ui/core/Button";
@@ -75,6 +75,11 @@ const SubmitButton = styled(Button)`
 `;
 
 class BookmarkDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
   componentDidMount() {
     const id = this.props.match.params.id;
     const getBookmark = this.props.getBookmark(id);
@@ -131,12 +136,19 @@ class BookmarkDetail extends Component {
     ));
   }
 
+  async onSubmit(values) {
+    const id = this.props.match.params.id
+    await this.props.putBookmark(id, values);
+    // this.props.history.push("/");
+  }
+
   render() {
+    const { handleSubmit } = this.props;
     return (
       <StyledBookmarkDetail>
         <Grid container justify="center">
           <Grid item xs={12} md={6}>
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit)}>
               {this.renderBookmark()}
               <SubmitButton variant="contained" type="submit">
                 save
@@ -151,7 +163,7 @@ class BookmarkDetail extends Component {
 
 const mapStateToProps = state => ({ bookmarks: state.bookmarks });
 
-const mapDispatchToProps = { getBookmark };
+const mapDispatchToProps = { getBookmark, putBookmark };
 
 export default connect(
   mapStateToProps,

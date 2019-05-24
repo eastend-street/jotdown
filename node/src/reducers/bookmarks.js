@@ -1,9 +1,15 @@
-import { CREATE_BOOKMARK, READ_BOOKMARKS, READ_BOOKMARK } from "../actions";
+import {
+  CREATE_BOOKMARK,
+  READ_BOOKMARKS,
+  READ_BOOKMARK,
+  UPDATE_BOOKMARK
+} from "../actions";
 
 export default (bookmarks = {}, action) => {
   switch (action.type) {
     case CREATE_BOOKMARK:
     case READ_BOOKMARKS:
+    case UPDATE_BOOKMARK:
       return action.response.data;
     case READ_BOOKMARK:
       const data = action.response.data;
@@ -11,4 +17,4 @@ export default (bookmarks = {}, action) => {
     default:
       return bookmarks;
   }
-}
+};
