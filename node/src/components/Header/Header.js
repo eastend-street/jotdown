@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import AddIcon from "@material-ui/icons/Add";
 import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -40,6 +41,21 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const WrapLogin = styled.div`
+  margin: 0 0 0 auto;
+`;
+
+const LoginButton = styled(Button)`
+  && {
+    color: #fff;
+    background-color: #8d6e63;
+    :hover {
+      background-color: #a1887f;
+    }
+    text-transform: none;
+  }
+`;
+
 class Header extends Component {
   render() {
     return (
@@ -59,6 +75,9 @@ class Header extends Component {
           >
             <AddIcon />
           </AddButton>
+          <WrapLogin>
+            <LoginButton>Login</LoginButton>
+          </WrapLogin>
         </Toolbar>
       </StyledAppBar>
     );
