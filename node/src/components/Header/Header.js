@@ -77,6 +77,7 @@ class Header extends Component {
           </AddButton>
           <WrapLogin>
             <LoginButton>Login</LoginButton>
+            {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
           </WrapLogin>
         </Toolbar>
       </StyledAppBar>
