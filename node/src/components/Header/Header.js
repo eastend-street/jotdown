@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import GoogleLogin from "react-google-login";
 
 import AddIcon from "@material-ui/icons/Add";
 import AppBar from "@material-ui/core/AppBar";
@@ -57,6 +58,16 @@ const LoginButton = styled(Button)`
 `;
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.responseGoogle = this.responseGoogle.bind(this);
+  }
+
+  responseGoogle(response) {
+    console.log(response);
+    console.log(response.tokenId);
+  }
+
   render() {
     return (
       <StyledAppBar position="static">
@@ -76,8 +87,20 @@ class Header extends Component {
             <AddIcon />
           </AddButton>
           <WrapLogin>
-            <LoginButton>Login</LoginButton>
-            {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
+            <GoogleLogin
+              clientId="193612428659-nh2r4um8j7q15ucufnej0m6rf50n23bq.apps.googleusercontent.com"
+              render={renderProps => (
+                <LoginButton
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Login
+                </LoginButton>
+              )}
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
           </WrapLogin>
         </Toolbar>
       </StyledAppBar>
