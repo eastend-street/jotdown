@@ -15,9 +15,9 @@ const SubmitButton = styled(Button)`
     margin-top: 1rem;
     box-shadow: none;
     color: #fff;
-    background-color: #8d6e63;
+    background-color: #828282;
     :hover {
-      background-color: #a1887f;
+      background-color: #a2a2a2;
     }
   }
 `;

@@ -12,19 +12,23 @@ import Typography from "@material-ui/core/Typography";
 
 const StyledAppBar = styled(AppBar)`
   && {
-    background-color: #424242;
+    background-color: #e3e3e3;
     box-shadow: none;
   }
 `;
 
+const Logo = styled(Typography)`
+  color: #444444;
+`
+
 const AddButton = styled(Fab)`
   && {
-    margin-left: 4rem;
+    margin-right: 3rem;
     box-shadow: none;
     color: #fff;
-    background-color: #8d6e63;
+    background-color: #828282;
     :hover {
-      background-color: #a1887f;
+      background-color: #a2a2a2;
     }
   }
 `;
@@ -42,16 +46,17 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const WrapLogin = styled.div`
+const WrapAction = styled.div`
   margin: 0 0 0 auto;
 `;
 
 const LoginButton = styled(Button)`
   && {
     color: #fff;
-    background-color: #8d6e63;
+    width: 10rem;
+    background-color: #828282;
     :hover {
-      background-color: #a1887f;
+      background-color: #a2a2a2;
     }
     text-transform: none;
   }
@@ -73,20 +78,20 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Typography variant="h6" color="inherit">
+            <Logo variant="h6">
               MemoMemo
-            </Typography>
+            </Logo>
           </StyledLink>
-          <AddButton
-            color="primary"
-            aria-label="Add"
-            component={Link}
-            to="/new"
-            size="small"
-          >
-            <AddIcon />
-          </AddButton>
-          <WrapLogin>
+          <WrapAction>
+            <AddButton
+              color="primary"
+              aria-label="Add"
+              component={Link}
+              to="/new"
+              size="small"
+            >
+              <AddIcon />
+            </AddButton>
             <GoogleLogin
               clientId="193612428659-nh2r4um8j7q15ucufnej0m6rf50n23bq.apps.googleusercontent.com"
               render={renderProps => (
@@ -101,7 +106,7 @@ class Header extends Component {
               onFailure={this.responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
-          </WrapLogin>
+          </WrapAction>
         </Toolbar>
       </StyledAppBar>
     );

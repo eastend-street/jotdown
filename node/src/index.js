@@ -10,7 +10,7 @@ import styled from "styled-components";
 import "./index.css";
 import Header from "./components/Header/Header";
 import BookmarkDetail from "./components/BookmarkDetail/BookmarkDetail";
-import BookmarkList from "./components/BookmarkList/BookmarkList";
+import Home from "./components/Home/Home";
 import BookmarkForm from "./components/BookmarkForm/BookmarkForm";
 import Footer from "./components/Footer/Footer";
 import reducer from "./reducers";
@@ -32,7 +32,7 @@ ReactDOM.render(
       <Header />
       <Content>
         <Switch>
-          <Route path="/" exact component={BookmarkList} />
+          <Route path="/" exact component={Home} />
           <Route path="/new" component={BookmarkForm} />
           <Route path="/detail/:id" component={BookmarkDetail} />
         </Switch>

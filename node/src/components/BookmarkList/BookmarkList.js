@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 
 const StyledBookmarkList = styled.div`
-  padding: 1rem;
+  /* padding: 1rem; */
 `
 
 class BookmarkList extends Component {
