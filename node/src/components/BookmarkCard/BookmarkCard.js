@@ -21,6 +21,7 @@ const StyledCard = styled(Card)`
 const StyledCardMedia = styled(CardMedia)`
   && {
     min-height: 10rem;
+    width: 100%;
     object-fit: contain;
   }
 `;
@@ -32,7 +33,7 @@ const Title = styled(Typography)`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-    min-height: 4.5rem;
+    min-height: 4rem;
   }
 `;
 
@@ -88,11 +89,11 @@ class BookmarkCard extends Component {
             title={this.props.bookmark.title}
           />
           <CardContent>
-            <Title variant="subheading">{this.props.bookmark.title}</Title>
+            <Title variant="subtitle2">{this.props.bookmark.title}</Title>
           </CardContent>
         </CardActionArea>
         <StyledHr />
-        <Memo variant="body1" component="p">
+        <Memo variant="body2" component="p">
           {this.props.bookmark.memo}
         </Memo>
         <GridActions container>

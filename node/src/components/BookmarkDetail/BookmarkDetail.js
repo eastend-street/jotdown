@@ -117,7 +117,7 @@ class BookmarkDetail extends Component {
               </Grid>
               <Grid item xs={5}>
                 <CardContent>
-                  <Title variant="title">{bookmark.title}</Title>
+                  <Title variant="h6">{bookmark.title}</Title>
                 </CardContent>
                 <Description variant="body1" component="p">
                   {bookmark.description}

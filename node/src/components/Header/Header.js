@@ -73,7 +73,7 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Typography variant="title" color="inherit">
+            <Typography variant="h6" color="inherit">
               MemoMemo
             </Typography>
           </StyledLink>

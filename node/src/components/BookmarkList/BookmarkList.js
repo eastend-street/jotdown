@@ -18,7 +18,7 @@ class BookmarkList extends Component {
 
   renderBookmarks() {
     return _.map(this.props.bookmarks, bookmark => (
-      <Grid item={true} xs={6} sm={4} md={3} lg={2} key={bookmark.id}>
+      <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />
       </Grid>
     ));
@@ -27,8 +27,8 @@ class BookmarkList extends Component {
   render() {
     return (
       <StyledBookmarkList>
-        <Grid container={true} spacing={8}>
-          {this.renderBookmarks()}g
+        <Grid container={true} spacing={3}>
+          {this.renderBookmarks()}
         </Grid>
       </StyledBookmarkList>
     );
