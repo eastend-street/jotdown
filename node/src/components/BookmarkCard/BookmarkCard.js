@@ -15,6 +15,8 @@ const StyledCard = styled(Card)`
   && {
     box-shadow: none;
     height: 100%;
+    position: relative;
+    padding-bottom: 1rem;
   }
 `;
 
@@ -67,14 +69,17 @@ const StyledLink = styled(Link)`
 
 const GridActions = styled(Grid)`
   && {
-    padding: 0rem 0.5rem 0.5rem;
+    padding: 0.5rem 1rem 0.3rem 0.5rem;
+    position: absolute;
+    bottom: 0;
+    justify-content: flex-end;
   }
 `;
 
 const ActionButton = styled(Button)`
   && {
     text-transform: none;
-    padding: 0;
+    padding: 0.2rem;
     color: #757575;
   }
 `;
@@ -97,7 +102,7 @@ class BookmarkCard extends Component {
           {this.props.bookmark.memo}
         </Memo>
         <GridActions container>
-          <Grid item>
+          {/* <Grid item>
             <StyledLink
               to={{
                 pathname: "/detail/" + this.props.bookmark.id
@@ -105,7 +110,7 @@ class BookmarkCard extends Component {
             >
               <ActionButton>Edit</ActionButton>
             </StyledLink>
-          </Grid>
+          </Grid> */}
           <Grid item>
             <StyledLink
               to={{

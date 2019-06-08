@@ -55,19 +55,26 @@ const Description = styled(Typography)`
   }
 `;
 
-const FormTextField = styled(TextField)`
-  && {
+// const FormTextField = styled(TextField)`
+//   && {
+//     margin-top: 1rem;
+//     background-color: #fff;
+//   },
+// `;
+
+const FormTextField = styled.textarea`
     margin-top: 1rem;
     background-color: #fff;
-  }
+    height: 10rem;
+    width: 40rem;
 `;
 
 const SubmitButton = styled(Button)`
   && {
     margin-top: 1rem;
-    box-shadow:none;
+    box-shadow: none;
     color: #fff;
-    background-color: #66717E;
+    background-color: #66717e;
     :hover {
       background-color: #838e9a;
     }
@@ -137,7 +144,7 @@ class BookmarkDetail extends Component {
   }
 
   async onSubmit(values) {
-    const id = this.props.match.params.id
+    const id = this.props.match.params.id;
     await this.props.putBookmark(id, values);
     this.props.history.push("/");
   }
