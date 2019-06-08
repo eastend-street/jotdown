@@ -4,12 +4,12 @@ import styled from "styled-components";
 const StyledFooter = styled.footer`
   background-color: #e3e3e3;
   height: 50px;
-  color: #444444;
+  color: #66717e;
   padding: 10rem 3rem 2rem 3rem;
 `;
 
 const Copyright = styled.p`
-  color: #444444;
+  color: #66717e;
   text-align: center;
 `;
 

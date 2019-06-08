@@ -18,17 +18,20 @@ const StyledAppBar = styled(AppBar)`
 `;
 
 const Logo = styled(Typography)`
-  color: #444444;
-`
+  color: #66717e;
+  :hover {
+    color: #838e9a;
+  }
+`;
 
 const AddButton = styled(Fab)`
   && {
     margin-right: 3rem;
     box-shadow: none;
     color: #fff;
-    background-color: #828282;
+    background-color: #66717e;
     :hover {
-      background-color: #a2a2a2;
+      background-color: #838e9a;
     }
   }
 `;
@@ -54,9 +57,9 @@ const LoginButton = styled(Button)`
   && {
     color: #fff;
     width: 10rem;
-    background-color: #828282;
+    background-color: #66717e;
     :hover {
-      background-color: #a2a2a2;
+      background-color: #838e9a;
     }
     text-transform: none;
   }
@@ -78,9 +81,7 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo variant="h6">
-              MemoMemo
-            </Logo>
+            <Logo variant="h6">MemoMemo</Logo>
           </StyledLink>
           <WrapAction>
             <AddButton
