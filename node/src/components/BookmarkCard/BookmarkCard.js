@@ -99,7 +99,7 @@ class BookmarkCard extends Component {
         </CardActionArea>
         <StyledHr />
         <Note variant="body2" component="p">
-          {this.props.bookmark.memo}
+          {this.props.bookmark.note}
         </Note>
         <GridActions container>
           {/* <Grid item>

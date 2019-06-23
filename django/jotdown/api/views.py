@@ -30,7 +30,7 @@ class BookmarkViewSet(viewsets.ViewSet):
         return Response(status=200, data=data)
 
     def create(self, validated_data):
-        # URL, memoが存在するか確認する処理
+        # URL, noteが存在するか確認する処理
         url = self.request.data['url']
         ogp_data = getOgpData(url)
         # OGPが取得できなかった場合の通過処理
@@ -38,7 +38,7 @@ class BookmarkViewSet(viewsets.ViewSet):
             url=url,
             title=ogp_data.title,
             description=ogp_data.description,
-            memo=self.request.data['memo'],
+            note=self.request.data['note'],
             img_url=ogp_data.image,
             user=User.objects.get(id=1)
         )
@@ -50,7 +50,7 @@ class BookmarkViewSet(viewsets.ViewSet):
 
     def update(self, request, pk):
         bookmark = Bookmark.objects.get(id=pk)
-        bookmark.memo = request.data.get("memo")
+        bookmark.note = request.data.get("note")
         bookmark.save()
         # data = BookmarkSerializer(bookmark).data
         return Response(status=200)

@@ -91,7 +91,7 @@ class BookmarkDetail extends Component {
     const id = this.props.match.params.id;
     const getBookmark = this.props.getBookmark(id);
     getBookmark.then(response =>
-      this.props.initialize({ memo: response.data.memo })
+      this.props.initialize({ note: response.data.note })
     );
   }
 
