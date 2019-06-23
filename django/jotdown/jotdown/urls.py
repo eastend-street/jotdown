@@ -1,4 +1,4 @@
-"""memomemo URL Configuration
+"""jotdown URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('jotdown-managing/', admin.site.urls),
     path('api/', include(api_router.urls)),
 ]
 

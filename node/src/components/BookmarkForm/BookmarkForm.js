@@ -68,8 +68,8 @@ class BookmarkForm extends Component {
           multiline={false}
         />
         <Field
-          label="Memo"
-          name="memo"
+          label="Note"
+          name="Note"
           type="text"
           component={this.renderField}
           multiline={true}

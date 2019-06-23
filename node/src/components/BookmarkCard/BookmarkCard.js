@@ -39,7 +39,7 @@ const Title = styled(Typography)`
   }
 `;
 
-const Memo = styled(Typography)`
+const Note = styled(Typography)`
   && {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -98,9 +98,9 @@ class BookmarkCard extends Component {
           </CardContent>
         </CardActionArea>
         <StyledHr />
-        <Memo variant="body2" component="p">
+        <Note variant="body2" component="p">
           {this.props.bookmark.memo}
-        </Memo>
+        </Note>
         <GridActions container>
           {/* <Grid item>
             <StyledLink

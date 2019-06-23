@@ -134,8 +134,8 @@ class BookmarkDetail extends Component {
           </CardActionArea>
         </StyledCard>
         <Field
-          label="Memo"
-          name="memo"
+          label="Note"
+          name="Note"
           type="text"
           component={this.renderField}
         />
