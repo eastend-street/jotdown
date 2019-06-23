@@ -81,7 +81,7 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo variant="h6">MemoMemo</Logo>
+            <Logo variant="h6">Jot down</Logo>
           </StyledLink>
           <WrapAction>
             <AddButton

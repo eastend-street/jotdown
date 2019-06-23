@@ -18,7 +18,7 @@ class Footer extends Component {
     return (
       <StyledFooter>
         <Copyright>
-          Copyright &copy; 2018 - 2019 MemoMemo All rights reserved.
+          Copyright &copy; 2018 - 2019 Jot down All rights reserved.
         </Copyright>
       </StyledFooter>
     );
