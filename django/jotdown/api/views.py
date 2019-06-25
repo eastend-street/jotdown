@@ -30,7 +30,11 @@ class BookmarkViewSet(viewsets.ViewSet):
         return Response(status=200, data=data)
 
     def create(self, validated_data):
-        # URL, noteが存在するか確認する処理
+        # check there is note or not
+        try:
+            note = self.request.data['note']
+        except KeyError:
+            note = ""
         url = self.request.data['url']
         ogp_data = getOgpData(url)
         # OGPが取得できなかった場合の通過処理
@@ -38,7 +42,7 @@ class BookmarkViewSet(viewsets.ViewSet):
             url=url,
             title=ogp_data.title,
             description=ogp_data.description,
-            note=self.request.data['note'],
+            note=note,
             img_url=ogp_data.image,
             user=User.objects.get(id=1)
         )

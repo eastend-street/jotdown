@@ -27,7 +27,7 @@ class BookmarkList extends Component {
   render() {
     return (
       <StyledBookmarkList>
-        <Grid container={true} spacing={3}>
+        <Grid container={true} spacing={4}>
           {this.renderBookmarks()}
         </Grid>
       </StyledBookmarkList>
