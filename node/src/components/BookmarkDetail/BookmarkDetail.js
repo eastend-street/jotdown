@@ -14,6 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
+import NoteEditor from "../NoteEditor/NoteEditor";
 import SampleImage from "../../static/images/sample-grey.jpeg";
 
 const StyledBookmarkDetail = styled.div`
@@ -66,8 +67,8 @@ const FormTextField = styled.textarea`
   margin-top: 1rem;
   background-color: #fff;
   height: 10rem;
-  width: 99%;
-
+  width: 98%;
+  padding: 1rem;
 `;
 
 const SubmitButton = styled(Button)`
@@ -142,6 +143,7 @@ class BookmarkDetail extends Component {
           type="text"
           component={this.renderField}
         />
+        <NoteEditor note={bookmark.note}/>
       </div>
     ));
   }
