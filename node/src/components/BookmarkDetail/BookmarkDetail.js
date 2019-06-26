@@ -118,7 +118,7 @@ class BookmarkDetail extends Component {
         <StyledCard>
           <CardActionArea target="_blank" href={bookmark.url}>
             <Grid container>
-            <Grid item xs={5}>
+              <Grid item xs={5}>
                 <StyledCardMedia
                   image={bookmark.img_url || SampleImage}
                   title={bookmark.title}
@@ -143,7 +143,7 @@ class BookmarkDetail extends Component {
           type="text"
           component={this.renderField}
         />
-        <NoteEditor note={bookmark.note}/>
+        <NoteEditor note={bookmark.note} />
       </div>
     ));
   }
