@@ -10,6 +10,7 @@ from .serializers import UserSerializer, BookmarkSerializer
 # 1つのブックマークのみ受け取る
 def getOgpData(url):
     ogp = opengraph.OpenGraph(url=url)
+    print(ogp)
     return ogp
 
 
@@ -36,16 +37,26 @@ class BookmarkViewSet(viewsets.ViewSet):
         except KeyError:
             note = ""
         url = self.request.data['url']
-        ogp_data = getOgpData(url)
-        # OGPが取得できなかった場合の通過処理
-        obj = Bookmark.objects.create(
-            url=url,
-            title=ogp_data.title,
-            description=ogp_data.description,
-            note=note,
-            img_url=ogp_data.image,
-            user=User.objects.get(id=1)
-        )
+
+        try:
+            ogp_data = getOgpData(url)
+        except:
+            print('Could not get OGP')
+            obj = Bookmark.objects.create(
+                url=url,
+                title=url,
+                note=note,
+                user=User.objects.get(id=1)
+            )
+        else:
+            obj = Bookmark.objects.create(
+                url=url,
+                title=ogp_data.title,
+                description=ogp_data.description,
+                note=note,
+                img_url=ogp_data.image,
+                user=User.objects.get(id=1)
+            )
         return Response(status=204)
 
     def retrieve(self, request, pk=None):

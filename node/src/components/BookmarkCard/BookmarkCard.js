@@ -11,6 +11,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
+import SampleImage from "../../static/images/sample-grey.jpeg";
+
 const StyledCard = styled(Card)`
   && {
     box-shadow: none;
@@ -22,9 +24,8 @@ const StyledCard = styled(Card)`
 
 const StyledCardMedia = styled(CardMedia)`
   && {
-    min-height: 10rem;
-    width: 100%;
-    object-fit: contain;
+    height: 0;
+    padding-top: 52.5%;
   }
 `;
 
@@ -90,7 +91,7 @@ class BookmarkCard extends Component {
       <StyledCard>
         <CardActionArea target="_blank" href={this.props.bookmark.url}>
           <StyledCardMedia
-            image={this.props.bookmark.img_url}
+            image={this.props.bookmark.img_url || SampleImage}
             title={this.props.bookmark.title}
           />
           <CardContent>

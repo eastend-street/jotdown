@@ -11,9 +11,10 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
+
+import SampleImage from "../../static/images/sample-grey.jpeg";
 
 const StyledBookmarkDetail = styled.div`
   padding: 1rem;
@@ -28,9 +29,8 @@ const StyledCard = styled(Card)`
 
 const StyledCardMedia = styled(CardMedia)`
   && {
-    min-height: 15rem;
-    object-fit: contain;
-    margin: 0.5rem;
+    height: 0;
+    padding-top: 52.5%;
   }
 `;
 
@@ -51,7 +51,7 @@ const Description = styled(Typography)`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 7;
     overflow: hidden;
-    margin: 0.5rem;
+    padding: 1rem;
   }
 `;
 
@@ -63,10 +63,11 @@ const Description = styled(Typography)`
 // `;
 
 const FormTextField = styled.textarea`
-    margin-top: 1rem;
-    background-color: #fff;
-    height: 10rem;
-    width: 40rem;
+  margin-top: 1rem;
+  background-color: #fff;
+  height: 10rem;
+  width: 99%;
+
 `;
 
 const SubmitButton = styled(Button)`
@@ -116,17 +117,19 @@ class BookmarkDetail extends Component {
         <StyledCard>
           <CardActionArea target="_blank" href={bookmark.url}>
             <Grid container>
-              <Grid item xs={7}>
+            <Grid item xs={5}>
                 <StyledCardMedia
-                  image={bookmark.img_url}
+                  image={bookmark.img_url || SampleImage}
                   title={bookmark.title}
                 />
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={7}>
                 <CardContent>
-                  <Title variant="h6">{bookmark.title}</Title>
+                  <Title variant="subtitle1">{bookmark.title}</Title>
                 </CardContent>
-                <Description variant="body1" component="p">
+              </Grid>
+              <Grid>
+                <Description variant="body2" component="p">
                   {bookmark.description}
                 </Description>
               </Grid>
@@ -135,7 +138,7 @@ class BookmarkDetail extends Component {
         </StyledCard>
         <Field
           label="Note"
-          name="Note"
+          name="note"
           type="text"
           component={this.renderField}
         />
