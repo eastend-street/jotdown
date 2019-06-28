@@ -13,7 +13,7 @@ export default (bookmarks = {}, action) => {
       return action.response.data;
     case READ_BOOKMARK:
       const data = action.response.data;
-      return { [data.id]: data };
+      return {[data.id]: data };
     default:
       return bookmarks;
   }

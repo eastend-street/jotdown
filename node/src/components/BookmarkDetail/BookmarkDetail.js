@@ -92,9 +92,9 @@ class BookmarkDetail extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     const getBookmark = this.props.getBookmark(id);
-    getBookmark.then(response =>
-      this.props.initialize({ note: response.data.note })
-    );
+    getBookmark.then(response => {
+      return this.props.initialize({ note: response.data.note });
+    });
   }
 
   renderField(field) {
@@ -175,8 +175,8 @@ class BookmarkDetail extends Component {
 
 const selector = formValueSelector("BookmarkDetailForm");
 const mapStateToProps = state => ({
-  note: selector(state, "note"),
-  bookmarks: state.bookmarks
+    note: selector(state, "note"),
+    bookmarks: state.bookmarks
 });
 
 const mapDispatchToProps = { getBookmark, putBookmark };
