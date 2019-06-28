@@ -9,12 +9,17 @@ const WrapEditor = styled.div`
   padding: 1rem;
 `;
 
+const StyledReactMarkdown = styled(ReactMarkdown)`
+  && {
+  }
+`;
+
 class NoteEditor extends Component {
   render() {
     return (
       <React.Fragment>
         <WrapEditor>
-          <ReactMarkdown source={this.props.note} />
+          <StyledReactMarkdown source={this.props.note} />
         </WrapEditor>
       </React.Fragment>
     );

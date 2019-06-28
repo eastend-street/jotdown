@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
@@ -40,14 +41,12 @@ const Title = styled(Typography)`
   }
 `;
 
-const Note = styled(Typography)`
-  && {
+const Note = styled.div`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
     margin: 0.5rem 1rem;
-  }
 `;
 
 const StyledHr = styled.hr`
@@ -85,6 +84,11 @@ const ActionButton = styled(Button)`
   }
 `;
 
+const StyledReactMarkdown = styled(ReactMarkdown)`
+  && {
+  }
+`;
+
 class BookmarkCard extends Component {
   render() {
     return (
@@ -99,8 +103,9 @@ class BookmarkCard extends Component {
           </CardContent>
         </CardActionArea>
         <StyledHr />
-        <Note variant="body2" component="p">
-          {this.props.bookmark.note}
+        <Note>
+          {/* {this.props.bookmark.note} */}
+          <StyledReactMarkdown source={this.props.bookmark.note} />
         </Note>
         <GridActions container>
           {/* <Grid item>
