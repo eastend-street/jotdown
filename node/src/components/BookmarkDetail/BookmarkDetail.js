@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, formValueSelector } from "redux-form";
 
 import { getBookmark, putBookmark } from "../../actions";
 import styled from "styled-components";
@@ -112,7 +112,7 @@ class BookmarkDetail extends Component {
     );
   }
 
-  renderBookmark() {
+  renderBookmark(note) {
     return _.map(this.props.bookmarks, bookmark => (
       <div key={bookmark.id}>
         <StyledCard>
@@ -143,7 +143,7 @@ class BookmarkDetail extends Component {
           type="text"
           component={this.renderField}
         />
-        <NoteEditor note={bookmark.note} />
+        <NoteEditor note={note} />
       </div>
     ));
   }
@@ -161,7 +161,7 @@ class BookmarkDetail extends Component {
         <Grid container justify="center">
           <Grid item xs={12} md={6}>
             <form onSubmit={handleSubmit(this.onSubmit)}>
-              {this.renderBookmark()}
+              {this.renderBookmark(this.props.note)}
               <SubmitButton variant="contained" type="submit">
                 save
               </SubmitButton>
@@ -173,7 +173,11 @@ class BookmarkDetail extends Component {
   }
 }
 
-const mapStateToProps = state => ({ bookmarks: state.bookmarks });
+const selector = formValueSelector("BookmarkDetailForm");
+const mapStateToProps = state => ({
+  note: selector(state, "note"),
+  bookmarks: state.bookmarks
+});
 
 const mapDispatchToProps = { getBookmark, putBookmark };
 
