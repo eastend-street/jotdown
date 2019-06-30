@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm, formValueSelector } from "redux-form";
+import { reduxForm, formValueSelector } from "redux-form";
 
 import { getBookmark, putBookmark } from "../../actions";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
-import MarkdownTabs from "../MarkdownTabs/MarkdownTabs";
+import MarkdownTabs from "../parts/MarkdownTabs/MarkdownTabs";
 import SampleImage from "../../static/images/sample-grey.jpeg";
 
 const StyledBookmarkDetail = styled.div`
@@ -56,14 +56,6 @@ const Description = styled(Typography)`
   }
 `;
 
-const FormTextField = styled.textarea`
-  margin-top: 1rem;
-  background-color: #fff;
-  height: 10rem;
-  width: 98%;
-  padding: 1rem;
-`;
-
 const SubmitButton = styled(Button)`
   && {
     margin-top: 1rem;
@@ -88,21 +80,6 @@ class BookmarkDetail extends Component {
     getBookmark.then(response => {
       return this.props.initialize({ note: response.data.note });
     });
-  }
-
-  renderField(field) {
-    const { input, label, type } = field;
-    return (
-      <FormTextField
-        placeholder={label}
-        type={type}
-        {...input}
-        fullWidth={true}
-        multiline
-        rows="8"
-        variant="outlined"
-      />
-    );
   }
 
   renderBookmark(note) {
@@ -130,13 +107,7 @@ class BookmarkDetail extends Component {
             </Grid>
           </CardActionArea>
         </StyledCard>
-        <Field
-          label="Note"
-          name="note"
-          type="text"
-          component={this.renderField}
-        />
-        <MarkdownTabs note={note} bookmark={bookmark}/>
+        <MarkdownTabs note={note}/>
       </div>
     ));
   }
