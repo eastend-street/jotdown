@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 import styled from "styled-components";
+import TextareaAutosize from 'react-textarea-autosize';
 
-const FormTextField = styled.textarea`
+const FormTextField = styled(TextareaAutosize)`
   box-sizing: border-box;
-  min-height: 10em;
   width: 100%;
   border: none;
   padding: 1rem 1rem 0rem 1rem;
@@ -25,10 +25,8 @@ class MarkdownTextarea extends Component {
       <FormTextField
         placeholder={label}
         type={type}
+        minRows={10}
         {...input}
-        fullWidth={true}
-        multiline
-        rows="8"
       />
     );
   }

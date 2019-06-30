@@ -17,7 +17,7 @@ export default function MarkdownPreview(props) {
     return (
       <React.Fragment>
         <WrapEditor>
-          <StyledReactMarkdown source={props.note} />
+          <StyledReactMarkdown source={props.note}/>
         </WrapEditor>
       </React.Fragment>
     );
