@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import { Field } from "redux-form";
 import styled from "styled-components";
 
-const WrapTextarea = styled.div`
-  padding: 1rem;
-  width: 100%;
-`
-
 const FormTextField = styled.textarea`
-  background-color: #fff;
+  box-sizing: border-box;
   min-height: 10em;
-  width: 90%;
-  /* border: none; */
-  padding: 1rem;
+  width: 100%;
+  border: none;
+  padding: 1rem 1rem 0rem 1rem;
   resize: vertical;
+  font-size: 1rem;
+  ::placeholder {
+  color: #bdbdbd;
+}
+  :focus {
+    outline: none;
+}
 `;
 
 class MarkdownTextarea extends Component {
@@ -33,14 +35,12 @@ class MarkdownTextarea extends Component {
 
   render() {
     return (
-      <WrapTextarea>
         <Field
-          label="Note"
+          label="Write a note here"
           name="note"
           type="text"
           component={this.renderField}
         />
-      </WrapTextarea>
     );
   }
 }
