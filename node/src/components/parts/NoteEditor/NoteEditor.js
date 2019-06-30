@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
@@ -14,16 +14,12 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
   }
 `;
 
-class NoteEditor extends Component {
-  render() {
+export default function NoteEditor(props) {
     return (
       <React.Fragment>
         <WrapEditor>
-          <StyledReactMarkdown source={this.props.note} />
+          <StyledReactMarkdown source={props.note} />
         </WrapEditor>
       </React.Fragment>
     );
-  }
 }
-
-export default NoteEditor;
