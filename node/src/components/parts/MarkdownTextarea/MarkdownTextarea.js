@@ -1,14 +1,19 @@
 import React, { Component } from "react";
-import { Field }from "redux-form";
+import { Field } from "redux-form";
 import styled from "styled-components";
 
+const WrapTextarea = styled.div`
+  padding: 1rem;
+  width: 100%;
+`
 
 const FormTextField = styled.textarea`
   background-color: #fff;
   min-height: 10em;
-  width: 94.5%;
+  width: 90%;
+  /* border: none; */
   padding: 1rem;
-  border: none;
+  resize: vertical;
 `;
 
 class MarkdownTextarea extends Component {
@@ -22,23 +27,22 @@ class MarkdownTextarea extends Component {
         fullWidth={true}
         multiline
         rows="8"
-        variant="outlined"
       />
     );
   }
 
   render() {
     return (
-      <Field
-        label="Note"
-        name="note"
-        type="text"
-        component={this.renderField}
-      />
+      <WrapTextarea>
+        <Field
+          label="Note"
+          name="note"
+          type="text"
+          component={this.renderField}
+        />
+      </WrapTextarea>
     );
   }
 }
-
-
 
 export default MarkdownTextarea;

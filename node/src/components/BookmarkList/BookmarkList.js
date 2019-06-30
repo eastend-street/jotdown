@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import { readBookmarks } from "../../actions";
 import _ from "lodash";
-import BookmarkCard from "../BookmarkCard/BookmarkCard";
+import BookmarkCard from "../parts/BookmarkCard/BookmarkCard";
 import styled from "styled-components";
 
 

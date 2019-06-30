@@ -12,7 +12,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import SampleImage from "../../static/images/sample-grey.jpeg";
+import SampleImage from "../../../static/images/sample-grey.jpeg";
 
 const StyledCard = styled(Card)`
   && {

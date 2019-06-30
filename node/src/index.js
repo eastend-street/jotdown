@@ -8,11 +8,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import styled from "styled-components";
 import "./index.css";
-import Header from "./components/Header/Header";
+import Header from "./components/parts/Header/Header";
 import BookmarkDetail from "./components/BookmarkDetail/BookmarkDetail";
 import Home from "./components/Home/Home";
 import BookmarkForm from "./components/BookmarkForm/BookmarkForm";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/parts/Footer/Footer";
 import reducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 

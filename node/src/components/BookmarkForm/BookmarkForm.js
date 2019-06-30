@@ -16,6 +16,7 @@ const SubmitButton = styled(Button)`
     box-shadow: none;
     color: #fff;
     background-color: #66717E;
+    text-transform: none;
     :hover {
       background-color: #838e9a;
     }
@@ -76,7 +77,7 @@ class BookmarkForm extends Component {
           rows={8}
         />
         <SubmitButton variant="contained" color="primary" type="submit">
-          save
+          Save
         </SubmitButton>
       </Form>
     );

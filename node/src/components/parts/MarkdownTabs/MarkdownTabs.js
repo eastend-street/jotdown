@@ -21,6 +21,12 @@ const StyledTabs = styled(Tabs)`
 
 `
 
+const StyledTab = styled(Tab)`
+  && {
+    text-transform: none;
+  }
+`
+
 export default function MarkdownTabs(props) {
   const [value, setValue] = React.useState(0);
 
@@ -30,8 +36,8 @@ export default function MarkdownTabs(props) {
   return (
     <WrapMarkdown>
       <StyledTabs value={value} onChange={handleChange} classes={{ indicator: "indicator"}}>
-        <Tab label="Write" />
-        <Tab label="Preview" />
+        <StyledTab label="Write" />
+        <StyledTab label="Preview" />
       </StyledTabs>
       {value === 0 && <MarkdownTextarea note={props.note}/>}
       {value === 1 && <MarkdownPreview note={props.note}/>}

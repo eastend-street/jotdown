@@ -62,6 +62,7 @@ const SubmitButton = styled(Button)`
     box-shadow: none;
     color: #fff;
     background-color: #66717e;
+    text-transform: none;
     :hover {
       background-color: #838e9a;
     }
@@ -127,7 +128,7 @@ class BookmarkDetail extends Component {
             <form onSubmit={handleSubmit(this.onSubmit)}>
               {this.renderBookmark(this.props.note)}
               <SubmitButton variant="contained" type="submit">
-                add
+                Save
               </SubmitButton>
             </form>
           </Grid>
