@@ -1,9 +1,25 @@
 import React from "react";
+import styled from "styled-components";
+
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import NoteEditor from "../NoteEditor/NoteEditor";
+import MarkdownPreview from "../MarkdownPreview/MarkdownPreview";
 import MarkdownTextarea from "../MarkdownTextarea/MarkdownTextarea"
 
+const WrapMarkdown = styled.div`
+  margin-top: 3rem;
+  background-color: #fff;
+`
+
+const StyledTabs = styled(Tabs)`
+    &&{
+      padding: 0.5rem;
+    }
+    .indicator {
+      background-color: #66717e;
+    }
+
+`
 
 export default function MarkdownTabs(props) {
   const [value, setValue] = React.useState(0);
@@ -12,13 +28,13 @@ export default function MarkdownTabs(props) {
     setValue(newValue);
   }
   return (
-    <div>
-      <Tabs value={value} onChange={handleChange}>
+    <WrapMarkdown>
+      <StyledTabs value={value} onChange={handleChange} classes={{ indicator: "indicator"}}>
         <Tab label="Write" />
         <Tab label="Preview" />
-      </Tabs>
+      </StyledTabs>
       {value === 0 && <MarkdownTextarea note={props.note}/>}
-      {value === 1 && <NoteEditor note={props.note}/>}
-    </div>
+      {value === 1 && <MarkdownPreview note={props.note}/>}
+    </WrapMarkdown>
   );
 }

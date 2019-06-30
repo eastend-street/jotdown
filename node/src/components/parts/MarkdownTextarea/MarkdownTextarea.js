@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 
 const FormTextField = styled.textarea`
-  margin-top: 1rem;
   background-color: #fff;
-  height: 10rem;
-  width: 98%;
+  min-height: 10em;
+  width: 94.5%;
   padding: 1rem;
+  border: none;
 `;
 
 class MarkdownTextarea extends Component {
