@@ -14,7 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
 
-import NoteEditor from "../NoteEditor/NoteEditor";
+import MarkdownTabs from "../MarkdownTabs/MarkdownTabs";
 import SampleImage from "../../static/images/sample-grey.jpeg";
 
 const StyledBookmarkDetail = styled.div`
@@ -136,7 +136,7 @@ class BookmarkDetail extends Component {
           type="text"
           component={this.renderField}
         />
-        <NoteEditor note={note} />
+        <MarkdownTabs note={note} bookmark={bookmark}/>
       </div>
     ));
   }
