@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, formValueSelector } from "redux-form";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { postBookmark } from "../../actions";
+
+import MarkdownTabs from "../parts/MarkdownTabs/MarkdownTabs";
+
 
 const Form = styled.form`
   padding: 1rem;
@@ -68,14 +71,15 @@ class BookmarkForm extends Component {
           component={this.renderField}
           multiline={false}
         />
-        <Field
+        {/* <Field
           label="Note"
           name="note"
           type="text"
           component={this.renderField}
           multiline={true}
           rows={8}
-        />
+        /> */}
+        <MarkdownTabs note={this.props.note}/>
         <SubmitButton variant="contained" color="primary" type="submit">
           Save
         </SubmitButton>
@@ -84,9 +88,14 @@ class BookmarkForm extends Component {
   }
 }
 
+const selector = formValueSelector("BookmarkForm");
+const mapStateToProps = state => ({
+    note: selector(state, "note"),
+});
+
 const mapDispatchToProps = { postBookmark };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(reduxForm({ form: "BookmarkForm" })(BookmarkForm));
