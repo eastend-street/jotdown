@@ -18,9 +18,9 @@ const StyledAppBar = styled(AppBar)`
 `;
 
 const Logo = styled(Typography)`
-  color: #66717e;
+  color: #525a65;
   :hover {
-    color: #838e9a;
+    color: #66717e;
   }
 `;
 

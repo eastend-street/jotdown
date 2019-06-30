@@ -1,44 +1,40 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 import styled from "styled-components";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 
 const FormTextField = styled(TextareaAutosize)`
   box-sizing: border-box;
   width: 100%;
   border: none;
-  padding: 1rem 1rem 0rem 1rem;
-  resize: vertical;
+  padding: 1rem;
+  resize: none;
+  min-height: 10rem;
   font-size: 1rem;
   ::placeholder {
-  color: #bdbdbd;
-}
+    color: #bdbdbd;
+  }
   :focus {
     outline: none;
-}
+  }
 `;
 
 class MarkdownTextarea extends Component {
   renderField(field) {
     const { input, label, type } = field;
     return (
-      <FormTextField
-        placeholder={label}
-        type={type}
-        minRows={10}
-        {...input}
-      />
+      <FormTextField placeholder={label} type={type} minRows={10} {...input} />
     );
   }
 
   render() {
     return (
-        <Field
-          label="Write a note here"
-          name="note"
-          type="text"
-          component={this.renderField}
-        />
+      <Field
+        label="Write a note here"
+        name="note"
+        type="text"
+        component={this.renderField}
+      />
     );
   }
 }

@@ -108,7 +108,7 @@ class BookmarkDetail extends Component {
             </Grid>
           </CardActionArea>
         </StyledCard>
-        <MarkdownTabs note={note}/>
+        <MarkdownTabs note={note} mode="edit"/>
       </div>
     ));
   }

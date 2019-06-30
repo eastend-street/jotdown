@@ -79,8 +79,8 @@ const GridActions = styled(Grid)`
 const ActionButton = styled(Button)`
   && {
     text-transform: none;
-    padding: 0.2rem;
-    color: #757575;
+    padding: 0.2rem 1rem;
+    color: #979797;
   }
 `;
 
@@ -104,7 +104,6 @@ class BookmarkCard extends Component {
         </CardActionArea>
         <StyledHr />
         <Note>
-          {/* {this.props.bookmark.note} */}
           <StyledReactMarkdown source={this.props.bookmark.note} />
         </Note>
         <GridActions container>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const WrapEditor = styled.div`
   background-color: #fff;
-  min-height: 10em;
+  min-height: 10rem;
   padding: 1rem;
 `;
 
