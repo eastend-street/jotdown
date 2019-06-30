@@ -56,13 +56,6 @@ const Description = styled(Typography)`
   }
 `;
 
-// const FormTextField = styled(TextField)`
-//   && {
-//     margin-top: 1rem;
-//     background-color: #fff;
-//   },
-// `;
-
 const FormTextField = styled.textarea`
   margin-top: 1rem;
   background-color: #fff;
@@ -163,7 +156,7 @@ class BookmarkDetail extends Component {
             <form onSubmit={handleSubmit(this.onSubmit)}>
               {this.renderBookmark(this.props.note)}
               <SubmitButton variant="contained" type="submit">
-                save
+                add
               </SubmitButton>
             </form>
           </Grid>
