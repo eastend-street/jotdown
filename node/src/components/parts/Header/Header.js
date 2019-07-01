@@ -10,6 +10,8 @@ import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
+import Config from "../../../config/development";
+
 const StyledAppBar = styled(AppBar)`
   && {
     background-color: #e3e3e3;
@@ -94,7 +96,22 @@ class Header extends Component {
               <AddIcon />
             </AddButton>
             <GoogleLogin
-              clientId="193612428659-nh2r4um8j7q15ucufnej0m6rf50n23bq.apps.googleusercontent.com"
+              clientId={Config.CLIENT_ID}
+              render={renderProps => (
+                <LoginButton
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Login
+                </LoginButton>
+              )}
+              buttonText="Login"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
+            {/* <GoogleLogin
+              clientId={Config.CLIENT_ID}
               render={renderProps => (
                 <LoginButton
                   onClick={renderProps.onClick}
@@ -106,7 +123,7 @@ class Header extends Component {
               onSuccess={this.responseGoogle}
               onFailure={this.responseGoogle}
               cookiePolicy={"single_host_origin"}
-            />
+            /> */}
           </WrapAction>
         </Toolbar>
       </StyledAppBar>
