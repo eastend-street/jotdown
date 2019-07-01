@@ -81,6 +81,7 @@ const ActionButton = styled(Button)`
     text-transform: none;
     padding: 0.2rem 1rem;
     color: #979797;
+    font-size: 0.8rem;
   }
 `;
 
