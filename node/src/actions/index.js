@@ -7,6 +7,7 @@ export const UPDATE_BOOKMARK = "UPDATE_BOOKMARK";
 
 const ROOT_URL = "http://localhost:8000/api";
 // const QUERYSTRING = "?token=token123";
+axios.defaults.headers.common['Authorization'] = localStorage.getItem("token") || "";
 
 export const readBookmarks = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/bookmarks/`);

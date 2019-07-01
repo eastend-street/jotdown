@@ -74,8 +74,8 @@ class Header extends Component {
   }
 
   responseGoogle(response) {
-    console.log(response);
     console.log(response.tokenId);
+    localStorage.setItem("token", response.tokenId);
   }
 
   render() {
