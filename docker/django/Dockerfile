@@ -14,8 +14,7 @@ django-debug-toolbar \
 djangorestframework \
 django-filter \
 django-cors-headers \
-beautifulsoup4 \
-django-oauth-toolkit
+beautifulsoup4
 
 EXPOSE 8000
 

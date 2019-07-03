@@ -26,6 +26,7 @@ class BookmarkViewSet(viewsets.ViewSet):
 
     def list(self, request):
         data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
+        print(request.META.get('HTTP_AUTHORIZATION'))
         # for bookmark in data:
         #     bookmark['image'] = os.environ.get('HOST') + bookmark['image']
         return Response(status=200, data=data)
