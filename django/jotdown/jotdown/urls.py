@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('jotdown-managing/', admin.site.urls),
     path('api/', include(api_router.urls)),
+    path('auth/', include('rest_framework_social_oauth2.urls')),
 ]
 
 if settings.DEBUG:
