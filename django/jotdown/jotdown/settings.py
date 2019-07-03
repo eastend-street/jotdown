@@ -149,7 +149,7 @@ MEDIA_URL = '/media/'
 
 AUTHENTICATION_BACKENDS = (
     # Google OAuth2
-    'social.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'rest_framework_social_oauth2.backends.DjangoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
