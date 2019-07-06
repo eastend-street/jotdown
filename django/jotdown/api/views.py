@@ -6,7 +6,6 @@ from .lib.opengraph import opengraph
 from .models import User, Bookmark
 from .serializers import UserSerializer, BookmarkSerializer
 
-
 # 1つのブックマークのみ受け取る
 def getOgpData(url):
     ogp = opengraph.OpenGraph(url=url)
