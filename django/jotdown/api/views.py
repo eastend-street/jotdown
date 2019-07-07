@@ -2,11 +2,15 @@ import os
 import django_filters
 from rest_framework import viewsets, filters
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from .lib.opengraph import opengraph
 from .models import User, Bookmark
 from .serializers import UserSerializer, BookmarkSerializer
 
 # 1つのブックマークのみ受け取る
+
+
 def getOgpData(url):
     ogp = opengraph.OpenGraph(url=url)
     print(ogp)
@@ -23,6 +27,7 @@ class BookmarkViewSet(viewsets.ViewSet):
     serializer_class = BookmarkSerializer
     filter_fields = ('user',)
 
+    @permission_classes((IsAuthenticated, ))
     def list(self, request):
         data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
         print(request.META.get('HTTP_AUTHORIZATION'))
@@ -30,6 +35,7 @@ class BookmarkViewSet(viewsets.ViewSet):
         #     bookmark['image'] = os.environ.get('HOST') + bookmark['image']
         return Response(status=200, data=data)
 
+    @permission_classes((IsAuthenticated, ))
     def create(self, validated_data):
         # check there is note or not
         try:
@@ -59,10 +65,13 @@ class BookmarkViewSet(viewsets.ViewSet):
             )
         return Response(status=204)
 
+    @permission_classes((IsAuthenticated, ))
     def retrieve(self, request, pk=None):
         data = BookmarkSerializer(Bookmark.objects.get(id=pk)).data
         return Response(status=200, data=data)
 
+
+    @permission_classes((IsAuthenticated, ))
     def update(self, request, pk):
         bookmark = Bookmark.objects.get(id=pk)
         bookmark.note = request.data.get("note")
