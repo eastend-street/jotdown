@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import GoogleLogin from "react-google-login";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { readBookmarks } from "../../../actions";
 
 import AddIcon from "@material-ui/icons/Add";
 import AppBar from "@material-ui/core/AppBar";
@@ -74,7 +76,16 @@ class Header extends Component {
   }
 
   responseGoogle(response) {
-    localStorage.setItem("token", response.accessToken);
+    if ("accessToken" in response) {
+      localStorage.setItem("token", response.accessToken);
+      // this.props.readBookmarks();
+    } else {
+      console.log("Login failed");
+    }
+  }
+
+  logout() {
+    localStorage.removeItem("token");
   }
 
   render() {
@@ -94,35 +105,38 @@ class Header extends Component {
             >
               <AddIcon />
             </AddButton>
-            <GoogleLogin
-              clientId={Config.CLIENT_ID}
-              render={renderProps => (
-                <LoginButton
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Login
-                </LoginButton>
-              )}
-              buttonText="Login"
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-            {/* <GoogleLogin
-              clientId={Config.CLIENT_ID}
-              render={renderProps => (
-                <LoginButton
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Login
-                </LoginButton>
-              )}
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            /> */}
+            {localStorage.getItem("token") == null && (
+              <GoogleLogin
+                clientId={Config.CLIENT_ID}
+                render={renderProps => (
+                  <LoginButton
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    Login
+                  </LoginButton>
+                )}
+                buttonText="Login"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
+            )}
+            {localStorage.getItem("token") != null && (
+              <GoogleLogout
+                clientId={Config.CLIENT_ID}
+                render={renderProps => (
+                  <LoginButton
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    Logout
+                  </LoginButton>
+                )}
+                buttonText="Logout"
+                onLogoutSuccess={this.logout}
+              />
+            )}
           </WrapAction>
         </Toolbar>
       </StyledAppBar>
@@ -130,4 +144,9 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = { readBookmarks };
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);
