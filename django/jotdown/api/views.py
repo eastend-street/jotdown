@@ -31,9 +31,6 @@ class BookmarkViewSet(viewsets.ViewSet):
     @permission_classes((IsAuthenticated, ))
     def create(self, validated_data):
         # check there is note or not
-        print('--------------------------------------')
-        print(self.request.user)
-        print('--------------------------------------')
         try:
             note = self.request.data['note']
         except KeyError:
@@ -63,13 +60,13 @@ class BookmarkViewSet(viewsets.ViewSet):
 
     @permission_classes((IsAuthenticated, ))
     def retrieve(self, request, pk=None):
-        data = BookmarkSerializer(Bookmark.objects.get(id=pk)).data
+        data = BookmarkSerializer(Bookmark.objects.get(id=pk, user=request.user)).data
         return Response(status=200, data=data)
 
 
     @permission_classes((IsAuthenticated, ))
     def update(self, request, pk):
-        bookmark = Bookmark.objects.get(id=pk)
+        bookmark = Bookmark.objects.get(id=pk, user=request.user)
         bookmark.note = request.data.get("note")
         bookmark.save()
         # data = BookmarkSerializer(bookmark).data
