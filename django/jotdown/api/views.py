@@ -16,12 +16,6 @@ def getOgpData(url):
     return ogp
 
 
-# class UserViewSet(viewsets.ModelViewSet):
-#     permission_classes = (IsAuthenticated,)
-#     # queryset = User.objects.all()
-#     serializer_class = UserSerializer
-
-
 class BookmarkViewSet(viewsets.ViewSet):
     queryset = Bookmark.objects.all()
     serializer_class = BookmarkSerializer
@@ -29,7 +23,7 @@ class BookmarkViewSet(viewsets.ViewSet):
 
     @permission_classes((IsAuthenticated, ))
     def list(self, request):
-        data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
+        data = BookmarkSerializer(Bookmark.objects.filter(user=request.user), many=True).data
         # for bookmark in data:
         #     bookmark['image'] = os.environ.get('HOST') + bookmark['image']
         return Response(status=200, data=data)
