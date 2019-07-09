@@ -5,22 +5,21 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from .lib.opengraph import opengraph
-from .models import User, Bookmark
-from .serializers import UserSerializer, BookmarkSerializer
+from .models import Bookmark
+from .serializers import BookmarkSerializer
 
 # 1つのブックマークのみ受け取る
 
 
 def getOgpData(url):
     ogp = opengraph.OpenGraph(url=url)
-    print(ogp)
     return ogp
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+# class UserViewSet(viewsets.ModelViewSet):
+#     permission_classes = (IsAuthenticated,)
+#     # queryset = User.objects.all()
+#     serializer_class = UserSerializer
 
 
 class BookmarkViewSet(viewsets.ViewSet):
@@ -31,7 +30,6 @@ class BookmarkViewSet(viewsets.ViewSet):
     @permission_classes((IsAuthenticated, ))
     def list(self, request):
         data = BookmarkSerializer(Bookmark.objects.all(), many=True).data
-        print(request.META.get('HTTP_AUTHORIZATION'))
         # for bookmark in data:
         #     bookmark['image'] = os.environ.get('HOST') + bookmark['image']
         return Response(status=200, data=data)
@@ -39,6 +37,9 @@ class BookmarkViewSet(viewsets.ViewSet):
     @permission_classes((IsAuthenticated, ))
     def create(self, validated_data):
         # check there is note or not
+        print('--------------------------------------')
+        print(self.request.user)
+        print('--------------------------------------')
         try:
             note = self.request.data['note']
         except KeyError:
@@ -53,7 +54,7 @@ class BookmarkViewSet(viewsets.ViewSet):
                 url=url,
                 title=url,
                 note=note,
-                user=User.objects.get(id=1)
+                user=self.request.user
             )
         else:
             obj = Bookmark.objects.create(
@@ -62,7 +63,7 @@ class BookmarkViewSet(viewsets.ViewSet):
                 description=ogp_data.description,
                 note=note,
                 img_url=ogp_data.image,
-                user=User.objects.get(id=1)
+                user=self.request.user
             )
         return Response(status=204)
 
