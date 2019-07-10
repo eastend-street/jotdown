@@ -78,7 +78,9 @@ class Header extends Component {
   responseGoogle(response) {
     if ("accessToken" in response) {
       localStorage.setItem("token", response.accessToken);
-      // this.props.readBookmarks();
+      localStorage.setItem("firstName", response.profileObj.givenName);
+      localStorage.setItem("lastName", response.profileObj.familyName);
+      window.location.href = "/";
     } else {
       console.log("Login failed");
     }
@@ -86,6 +88,7 @@ class Header extends Component {
 
   logout() {
     localStorage.removeItem("token");
+    window.location.href = "/";
   }
 
   render() {
@@ -143,6 +146,7 @@ class Header extends Component {
     );
   }
 }
+
 
 const mapDispatchToProps = { readBookmarks };
 
