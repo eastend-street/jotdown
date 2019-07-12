@@ -2,7 +2,8 @@ import {
   CREATE_BOOKMARK,
   READ_BOOKMARKS,
   READ_BOOKMARK,
-  UPDATE_BOOKMARK
+  UPDATE_BOOKMARK,
+  SAVE_BOOKMARK_TO_LOCAL
 } from "../actions";
 
 export default (bookmarks = {}, action) => {
@@ -14,6 +15,8 @@ export default (bookmarks = {}, action) => {
     case READ_BOOKMARK:
       const data = action.response.data;
       return {[data.id]: data };
+    case SAVE_BOOKMARK_TO_LOCAL:
+        return action.bookmarks;
     default:
       return bookmarks;
   }

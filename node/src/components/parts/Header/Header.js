@@ -22,9 +22,11 @@ const StyledAppBar = styled(AppBar)`
 `;
 
 const Logo = styled(Typography)`
-  color: #525a65;
-  :hover {
-    color: #66717e;
+  && {
+    color: #525a65;
+    :hover {
+      color: #66717e;
+    }
   }
 `;
 
@@ -88,6 +90,8 @@ class Header extends Component {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
     window.location.href = "/";
   }
 
@@ -146,7 +150,6 @@ class Header extends Component {
     );
   }
 }
-
 
 const mapDispatchToProps = { readBookmarks };
 

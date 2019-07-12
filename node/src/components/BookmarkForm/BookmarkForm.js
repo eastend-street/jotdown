@@ -4,6 +4,7 @@ import { Field, reduxForm, formValueSelector } from "redux-form";
 import styled from "styled-components";
 
 import { postBookmark } from "../../actions";
+import { saveBookmarkToLocal } from "../../actions/toLocalStorage"
 
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -65,7 +66,12 @@ class BookmarkForm extends Component {
   }
 
   async onSubmit(values) {
-    await this.props.postBookmark(values);
+    if (localStorage.getItem("token") === null) {
+      const bookmarks = await this.props.saveBookmarkToLocal(values);
+      localStorage.setItem("bookmarks", bookmarks);
+    } else {
+      await this.props.postBookmark(values);
+    }
     this.props.history.push("/");
   }
 
@@ -83,7 +89,7 @@ class BookmarkForm extends Component {
               component={this.renderField}
               multiline={false}
             />
-            <MarkdownTabs note={this.props.note} mode="add"/>
+            <MarkdownTabs note={this.props.note} mode="add" />
             <SubmitButton variant="contained" color="primary" type="submit">
               Save
             </SubmitButton>
@@ -99,7 +105,7 @@ const mapStateToProps = state => ({
   note: selector(state, "note")
 });
 
-const mapDispatchToProps = { postBookmark };
+const mapDispatchToProps = { postBookmark, saveBookmarkToLocal };
 
 export default connect(
   mapStateToProps,

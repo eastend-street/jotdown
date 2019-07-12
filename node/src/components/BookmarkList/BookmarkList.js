@@ -6,17 +6,22 @@ import _ from "lodash";
 import BookmarkCard from "../parts/BookmarkCard/BookmarkCard";
 import styled from "styled-components";
 
-
 const StyledBookmarkList = styled.div`
   /* padding: 1rem; */
-`
+`;
 
 class BookmarkList extends Component {
   componentDidMount() {
-    this.props.readBookmarks();
+    if (localStorage.getItem("token") != null) {
+      this.props.readBookmarks();
+    }else {
+      // ここでlocalstrageから、reduxに保存するactionを呼び出す
+      // readBookmarkfromLocalとかで
+    }
   }
 
   renderBookmarks() {
+    console.log(this.props.bookmarks);
     return _.map(this.props.bookmarks, bookmark => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />

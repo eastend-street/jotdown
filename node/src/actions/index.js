@@ -4,6 +4,7 @@ export const READ_BOOKMARKS = "READ_BOOKMARKS";
 export const READ_BOOKMARK = "READ_BOOKMARK";
 export const CREATE_BOOKMARK = "CREATE_BOOKMARK";
 export const UPDATE_BOOKMARK = "UPDATE_BOOKMARK";
+export const SAVE_BOOKMARK_TO_LOCAL = "SAVE_BOOKMARK_TO_LOCAL"
 
 const ROOT_URL = "http://localhost:8000/api";
 // const QUERYSTRING = "?token=token123";
@@ -11,8 +12,8 @@ axios.defaults.headers.common["Authorization"] =
   "Bearer google-oauth2 " + localStorage.getItem("token") || "";
 
 export const readBookmarks = () => async dispatch => {
-  const response = await axios.get(`${ROOT_URL}/bookmarks/`);
-  dispatch({ type: READ_BOOKMARKS, response });
+    const response = await axios.get(`${ROOT_URL}/bookmarks/`);
+    dispatch({ type: READ_BOOKMARKS, response });
 };
 
 export const getBookmark = id => async dispatch => {
