@@ -68,7 +68,7 @@ class BookmarkForm extends Component {
   async onSubmit(values) {
     if (localStorage.getItem("token") === null) {
       const bookmarks = await this.props.saveBookmarkToLocal(values);
-      localStorage.setItem("bookmarks", bookmarks);
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     } else {
       await this.props.postBookmark(values);
     }
