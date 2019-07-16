@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import { readBookmarks } from "../../actions";
+import { readBookmarksFromLocal } from "../../actions/toLocalStorage";
 import _ from "lodash";
 import BookmarkCard from "../parts/BookmarkCard/BookmarkCard";
 import styled from "styled-components";
@@ -14,9 +15,8 @@ class BookmarkList extends Component {
   componentDidMount() {
     if (localStorage.getItem("token") != null) {
       this.props.readBookmarks();
-    }else {
-      // ここでlocalstrageから、reduxに保存するactionを呼び出す
-      // readBookmarkfromLocalとかで
+    } else {
+      this.props.readBookmarksFromLocal();
     }
   }
 
@@ -43,7 +43,7 @@ class BookmarkList extends Component {
 // stateの中からどの値を子コンポーネントに渡すのかを定義する。
 const mapStateToProps = state => ({ bookmarks: state.bookmarks });
 
-const mapDispatchToProps = { readBookmarks };
+const mapDispatchToProps = { readBookmarks, readBookmarksFromLocal };
 
 export default connect(
   mapStateToProps,
