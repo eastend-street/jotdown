@@ -1,4 +1,9 @@
-import { SAVE_BOOKMARK_TO_LOCAL, READ_BOOKMARKS_FROM_LOCAL, READ_BOOKMARK_FROM_LOCAL } from ".";
+import {
+  SAVE_BOOKMARK_TO_LOCAL,
+  READ_BOOKMARKS_FROM_LOCAL,
+  READ_BOOKMARK_FROM_LOCAL,
+  UPDATE_BOOKMARK_TO_LOCAL,
+} from ".";
 
 export const saveBookmarkToLocal = values => {
   let bookmarks = {};
@@ -23,11 +28,18 @@ export const saveBookmarkToLocal = values => {
 
 export const readBookmarksFromLocal = () => {
   const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-  return {type: READ_BOOKMARKS_FROM_LOCAL, bookmarks}
-}
+  return { type: READ_BOOKMARKS_FROM_LOCAL, bookmarks };
+};
 
 export const getBookmarkFromLocal = id => {
   const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-  const bookmark = bookmarks[id]
+  const bookmark = bookmarks[id];
   return { type: READ_BOOKMARK_FROM_LOCAL, bookmark };
+};
+
+export const putBookmarkToLocal =  (id, values) => {
+  console.log(id, values);
+  const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+  bookmarks[id].note = values.note;
+  return { type: UPDATE_BOOKMARK_TO_LOCAL, bookmarks };
 };

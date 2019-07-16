@@ -5,7 +5,8 @@ import {
   UPDATE_BOOKMARK,
   SAVE_BOOKMARK_TO_LOCAL,
   READ_BOOKMARKS_FROM_LOCAL,
-  READ_BOOKMARK_FROM_LOCAL
+  READ_BOOKMARK_FROM_LOCAL,
+  UPDATE_BOOKMARK_TO_LOCAL
 } from "../actions";
 
 export default (bookmarks = {}, action) => {
@@ -19,10 +20,11 @@ export default (bookmarks = {}, action) => {
       return { [data.id]: data };
     case SAVE_BOOKMARK_TO_LOCAL:
     case READ_BOOKMARKS_FROM_LOCAL:
+    case UPDATE_BOOKMARK_TO_LOCAL:
       return action.bookmarks;
     case READ_BOOKMARK_FROM_LOCAL:
-        const dataLocal = action.bookmark;
-        return { [dataLocal.id]: dataLocal };
+      const dataLocal = action.bookmark;
+      return { [dataLocal.id]: dataLocal };
     default:
       return bookmarks;
   }

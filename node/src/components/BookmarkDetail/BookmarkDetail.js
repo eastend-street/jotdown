@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { reduxForm, formValueSelector } from "redux-form";
 
 import { getBookmark, putBookmark } from "../../actions";
-import { getBookmarkFromLocal } from "../../actions/toLocalStorage";
+import {
+  getBookmarkFromLocal,
+  putBookmarkToLocal
+} from "../../actions/toLocalStorage";
 import styled from "styled-components";
 
 import Button from "@material-ui/core/Button";
@@ -78,15 +81,17 @@ class BookmarkDetail extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
+    let note = "";
     if (localStorage.getItem("token") != null) {
       const getBookmark = this.props.getBookmark(id);
       getBookmark.then(response => {
-        return this.props.initialize({ note: response.data.note });
+        note = response.data.note;
       });
     } else {
       const data = this.props.getBookmarkFromLocal(id);
-      return this.props.initialize({ note: data.bookmark.note });
+      note = data.bookmark.note;
     }
+    return this.props.initialize({ note: note });
   }
 
   renderBookmark(note) {
@@ -121,7 +126,12 @@ class BookmarkDetail extends Component {
 
   async onSubmit(values) {
     const id = this.props.match.params.id;
-    await this.props.putBookmark(id, values);
+    if (localStorage.getItem("token") != null) {
+      await this.props.putBookmark(id, values);
+    } else {
+      const data = await this.props.putBookmarkToLocal(id, values);
+      localStorage.setItem("bookmarks", JSON.stringify(data.bookmarks));
+    }
     this.props.history.push("/");
   }
 
@@ -150,7 +160,12 @@ const mapStateToProps = state => ({
   bookmarks: state.bookmarks
 });
 
-const mapDispatchToProps = { getBookmark, putBookmark, getBookmarkFromLocal };
+const mapDispatchToProps = {
+  getBookmark,
+  putBookmark,
+  getBookmarkFromLocal,
+  putBookmarkToLocal
+};
 
 export default connect(
   mapStateToProps,
