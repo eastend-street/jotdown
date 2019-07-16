@@ -1,15 +1,11 @@
 import { SAVE_BOOKMARK_TO_LOCAL } from ".";
-import _ from "lodash";
 
 export const saveBookmarkToLocal = values => {
   let bookmarks = {};
   if (localStorage.getItem("bookmarks") != null) {
     bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
   }
-  const id = Object.keys(bookmarks).length
-  // _.map(bookmarks, bookmark => (
-  //   console.log(bookmark)
-  // ));
+  const id = Object.keys(bookmarks).length;
 
   bookmarks[id] = {
     created_at: "",
