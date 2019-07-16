@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { reduxForm, formValueSelector } from "redux-form";
 
 import { getBookmark, putBookmark } from "../../actions";
+import { getBookmarkFromLocal } from "../../actions/toLocalStorage";
 import styled from "styled-components";
 
 import Button from "@material-ui/core/Button";
@@ -77,10 +78,15 @@ class BookmarkDetail extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    const getBookmark = this.props.getBookmark(id);
-    getBookmark.then(response => {
-      return this.props.initialize({ note: response.data.note });
-    });
+    if (localStorage.getItem("token") != null) {
+      const getBookmark = this.props.getBookmark(id);
+      getBookmark.then(response => {
+        return this.props.initialize({ note: response.data.note });
+      });
+    } else {
+      const data = this.props.getBookmarkFromLocal(id);
+      return this.props.initialize({ note: data.bookmark.note });
+    }
   }
 
   renderBookmark(note) {
@@ -108,7 +114,7 @@ class BookmarkDetail extends Component {
             </Grid>
           </CardActionArea>
         </StyledCard>
-        <MarkdownTabs note={note} mode="edit"/>
+        <MarkdownTabs note={note} mode="edit" />
       </div>
     ));
   }
@@ -140,11 +146,11 @@ class BookmarkDetail extends Component {
 
 const selector = formValueSelector("BookmarkDetailForm");
 const mapStateToProps = state => ({
-    note: selector(state, "note"),
-    bookmarks: state.bookmarks
+  note: selector(state, "note"),
+  bookmarks: state.bookmarks
 });
 
-const mapDispatchToProps = { getBookmark, putBookmark };
+const mapDispatchToProps = { getBookmark, putBookmark, getBookmarkFromLocal };
 
 export default connect(
   mapStateToProps,
