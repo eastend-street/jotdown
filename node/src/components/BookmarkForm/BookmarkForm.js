@@ -4,7 +4,7 @@ import { Field, reduxForm, formValueSelector } from "redux-form";
 import styled from "styled-components";
 
 import { postBookmark } from "../../actions";
-import { saveBookmarkToLocal } from "../../actions/toLocalStorage"
+import { saveBookmarkToLocal } from "../../actions/toLocalStorage";
 
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -67,8 +67,7 @@ class BookmarkForm extends Component {
 
   async onSubmit(values) {
     if (localStorage.getItem("token") === null) {
-      const data = await this.props.saveBookmarkToLocal(values);
-      localStorage.setItem("bookmarks", JSON.stringify(data.bookmarks));
+      await this.props.saveBookmarkToLocal(values);
     } else {
       await this.props.postBookmark(values);
     }

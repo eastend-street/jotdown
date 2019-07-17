@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from api.urls import router as api_router
+# from api.urls import router as api_router
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('jotdown-managing/', admin.site.urls),
-    path('api/', include(api_router.urls)),
-    path('auth/', include('rest_framework_social_oauth2.urls')),
+    path('api/', include('api.urls')),
+    path('jotdown-auth/', include('rest_framework_social_oauth2.urls')),
 ]
 
 if settings.DEBUG:
