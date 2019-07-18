@@ -78,10 +78,10 @@ class Header extends Component {
   }
 
   async submitLocalBookmarks() {
-    const data = localStorage.getItem("bookmarks");
-    // この先でHeaderにtokkenをつけてみる
+    const data = JSON.parse(localStorage.getItem("bookmarks"));
+    // この先でHeaderにtokenをつけてみる
     await this.props.postBookmark(data);
-    this.props.history.push("/");
+    window.location.href = "/";
   }
 
   responseGoogle(response) {

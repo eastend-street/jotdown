@@ -36,7 +36,8 @@ class BookmarkViewSet(viewsets.ViewSet):
     @permission_classes((IsAuthenticated, ))
     def create(self, validated_data):
         print('-----------reached create---------------')
-        bookmarks =  json.loads(json.dumps(self.request.data))
+        # bookmarks = json.loads(json.dumps(self.request.data))
+        bookmarks = self.request.data
         for bookmark in bookmarks.values():
             # check there is note or not
             try:
@@ -51,17 +52,19 @@ class BookmarkViewSet(viewsets.ViewSet):
                 print('Could not get OGP')
                 obj = Bookmark.objects.create(
                     url=url,
-                    title=url,
+                    title=ogp_data.get('title', url),
+                    description=ogp_data.get('description', ''),
                     note=note,
+                    img_url=ogp_data.get('image', ''),
                     user=self.request.user
                 )
             else:
                 obj = Bookmark.objects.create(
                     url=url,
-                    title=ogp_data.title,
-                    description=ogp_data.description,
+                    title=ogp_data.get('title', url),
+                    description=ogp_data.get('description', ''),
                     note=note,
-                    img_url=ogp_data.image,
+                    img_url=ogp_data.get('image', ''),
                     user=self.request.user
                 )
         return Response(status=204)
@@ -98,29 +101,21 @@ def getBookmarkForLocal(request, **kwargs):
         bookmark = Bookmark(
             id=id,
             url=url,
-            title=url,
+            title=ogp_data.get('title', url),
+            description=ogp_data.get('description', ''),
             note=note,
+            img_url=ogp_data.get('image', ''),
         )
         data = BookmarkSerializer(bookmark).data
     else:
-        if ogp_data['scrape']:
-            bookmark = Bookmark(
-                id=id,
-                url=url,
-                title=ogp_data.title,
-                description=ogp_data.description,
-                note=note,
-                img_url=ogp_data.image,
-            )
-        else:
-            print('scrape is false')
-            bookmark = Bookmark(
-                id=id,
-                url=url,
-                title=url,
-                note=note,
-            )
-
+        bookmark = Bookmark(
+            id=id,
+            url=url,
+            title=ogp_data.get('title', url),
+            description=ogp_data.get('description', ''),
+            note=note,
+            img_url=ogp_data.get('image', ''),
+        )
         data = BookmarkSerializer(bookmark).data
 
     return Response(status=200, data=data)

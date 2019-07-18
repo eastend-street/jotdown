@@ -25,12 +25,26 @@ export const getBookmark = id => async dispatch => {
   return response;
 };
 
-export const postBookmark = values => async dispatch => {
-  const response = await axios.post(`${ROOT_URL}/bookmarks/`, values);
-  dispatch({ type: CREATE_BOOKMARK, response });
-};
+// export const postBookmark = values => async dispatch => {
+//   const response = await axios.post(`${ROOT_URL}/bookmarks/`, values);
+//   dispatch({ type: CREATE_BOOKMARK, response });
+// };
 
 export const putBookmark = (id, values) => async dispatch => {
   const response = await axios.put(`${ROOT_URL}/bookmarks/${id}/`, values);
   dispatch({ type: UPDATE_BOOKMARK, response });
+};
+
+export const postBookmark = values => async dispatch => {
+  console.log('started post method')
+  const options = {
+    method: 'POST',
+    headers: {
+      Authorization: "Bearer google-oauth2 " + localStorage.getItem("token") 
+    },
+    data: values,
+    url: `${ROOT_URL}/bookmarks/`
+  }
+  const response = await axios(options);
+  dispatch({ type: CREATE_BOOKMARK, response });
 };
