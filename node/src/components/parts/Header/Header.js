@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { readBookmarks } from "../../../actions";
+import { readBookmarks, postBookmark } from "../../../actions";
 
 import AddIcon from "@material-ui/icons/Add";
 import AppBar from "@material-ui/core/AppBar";
@@ -78,12 +78,10 @@ class Header extends Component {
   }
 
   async submitLocalBookmarks() {
-    // const data = {
-    //   bookmarks: localStorage.getItem("bookmarks"),
-    //   many: true
-    // };
-    // await this.props.postBookmark(data);
-    // this.props.history.push("/");
+    const data = localStorage.getItem("bookmarks");
+    // この先でHeaderにtokkenをつけてみる
+    await this.props.postBookmark(data);
+    this.props.history.push("/");
   }
 
   responseGoogle(response) {
@@ -164,7 +162,7 @@ class Header extends Component {
   }
 }
 
-const mapDispatchToProps = { readBookmarks };
+const mapDispatchToProps = { readBookmarks, postBookmark };
 
 export default connect(
   null,

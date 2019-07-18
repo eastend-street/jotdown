@@ -35,6 +35,7 @@ class BookmarkViewSet(viewsets.ViewSet):
 
     @permission_classes((IsAuthenticated, ))
     def create(self, validated_data):
+        print('-----------reached create---------------')
         bookmarks =  json.loads(json.dumps(self.request.data))
         for bookmark in bookmarks.values():
             # check there is note or not
