@@ -36,7 +36,6 @@ export const putBookmark = (id, values) => async dispatch => {
 };
 
 export const postBookmark = values => async dispatch => {
-  console.log('started post method')
   const options = {
     method: 'POST',
     headers: {
