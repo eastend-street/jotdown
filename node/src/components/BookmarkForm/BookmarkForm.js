@@ -65,11 +65,14 @@ class BookmarkForm extends Component {
     );
   }
 
-  async onSubmit(values) {
+  async onSubmit(bookmark) {
     if (localStorage.getItem("token") === null) {
-      await this.props.saveBookmarkToLocal(values);
+      await this.props.saveBookmarkToLocal(bookmark);
     } else {
-      await this.props.postBookmark(values);
+      const data = {
+          0: bookmark
+      };
+      await this.props.postBookmark(data);
     }
     this.props.history.push("/");
   }

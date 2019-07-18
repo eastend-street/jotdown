@@ -14,19 +14,9 @@ export const saveBookmarkToLocal = values => async dispatch => {
     bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
   }
   const id = Object.keys(bookmarks).length;
-  const ogp = await axios.post(`${ROOT_URL}/ogp/${id}/`, values);
+  const ogp = await axios.post(`${ROOT_URL}/bookmark-for-local/${id}/`, values);
 
   bookmarks[id] = ogp.data
-  // bookmarks[id] = {
-  //   created_at: "",
-  //   description: ogp.data.description,
-  //   id: id,
-  //   img_url: ogp.data.image,
-  //   note: values.note,
-  //   title: ogp.data.title,
-  //   updated_at: "",
-  //   url: values.url
-  // };
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   dispatch({ type: SAVE_BOOKMARK_TO_LOCAL, bookmarks });
 };

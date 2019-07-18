@@ -1,4 +1,5 @@
 import os
+import json
 import django_filters
 from rest_framework import viewsets, filters
 from rest_framework.views import APIView
@@ -34,32 +35,34 @@ class BookmarkViewSet(viewsets.ViewSet):
 
     @permission_classes((IsAuthenticated, ))
     def create(self, validated_data):
-        # check there is note or not
-        try:
-            note = self.request.data['note']
-        except KeyError:
-            note = ""
-        url = self.request.data['url']
+        bookmarks =  json.loads(json.dumps(self.request.data))
+        for bookmark in bookmarks.values():
+            # check there is note or not
+            try:
+                note = bookmark['note']
+            except KeyError:
+                note = ""
+            url = bookmark['url']
 
-        try:
-            ogp_data = getOgpData(url)
-        except:
-            print('Could not get OGP')
-            obj = Bookmark.objects.create(
-                url=url,
-                title=url,
-                note=note,
-                user=self.request.user
-            )
-        else:
-            obj = Bookmark.objects.create(
-                url=url,
-                title=ogp_data.title,
-                description=ogp_data.description,
-                note=note,
-                img_url=ogp_data.image,
-                user=self.request.user
-            )
+            try:
+                ogp_data = getOgpData(url)
+            except:
+                print('Could not get OGP')
+                obj = Bookmark.objects.create(
+                    url=url,
+                    title=url,
+                    note=note,
+                    user=self.request.user
+                )
+            else:
+                obj = Bookmark.objects.create(
+                    url=url,
+                    title=ogp_data.title,
+                    description=ogp_data.description,
+                    note=note,
+                    img_url=ogp_data.image,
+                    user=self.request.user
+                )
         return Response(status=204)
 
     @permission_classes((IsAuthenticated, ))
@@ -80,7 +83,7 @@ class BookmarkViewSet(viewsets.ViewSet):
 @authentication_classes([AllowAny, ])
 @permission_classes([AllowAny, ])
 @api_view(['POST'])
-def getOgp(request, **kwargs):
+def getBookmarkForLocal(request, **kwargs):
     id = kwargs.get('pk')
     try:
         note = request.data['note']
@@ -99,14 +102,24 @@ def getOgp(request, **kwargs):
         )
         data = BookmarkSerializer(bookmark).data
     else:
-        bookmark = Bookmark(
-            id=id,
-            url=url,
-            title=ogp_data.title,
-            description=ogp_data.description,
-            note=note,
-            img_url=ogp_data.image,
-        )
+        if ogp_data['scrape']:
+            bookmark = Bookmark(
+                id=id,
+                url=url,
+                title=ogp_data.title,
+                description=ogp_data.description,
+                note=note,
+                img_url=ogp_data.image,
+            )
+        else:
+            print('scrape is false')
+            bookmark = Bookmark(
+                id=id,
+                url=url,
+                title=url,
+                note=note,
+            )
+
         data = BookmarkSerializer(bookmark).data
 
     return Response(status=200, data=data)

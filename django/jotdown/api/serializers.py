@@ -7,3 +7,9 @@ class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
         fields = ('id', 'url','title', 'img_url', 'description', 'note', 'created_at', 'updated_at', 'user')
+
+class MultiCreateBookmarkSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Bookmark
+        fields = ('url', 'note')

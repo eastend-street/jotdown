@@ -77,12 +77,25 @@ class Header extends Component {
     this.responseGoogle = this.responseGoogle.bind(this);
   }
 
+  async submitLocalBookmarks() {
+    // const data = {
+    //   bookmarks: localStorage.getItem("bookmarks"),
+    //   many: true
+    // };
+    // await this.props.postBookmark(data);
+    // this.props.history.push("/");
+  }
+
   responseGoogle(response) {
     if ("accessToken" in response) {
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("firstName", response.profileObj.givenName);
       localStorage.setItem("lastName", response.profileObj.familyName);
-      window.location.href = "/";
+      if (localStorage.getItem("bookmarks") != null) {
+        this.submitLocalBookmarks();
+      } else {
+        window.location.href = "/";
+      }
     } else {
       console.log("Login failed");
     }

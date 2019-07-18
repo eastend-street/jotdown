@@ -10,7 +10,7 @@ router = routers.DefaultRouter()
 router.register('bookmarks', BookmarkViewSet)
 
 urlpatterns = [
-    url(r'^ogp/(?P<pk>\d+)/$', api_views.getOgp),
+    url(r'^bookmark-for-local/(?P<pk>\d+)/$', api_views.getBookmarkForLocal),
 ]
 
 urlpatterns += router.urls
