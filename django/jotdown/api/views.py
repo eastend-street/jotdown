@@ -29,23 +29,15 @@ class BookmarkViewSet(viewsets.ViewSet):
     def list(self, request):
         data = BookmarkSerializer(Bookmark.objects.filter(
             user=request.user), many=True).data
-        # for bookmark in data:
-        #     bookmark['image'] = os.environ.get('HOST') + bookmark['image']
         return Response(status=200, data=data)
 
     @permission_classes((IsAuthenticated, ))
     def create(self, validated_data):
-        print('-----------reached create---------------')
-        # bookmarks = json.loads(json.dumps(self.request.data))
         bookmarks = self.request.data
         for bookmark in bookmarks.values():
-            # check there is note or not
-            try:
-                note = bookmark['note']
-            except KeyError:
-                note = ""
-            url = bookmark['url']
-
+            note = bookmark.get('note', '')
+            url = bookmark.get('url', '')
+            ogp_data = {}
             try:
                 ogp_data = getOgpData(url)
             except:
@@ -78,7 +70,7 @@ class BookmarkViewSet(viewsets.ViewSet):
     @permission_classes((IsAuthenticated, ))
     def update(self, request, pk):
         bookmark = Bookmark.objects.get(id=pk, user=request.user)
-        bookmark.note = request.data.get("note")
+        bookmark.note = request.data.get("note", '')
         bookmark.save()
         # data = BookmarkSerializer(bookmark).data
         return Response(status=200)
@@ -89,13 +81,11 @@ class BookmarkViewSet(viewsets.ViewSet):
 @api_view(['POST'])
 def getBookmarkForLocal(request, **kwargs):
     id = kwargs.get('pk')
+    note = request.data.get('note', '')
+    url = request.data.get('url', '')
+    ogp_data = {}
     try:
-        note = request.data['note']
-    except KeyError:
-        note = ""
-    url = request.data['url']
-    try:
-        ogp_data = opengraph.OpenGraph(url=request.data['url'])
+        ogp_data = getOgpData(url)
     except:
         print('Could not get OGP')
         bookmark = Bookmark(
@@ -106,7 +96,6 @@ def getBookmarkForLocal(request, **kwargs):
             note=note,
             img_url=ogp_data.get('image', ''),
         )
-        data = BookmarkSerializer(bookmark).data
     else:
         bookmark = Bookmark(
             id=id,
@@ -116,6 +105,6 @@ def getBookmarkForLocal(request, **kwargs):
             note=note,
             img_url=ogp_data.get('image', ''),
         )
-        data = BookmarkSerializer(bookmark).data
 
+    data = BookmarkSerializer(bookmark).data
     return Response(status=200, data=data)

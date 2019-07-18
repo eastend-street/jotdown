@@ -81,6 +81,8 @@ class Header extends Component {
     const data = JSON.parse(localStorage.getItem("bookmarks"));
     // この先でHeaderにtokenをつけてみる
     await this.props.postBookmark(data);
+    // ここで読み込み中のダイアログ表示する
+    localStorage.removeItem("bookmarks")
     window.location.href = "/";
   }
 

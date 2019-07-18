@@ -12,7 +12,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import SampleImage from "../../../static/images/sample-grey.jpeg";
+import SampleImage3d5467 from "../../../static/images/sample-#3d5467.png";
+import SampleImage686963 from "../../../static/images/sample-#686963.png";
+import SampleImage8aa29e from "../../../static/images/sample-#8aa29e.png";
 
 const StyledCard = styled(Card)`
   && {
@@ -42,11 +44,11 @@ const Title = styled(Typography)`
 `;
 
 const Note = styled.div`
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-    margin: 0.5rem 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin: 0.5rem 1rem;
 `;
 
 const StyledHr = styled.hr`
@@ -92,11 +94,17 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
 
 class BookmarkCard extends Component {
   render() {
+    const sampleImageList = [
+      SampleImage3d5467,
+      SampleImage686963,
+      SampleImage8aa29e
+    ];
+    const randomNum = Math.floor(Math.random() * sampleImageList.length);
     return (
       <StyledCard>
         <CardActionArea target="_blank" href={this.props.bookmark.url}>
           <StyledCardMedia
-            image={this.props.bookmark.img_url || SampleImage}
+            image={this.props.bookmark.img_url || sampleImageList[randomNum]}
             title={this.props.bookmark.title}
           />
           <CardContent>
