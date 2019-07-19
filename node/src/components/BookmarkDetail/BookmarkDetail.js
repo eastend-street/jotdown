@@ -60,9 +60,38 @@ const Description = styled(Typography)`
   }
 `;
 
-const SubmitButton = styled(Button)`
+const DeleteButton = styled(Button)`
   && {
-    margin-top: 1rem;
+    margin: 1rem;
+    min-width: 5rem;
+    box-shadow: none;
+    color: #fff;
+    background-color: #ef5350;
+    text-transform: none;
+    :hover {
+      background-color: #f69b99;
+    }
+  }
+`;
+
+const CancelButton = styled(Button)`
+  && {
+    margin: 1rem;
+    min-width: 7rem;
+    box-shadow: none;
+    color: #66717e;
+    background-color: #fff;
+    text-transform: none;
+    :hover {
+      background-color: #eeeeee;
+    }
+  }
+`;
+
+const SaveButton = styled(Button)`
+  && {
+    margin: 1rem;
+    min-width: 7rem;
     box-shadow: none;
     color: #fff;
     background-color: #66717e;
@@ -73,10 +102,16 @@ const SubmitButton = styled(Button)`
   }
 `;
 
+const WrapButton = styled.div`
+  text-align: right;
+`;
+
 class BookmarkDetail extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.cancel = this.cancel.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   async componentDidMount() {
@@ -133,6 +168,16 @@ class BookmarkDetail extends Component {
     this.props.history.push("/");
   }
 
+  cancel() {
+    this.props.history.push("/");
+  }
+
+  delete() {
+    console.log(this.props.match.params.id);
+    // const response = await this.props.deleteBookmark()
+    // this.props.history.push("/");
+  }
+
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -141,9 +186,26 @@ class BookmarkDetail extends Component {
           <Grid item xs={12} md={6}>
             <form onSubmit={handleSubmit(this.onSubmit)}>
               {this.renderBookmark(this.props.note)}
-              <SubmitButton variant="contained" type="submit">
-                Save
-              </SubmitButton>
+              <Grid container>
+                <Grid item xs={2}>
+                  <DeleteButton
+                    variant="contained"
+                    onClick={this.delete}
+                  >
+                    Delete
+                  </DeleteButton>
+                </Grid>
+                <Grid item xs={10}>
+                  <WrapButton>
+                    <CancelButton variant="contained" onClick={this.cancel}>
+                      Cancel
+                    </CancelButton>
+                    <SaveButton variant="contained" type="submit">
+                      Save
+                    </SaveButton>
+                  </WrapButton>
+                </Grid>
+              </Grid>
             </form>
           </Grid>
         </Grid>
