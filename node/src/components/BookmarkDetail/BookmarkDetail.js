@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, formValueSelector } from "redux-form";
 
-import { getBookmark, putBookmark } from "../../actions";
+import { getBookmark, putBookmark, deleteBookmark } from "../../actions";
 import {
   getBookmarkFromLocal,
-  putBookmarkToLocal
+  putBookmarkToLocal,
+  deleteBookmarkFromLocal
 } from "../../actions/toLocalStorage";
 import styled from "styled-components";
 
@@ -172,10 +173,14 @@ class BookmarkDetail extends Component {
     this.props.history.push("/");
   }
 
-  delete() {
-    console.log(this.props.match.params.id);
-    // const response = await this.props.deleteBookmark()
-    // this.props.history.push("/");
+  async delete() {
+    const id = this.props.match.params.id;
+    if (localStorage.getItem("token") != null) {
+      await this.props.deleteBookmark(id);
+    }else {
+      await this.props.deleteBookmarkFromLocal(id);
+    }
+    this.props.history.push("/");
   }
 
   render() {
@@ -223,8 +228,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getBookmark,
   putBookmark,
+  deleteBookmark,
   getBookmarkFromLocal,
-  putBookmarkToLocal
+  putBookmarkToLocal,
+  deleteBookmarkFromLocal
 };
 
 export default connect(

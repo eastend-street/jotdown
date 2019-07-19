@@ -3,6 +3,7 @@ import {
   READ_BOOKMARKS,
   READ_BOOKMARK,
   UPDATE_BOOKMARK,
+  DELETE_BOOKMARK,
   SAVE_BOOKMARK_TO_LOCAL,
   READ_BOOKMARKS_FROM_LOCAL,
   READ_BOOKMARK_FROM_LOCAL,
@@ -14,6 +15,7 @@ export default (bookmarks = {}, action) => {
     case CREATE_BOOKMARK:
     case READ_BOOKMARKS:
     case UPDATE_BOOKMARK:
+    case DELETE_BOOKMARK:
       return action.response.data;
     case READ_BOOKMARK:
       const data = action.response.data;

@@ -4,10 +4,12 @@ export const READ_BOOKMARKS = "READ_BOOKMARKS";
 export const READ_BOOKMARK = "READ_BOOKMARK";
 export const CREATE_BOOKMARK = "CREATE_BOOKMARK";
 export const UPDATE_BOOKMARK = "UPDATE_BOOKMARK";
+export const DELETE_BOOKMARK = "DELETE_BOOKMARK";
 export const SAVE_BOOKMARK_TO_LOCAL = "SAVE_BOOKMARK_TO_LOCAL";
 export const READ_BOOKMARKS_FROM_LOCAL = "READ_BOOKMARKS_FROM_LOCAL";
 export const READ_BOOKMARK_FROM_LOCAL = "READ_BOOKMARK_FROM_LOCAL";
 export const UPDATE_BOOKMARK_TO_LOCAL = "UPDATE_BOOKMARK_TO_LOCAL";
+export const DELETE_BOOKMARK_FROM_LOCAL = "DELETE_BOOKMARK_FROM_LOCAL";
 
 const ROOT_URL = "http://localhost:8000/api";
 // const QUERYSTRING = "?token=token123";
@@ -22,6 +24,12 @@ export const readBookmarks = () => async dispatch => {
 export const getBookmark = id => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/bookmarks/${id}/`);
   dispatch({ type: READ_BOOKMARK, response });
+  return response;
+};
+
+export const deleteBookmark = id => async dispatch => {
+  const response = await axios.delete(`${ROOT_URL}/bookmarks/${id}/`);
+  dispatch({ type: DELETE_BOOKMARK, response });
   return response;
 };
 

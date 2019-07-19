@@ -3,7 +3,8 @@ import {
   SAVE_BOOKMARK_TO_LOCAL,
   READ_BOOKMARKS_FROM_LOCAL,
   READ_BOOKMARK_FROM_LOCAL,
-  UPDATE_BOOKMARK_TO_LOCAL
+  UPDATE_BOOKMARK_TO_LOCAL,
+  DELETE_BOOKMARK_FROM_LOCAL
 } from ".";
 
 const ROOT_URL = "http://localhost:8000/api";
@@ -33,8 +34,14 @@ export const getBookmarkFromLocal = id => {
 };
 
 export const putBookmarkToLocal = (id, values) => {
-  console.log(id, values);
   const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
   bookmarks[id].note = values.note;
   return { type: UPDATE_BOOKMARK_TO_LOCAL, bookmarks };
+};
+
+export const deleteBookmarkFromLocal = id => {
+  const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+  delete bookmarks[id];
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  return { type: DELETE_BOOKMARK_FROM_LOCAL, bookmarks };
 };

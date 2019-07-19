@@ -75,6 +75,12 @@ class BookmarkViewSet(viewsets.ViewSet):
         # data = BookmarkSerializer(bookmark).data
         return Response(status=200)
 
+    @permission_classes((IsAuthenticated, ))
+    def destroy(self, request, pk=None):
+        bookmark = Bookmark.objects.get(id=pk, user=request.user)
+        bookmark.delete()
+        return Response(status=204)
+
 
 @authentication_classes([AllowAny, ])
 @permission_classes([AllowAny, ])
