@@ -79,16 +79,14 @@ class BookmarkDetail extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const id = this.props.match.params.id;
     let note = "";
     if (localStorage.getItem("token") != null) {
-      const getBookmark = this.props.getBookmark(id);
-      getBookmark.then(response => {
-        note = response.data.note;
-      });
+      const response = await this.props.getBookmark(id);
+      note = response.data.note;
     } else {
-      const data = this.props.getBookmarkFromLocal(id);
+      const data = await this.props.getBookmarkFromLocal(id);
       note = data.bookmark.note;
     }
     return this.props.initialize({ note: note });
