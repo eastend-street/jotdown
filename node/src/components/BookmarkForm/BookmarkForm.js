@@ -15,9 +15,24 @@ const Form = styled.form`
   margin-top: 3rem;
 `;
 
-const SubmitButton = styled(Button)`
+const CancelButton = styled(Button)`
   && {
-    margin-top: 1rem;
+    margin: 1rem;
+    min-width: 7rem;
+    box-shadow: none;
+    color: #66717e;
+    background-color: #fff;
+    text-transform: none;
+    :hover {
+      background-color: #eeeeee;
+    }
+  }
+`;
+
+const SaveButton = styled(Button)`
+  && {
+    margin: 1rem;
+    min-width: 7rem;
     box-shadow: none;
     color: #fff;
     background-color: #66717e;
@@ -26,6 +41,10 @@ const SubmitButton = styled(Button)`
       background-color: #838e9a;
     }
   }
+`;
+
+const WrapButton = styled.div`
+  text-align: right;
 `;
 
 const FormTextField = styled.input`
@@ -48,6 +67,7 @@ class BookmarkForm extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   renderField(field) {
@@ -76,10 +96,13 @@ class BookmarkForm extends Component {
     }
     this.props.history.push("/");
   }
+  
+  cancel() {
+    this.props.history.push("/");
+  }
 
   render() {
     const { handleSubmit } = this.props;
-
     return (
       <Grid container justify="center">
         <Grid item xs={10} md={8}>
@@ -92,9 +115,14 @@ class BookmarkForm extends Component {
               multiline={false}
             />
             <MarkdownTabs note={this.props.note} mode="add" />
-            <SubmitButton variant="contained" color="primary" type="submit">
-              Save
-            </SubmitButton>
+            <WrapButton>
+              <CancelButton variant="contained" onClick={this.cancel}>
+                Cancel
+              </CancelButton>
+              <SaveButton variant="contained" color="primary" type="submit">
+                Save
+              </SaveButton>
+            </WrapButton>
           </Form>
         </Grid>
       </Grid>

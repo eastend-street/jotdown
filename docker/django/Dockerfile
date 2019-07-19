@@ -5,6 +5,7 @@ ENV product_version="0.1"
 
 RUN mkdir /${product_name}/
 # COPY ~/projects/jotdown/django /${product_name}/django
+# COPY ../../django /${product_name}/django
 WORKDIR /${product_name}/django
 
 RUN pip install --upgrade -q \
@@ -15,9 +16,12 @@ djangorestframework \
 django-filter \
 django-cors-headers \
 beautifulsoup4 \
-django-rest-framework-social-oauth2
+django-rest-framework-social-oauth2 \
+gunicorn \
+gevent \
+django-heroku
 
 EXPOSE 8000
 
-CMD ["bash"]
-# CMD ["gunicorn","-c","gunicorn_conf.py","main.wsgi:application"]
+# CMD ["bash"]
+CMD ["gunicorn","-c","gunicorn_conf.py","main.wsgi:application"]
