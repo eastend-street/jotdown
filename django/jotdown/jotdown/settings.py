@@ -19,9 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
 ALLOWED_HOSTS = ['*']
 
 
@@ -128,11 +125,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
@@ -157,6 +149,17 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email',]
 
-if not DEBUG:
+if os.environ.get("DEBUG_FLG", "False") == "True":
+    DEBUG = True
+    try:
+        from .local_settings import *
+    except ImportError:
+        pass
+else:
+    DEBUG = False
+    try:
+        from .production_settings import *
+    except ImportError:
+        pass
     import django_heroku
     django_heroku.settings(locals())
