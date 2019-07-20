@@ -4,8 +4,8 @@ ENV product_name="jotdown"
 ENV product_version="0.1"
 
 RUN mkdir /${product_name}/
-COPY /django /${product_name}/django
-WORKDIR /${product_name}/django/jotdown
+COPY /jotdown /${product_name}/django
+WORKDIR /${product_name}/django
 
 RUN pip install --upgrade -q \
 pip \
@@ -20,7 +20,7 @@ gunicorn \
 gevent \
 django-heroku
 
-EXPOSE 8000
+# EXPOSE 8000
 
 # CMD ["bash"]
 CMD ["gunicorn","-c","gunicorn_conf.py","jotdown.wsgi:application"]

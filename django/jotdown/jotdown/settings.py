@@ -22,15 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
-
 ALLOWED_HOSTS = ['*']
 
 
@@ -165,3 +156,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email',]
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
