@@ -16,6 +16,21 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+if os.environ.get("DEBUG_FLG", "False") == "True":
+    DEBUG = True
+    print('--------------------debug true--------------')
+    try:
+        from .local_settings import *
+    except ImportError:
+        pass
+else:
+    print('--------------------debug false--------------')
+    DEBUG = False
+    try:
+        from .production_settings import *
+    except ImportError:
+        pass
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -149,17 +164,6 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email',]
 
-if os.environ.get("DEBUG_FLG", "False") == "True":
-    DEBUG = True
-    try:
-        from .local_settings import *
-    except ImportError:
-        pass
-else:
-    DEBUG = False
-    try:
-        from .production_settings import *
-    except ImportError:
-        pass
+if os.environ.get("DEBUG_FLG", "False") == "False":
     import django_heroku
     django_heroku.settings(locals())
