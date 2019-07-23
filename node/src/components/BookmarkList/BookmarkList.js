@@ -21,7 +21,6 @@ class BookmarkList extends Component {
   }
 
   renderBookmarks() {
-    // console.log(this.props.bookmarks);
     return _.map(this.props.bookmarks, bookmark => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />

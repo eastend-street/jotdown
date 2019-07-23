@@ -141,11 +141,11 @@ class BookmarkCard extends Component {
 }
 
 // stateの中からどの値を子コンポーネントに渡すのかを定義する。
-const mapStateToProps = state => ({ bookmarks: state.bookmarks });
+// const mapStateToProps = state => ({ bookmarks: state.bookmarks });
 
 // const mapDispatchToProps = { readBookmarks };
 
 export default connect(
-  mapStateToProps
+  // mapStateToProps
   // mapDispatchToProps
 )(BookmarkCard);
