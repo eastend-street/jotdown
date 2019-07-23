@@ -12,7 +12,7 @@ import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-import Config from "../../../config/development";
+import Config from "../../../config/env";
 
 const StyledAppBar = styled(AppBar)`
   && {
