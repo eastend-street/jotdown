@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Config from "../../../config/development";
+// import Config from "../../../config/development";
 
 const StyledAppBar = styled(AppBar)`
   && {
@@ -80,7 +80,7 @@ class Header extends Component {
     const data = JSON.parse(localStorage.getItem("bookmarks"));
     await this.props.postBookmark(data);
     // ここで読み込み中のダイアログ表示する
-    localStorage.removeItem("bookmarks")
+    localStorage.removeItem("bookmarks");
     window.location.href = "/";
   }
 
@@ -108,10 +108,10 @@ class Header extends Component {
 
   render() {
     let clientID;
-    if(process.env.NODE_ENV === "development"){
-      clientID = Config.CLIENT_ID
-    }else{
-      clientID = process.env.CLIENT_ID
+    if (process.env.NODE_ENV === "development") {
+      clientID = process.env.REACT_APP_CLIENT_ID;
+    } else {
+      clientID = process.env.CLIENT_ID;
     }
     return (
       <StyledAppBar position="static">
