@@ -11,8 +11,7 @@ import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-
-import Config from "../../../config/env";
+import Config from "../../../config/development";
 
 const StyledAppBar = styled(AppBar)`
   && {
@@ -108,6 +107,12 @@ class Header extends Component {
   }
 
   render() {
+    let clientID;
+    if(process.env.NODE_ENV === "development"){
+      clientID = Config.CLIENT_ID
+    }else{
+      clientID = process.env.CLIENT_ID
+    }
     return (
       <StyledAppBar position="static">
         <Toolbar>
@@ -126,7 +131,7 @@ class Header extends Component {
             </AddButton>
             {localStorage.getItem("token") == null && (
               <GoogleLogin
-                clientId={Config.CLIENT_ID}
+                clientId={clientID}
                 render={renderProps => (
                   <LoginButton
                     onClick={renderProps.onClick}
@@ -143,7 +148,7 @@ class Header extends Component {
             )}
             {localStorage.getItem("token") != null && (
               <GoogleLogout
-                clientId={Config.CLIENT_ID}
+                clientId={clientID}
                 render={renderProps => (
                   <LoginButton
                     onClick={renderProps.onClick}
