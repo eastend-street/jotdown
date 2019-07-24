@@ -1,14 +1,13 @@
 # WIP: Jot down
 
 ## Summary
-Jot down is a bookmark and note service for developer.
-If you solve a error, you can write a note that how to solve the error, and save website that was used to help resolve the error. Of course, even non-developers, you can use Jot down as a bookmark and note managing web service.
+Jot down is a bookmark and note web service. You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark.
 
 ## Technology
-The front end made by React.js, back end made by Python. In front end, I used Redux and styled-components, correct style application and state management are realized. In back end, I used Django REST framework and Google cloud platform. It established RESTful API communication.
+The front end made by React.js, back end made by Python. In front end, using Redux and styled-components, correct style application and state management are realized. In back end, using Django REST framework, Docker and Heroku. It established RESTful API communication.
 
 
 - Front-end: React.js, Redux, React Router, styled-components, Material-ui
 - Backend: Django REST framework, Python
-- Infrastructure: Google cloud platform, Docker
-- Others: REST API, Axios, Gunicorn
+- Infrastructure: Docker, Heroku
+- Others: REST API, Axios, Gunicorn, Netlify
