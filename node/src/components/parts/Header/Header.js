@@ -107,7 +107,6 @@ class Header extends Component {
 
   render() {
     const clientID = process.env.REACT_APP_CLIENT_ID;
-    console.log(clientID)
     return (
       <StyledAppBar position="static">
         <Toolbar>
