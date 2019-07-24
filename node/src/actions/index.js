@@ -11,7 +11,7 @@ export const READ_BOOKMARK_FROM_LOCAL = "READ_BOOKMARK_FROM_LOCAL";
 export const UPDATE_BOOKMARK_TO_LOCAL = "UPDATE_BOOKMARK_TO_LOCAL";
 export const DELETE_BOOKMARK_FROM_LOCAL = "DELETE_BOOKMARK_FROM_LOCAL";
 
-const ROOT_URL = "http://localhost:8000/api";
+const ROOT_URL = process.env.REACT_APP_ROOT_URL;
 // const QUERYSTRING = "?token=token123";
 axios.defaults.headers.common["Authorization"] =
   "Bearer google-oauth2 " + localStorage.getItem("token") || "";

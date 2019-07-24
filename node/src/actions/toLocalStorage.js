@@ -7,7 +7,7 @@ import {
   DELETE_BOOKMARK_FROM_LOCAL
 } from ".";
 
-const ROOT_URL = "http://localhost:8000/api";
+const ROOT_URL = process.env.REACT_APP_ROOT_URL;
 
 export const saveBookmarkToLocal = values => async dispatch => {
   let bookmarks = {};
