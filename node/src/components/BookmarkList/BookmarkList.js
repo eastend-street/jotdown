@@ -7,7 +7,6 @@ import _ from "lodash";
 import BookmarkCard from "../parts/BookmarkCard/BookmarkCard";
 import styled from "styled-components";
 // import sampleBookmarks from "../../lib/sampleBookmark/sampleBookmark.json";
-import test from "../../static/images/notebook.jpg"
 
 const StyledBookmarkList = styled.div`
   /* padding: 1rem; */
@@ -27,7 +26,6 @@ class BookmarkList extends Component {
     // if (Object.keys(this.props.bookmarks).length === 0) {
     //   bookmarks = sampleBookmarks;
     // }
-    console.log(test);
     return _.map(this.props.bookmarks, bookmark => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />
