@@ -16,7 +16,6 @@ import BookmarkForm from "./components/BookmarkForm/BookmarkForm";
 import Footer from "./components/parts/Footer/Footer";
 import reducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
-import ogpImage from  "./static/images/notebook.jpg"
 
 const enhancer =
   process.env.NODE_ENV === "development"
@@ -27,7 +26,6 @@ const store = createStore(reducer, enhancer);
 const Content = styled.div`
   min-height: calc(100vh - 70px);
 `;
-console.log(ogpImage);
 
 ReactDOM.render(
   <Provider store={store}>
