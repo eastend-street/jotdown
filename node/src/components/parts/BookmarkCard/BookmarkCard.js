@@ -99,6 +99,7 @@ class BookmarkCard extends Component {
       SampleImage686963,
       SampleImage8aa29e
     ];
+
     const randomNum = Math.floor(Math.random() * sampleImageList.length);
     return (
       <StyledCard>
@@ -145,7 +146,6 @@ class BookmarkCard extends Component {
 
 // const mapDispatchToProps = { readBookmarks };
 
-export default connect(
-  // mapStateToProps
-  // mapDispatchToProps
-)(BookmarkCard);
+export default connect()(BookmarkCard);
+// mapStateToProps
+// mapDispatchToProps
