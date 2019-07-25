@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -30,7 +30,7 @@ const Content = styled.div`
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Helmet
+      {/* <Helmet
         title="Jot down"
         meta={[
           {
@@ -55,7 +55,7 @@ ReactDOM.render(
           { name: "twitter:card", content: "summary_large_image" },
           { property: "og:locale", content: "en_CA" }
         ]}
-      />
+      /> */}
       <Header />
       <Content>
         <Switch>
