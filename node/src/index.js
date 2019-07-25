@@ -16,7 +16,6 @@ import BookmarkForm from "./components/BookmarkForm/BookmarkForm";
 import Footer from "./components/parts/Footer/Footer";
 import reducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
-import ogpImage from "./static/images/notebook.jpg"
 
 const enhancer =
   process.env.NODE_ENV === "development"
@@ -28,7 +27,6 @@ const Content = styled.div`
   min-height: calc(100vh - 70px);
 `;
 
-console.log(ogpImage);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -38,7 +36,7 @@ ReactDOM.render(
         meta={[
           {
             property: "og:image",
-            content: {ogpImage}
+            content: "https://jotdown.site/static/media/notebook.55e22e01.jpg"
           },
           { property: "og:url", content: "https://jotdown.site" },
           { property: "og:type", content: "website" },
