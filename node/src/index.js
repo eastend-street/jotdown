@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { Helmet } from "react-helmet";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import styled from "styled-components";
 import "./index.css";
 import Header from "./components/parts/Header/Header";
 import BookmarkDetail from "./components/BookmarkDetail/BookmarkDetail";
@@ -16,6 +14,7 @@ import BookmarkForm from "./components/BookmarkForm/BookmarkForm";
 import Footer from "./components/parts/Footer/Footer";
 import reducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
+import styled from "styled-components";
 
 const enhancer =
   process.env.NODE_ENV === "development"
@@ -30,41 +29,15 @@ const Content = styled.div`
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      {/* <Helmet
-        title="Jot down"
-        meta={[
-          {
-            property: "og:image",
-            content: "https://jotdown.site/static/media/notebook.55e22e01.jpg"
-          },
-          { property: "og:url", content: "https://jotdown.site" },
-          { property: "og:type", content: "website" },
-          {
-            property: "og:title",
-            content: "Jot down - a bookmark and note web service"
-          },
-          {
-            property: "og:description",
-            content:
-              "Jot down is a bookmark and note web service. You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark."
-          },
-          {
-            property: "og:site_name",
-            content: "Jot down - a bookmark and note web service"
-          },
-          { name: "twitter:card", content: "summary_large_image" },
-          { property: "og:locale", content: "en_CA" }
-        ]}
-      /> */}
-      <Header />
-      <Content>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/new" component={BookmarkForm} />
-          <Route path="/detail/:id" component={BookmarkDetail} />
-        </Switch>
-      </Content>
-      <Footer />
+        <Header />
+        <Content>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/new" component={BookmarkForm} />
+            <Route path="/detail/:id" component={BookmarkDetail} />
+          </Switch>
+        </Content>
+        <Footer />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

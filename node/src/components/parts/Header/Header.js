@@ -37,6 +37,12 @@ const AddButton = styled(Fab)`
     :hover {
       background-color: #838e9a;
     }
+    @media (max-width: 960px) {
+      margin-right: 2rem;
+    }
+    @media (max-width: 600px) {
+      margin-right: 1.5rem;
+    }
   }
 `;
 
@@ -66,6 +72,12 @@ const LoginButton = styled(Button)`
       background-color: #838e9a;
     }
     text-transform: none;
+    @media (max-width: 960px) {
+      width: 8rem;      
+    }
+    @media (max-width: 600px) {
+      width: 5rem;      
+    }
   }
 `;
 
