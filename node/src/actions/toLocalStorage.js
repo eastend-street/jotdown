@@ -6,6 +6,7 @@ import {
   UPDATE_BOOKMARK_TO_LOCAL,
   DELETE_BOOKMARK_FROM_LOCAL
 } from ".";
+import sampleBookmark from "../lib/sampleBookmark/sampleBookmark.json";
 
 const ROOT_URL = process.env.REACT_APP_ROOT_URL;
 
@@ -17,7 +18,7 @@ export const saveBookmarkToLocal = values => async dispatch => {
   const id = Object.keys(bookmarks).length;
   const ogp = await axios.post(`${ROOT_URL}/bookmark-for-local/${id}/`, values);
 
-  bookmarks[id] = ogp.data
+  bookmarks[id] = ogp.data;
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   dispatch({ type: SAVE_BOOKMARK_TO_LOCAL, bookmarks });
 };
@@ -44,4 +45,11 @@ export const deleteBookmarkFromLocal = id => {
   delete bookmarks[id];
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   return { type: DELETE_BOOKMARK_FROM_LOCAL, bookmarks };
+};
+
+export const saveSampleBookmarkToLocal = () => {
+  console.log(sampleBookmark);
+  const bookmarks = sampleBookmark;
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  return { type: SAVE_BOOKMARK_TO_LOCAL, bookmarks };
 };
