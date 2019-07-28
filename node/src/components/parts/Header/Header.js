@@ -12,7 +12,7 @@ import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-import logo from "../../../static/images/logo-transparent.png"
+// import logo from "../../../static/images/logo-transparent.png"
 
 const StyledAppBar = styled(AppBar)`
   && {
@@ -31,9 +31,9 @@ const Logo = styled(Typography)`
   }
 `;
 
-const LogoImage = styled.img`
-  height: 2.5rem;
-`
+// const LogoImage = styled.img`
+//   height: 2.5rem;
+// `
 
 const AddButton = styled(Fab)`
   && {
