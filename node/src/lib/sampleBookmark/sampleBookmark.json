@@ -3,7 +3,7 @@
     "created_at": null,
     "description": "This is a sample description. When you save some bookmark, description is automatically loaded.",
     "id": 0,
-    "img_url": "https://jotdown.site/notebook.jpg",
+    "img_url": "https://jotdown.site/logo.jpg",
     "note": "This is a sample note. Click see more then you can see the whole sentences in the bookmark detail page.",
     "title": "Let's try to save bookmark and note! Click add icon upper right.",
     "updated_at": null,
