@@ -13,7 +13,6 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -33,11 +32,22 @@ const StyledCard = styled(Card)`
   }
 `;
 
+const WrapCardMedia = styled.div`
+  && {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    text-align: center;
+  }
+`;
+
 const StyledCardMedia = styled(CardMedia)`
   && {
     height: 0;
     padding-top: 52.5%;
   }
+`;
+
+const WrapTitle = styled.div`
+  padding: 1rem;
 `;
 
 const Title = styled(Typography)`
@@ -47,7 +57,7 @@ const Title = styled(Typography)`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-    min-height: 4.5rem;
+    /* min-height: 5rem; */
   }
 `;
 
@@ -115,6 +125,7 @@ const DeleteButtonGrid = styled(Grid)`
   @media (max-width: 600px) {
     order: 3;
     padding-top: 1rem;
+    padding-left: 0;
   }
 `;
 
@@ -123,6 +134,7 @@ const CancelButtonGrid = styled(Grid)`
   @media (max-width: 600px) {
     order: 2;
     padding-top: 1rem;
+    padding-left: 0;
   }
 `;
 
@@ -131,6 +143,7 @@ const SaveButtonGrid = styled(Grid)`
   @media (max-width: 600px) {
     order: 1;
     padding-top: 1rem;
+    padding-left: 0;
   }
 `;
 
@@ -161,21 +174,27 @@ class BookmarkDetail extends Component {
         <StyledCard>
           <CardActionArea target="_blank" href={bookmark.url}>
             <Grid container>
-              <Grid item xs={5}>
-                <StyledCardMedia
-                  image={bookmark.img_url || SampleImage}
-                  title={bookmark.title}
-                />
+              <Grid item xs={12} sm={6}>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <WrapTitle>
+                      <Title variant="subtitle1">{bookmark.title}</Title>
+                    </WrapTitle>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Description variant="body2" component="p">
+                      {bookmark.description}
+                    </Description>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid item xs={7}>
-                <CardContent>
-                  <Title variant="subtitle1">{bookmark.title}</Title>
-                </CardContent>
-              </Grid>
-              <Grid>
-                <Description variant="body2" component="p">
-                  {bookmark.description}
-                </Description>
+              <Grid item xs={12} sm={6}>
+                <WrapCardMedia>
+                  <StyledCardMedia
+                    image={bookmark.img_url || SampleImage}
+                    title={bookmark.title}
+                  />
+                </WrapCardMedia>
               </Grid>
             </Grid>
           </CardActionArea>
