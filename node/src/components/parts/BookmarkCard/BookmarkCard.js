@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
@@ -87,10 +87,10 @@ const ActionButton = styled(Button)`
   }
 `;
 
-const StyledReactMarkdown = styled(ReactMarkdown)`
-  && {
-  }
-`;
+// const StyledReactMarkdown = styled(ReactMarkdown)`
+//   && {
+//   }
+// `;
 
 class BookmarkCard extends Component {
   render() {
@@ -114,7 +114,8 @@ class BookmarkCard extends Component {
         </CardActionArea>
         <StyledHr />
         <Note>
-          <StyledReactMarkdown source={this.props.bookmark.note} />
+          {/* <StyledReactMarkdown source={this.props.bookmark.note} /> */}
+          {this.props.bookmark.note}
         </Note>
         <GridActions container>
           {/* <Grid item>
