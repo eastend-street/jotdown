@@ -105,7 +105,7 @@ class BookmarkForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <Grid container justify="center">
-        <Grid item xs={10} md={8}>
+        <Grid item xs={11} md={8}>
           <Form onSubmit={handleSubmit(this.onSubmit)}>
             <Field
               label="bookmark URL"
