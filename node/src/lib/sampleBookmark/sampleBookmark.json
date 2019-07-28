@@ -4,11 +4,12 @@
     "description": "This is a sample description. When you save some bookmark, description is automatically loaded.",
     "id": 0,
     "img_url": "https://jotdown.site/logo.png",
-    "note": "Here is a note with bookmark. Click see more then you can see the whole sentences in the bookmark detail page. In bookmark detail page, you can edit note or delete",
-    "title": "Let's try to save bookmark and note! Click add icon upper right.",
+    "note": "Here is a note with bookmark. Click see more then you can see the whole sentences in the bookmark detail page. In bookmark detail page, you can edit note or delete.",
+    "title": "Welcome to Jot down! Let's try to click add icon upper right to save bookmark and note. ",
     "updated_at": null,
     "url": "https://jotdown.site",
-    "user": null
+    "user": null,
+    "isSample": true
   },
   "1": {
     "created_at": null,
@@ -19,7 +20,8 @@
     "title": "Gatik’s self-driving vans have started shuttling groceries for Walmart – TechCrunch",
     "updated_at": null,
     "url": "https://techcrunch.com/2019/07/27/gatiks-self-driving-vans-have-started-shuttling-groceries-for-walmart/",
-    "user": null
+    "user": null,
+    "isSample": true
   },
   "2": {
     "created_at": null,
@@ -30,6 +32,7 @@
     "title": "The DEV Community",
     "updated_at": null,
     "url": "https://dev.to/",
-    "user": null
+    "user": null,
+    "isSample": true
   }
 }
