@@ -63,8 +63,8 @@ const Description = styled(Typography)`
 
 const DeleteButton = styled(Button)`
   && {
-    margin: 1rem;
-    min-width: 5rem;
+    max-width: 5rem;
+    width: 100%;
     box-shadow: none;
     color: #fff;
     background-color: #ef5350;
@@ -72,13 +72,17 @@ const DeleteButton = styled(Button)`
     :hover {
       background-color: #f69b99;
     }
+    @media (max-width: 600px) {
+      max-width: none;
+      color: #ef5350;
+      background-color: transparent;
+    }
   }
 `;
 
 const CancelButton = styled(Button)`
   && {
-    margin: 1rem;
-    min-width: 7rem;
+    width: 100%;
     box-shadow: none;
     color: #66717e;
     background-color: #fff;
@@ -91,8 +95,7 @@ const CancelButton = styled(Button)`
 
 const SaveButton = styled(Button)`
   && {
-    margin: 1rem;
-    min-width: 7rem;
+    width: 100%;
     box-shadow: none;
     color: #fff;
     background-color: #66717e;
@@ -104,7 +107,31 @@ const SaveButton = styled(Button)`
 `;
 
 const WrapButton = styled.div`
-  text-align: right;
+  margin: 1rem;
+`;
+
+const DeleteButtonGrid = styled(Grid)`
+  padding-left: 1rem;
+  @media (max-width: 600px) {
+    order: 3;
+    padding-top: 1rem;
+  }
+`;
+
+const CancelButtonGrid = styled(Grid)`
+  padding-left: 1rem;
+  @media (max-width: 600px) {
+    order: 2;
+    padding-top: 1rem;
+  }
+`;
+
+const SaveButtonGrid = styled(Grid)`
+  padding-left: 1rem;
+  @media (max-width: 600px) {
+    order: 1;
+    padding-top: 1rem;
+  }
 `;
 
 class BookmarkDetail extends Component {
@@ -177,7 +204,7 @@ class BookmarkDetail extends Component {
     const id = this.props.match.params.id;
     if (localStorage.getItem("token") != null) {
       await this.props.deleteBookmark(id);
-    }else {
+    } else {
       await this.props.deleteBookmarkFromLocal(id);
     }
     this.props.history.push("/");
@@ -191,26 +218,25 @@ class BookmarkDetail extends Component {
           <Grid item xs={12} md={6}>
             <form onSubmit={handleSubmit(this.onSubmit)}>
               {this.renderBookmark(this.props.note)}
-              <Grid container>
-                <Grid item xs={2}>
-                  <DeleteButton
-                    variant="contained"
-                    onClick={this.delete}
-                  >
-                    Delete
-                  </DeleteButton>
-                </Grid>
-                <Grid item xs={10}>
-                  <WrapButton>
+              <WrapButton>
+                <Grid container>
+                  <DeleteButtonGrid item xs={12} sm={6}>
+                    <DeleteButton variant="contained" onClick={this.delete}>
+                      Delete
+                    </DeleteButton>
+                  </DeleteButtonGrid>
+                  <CancelButtonGrid item xs={12} sm={3}>
                     <CancelButton variant="contained" onClick={this.cancel}>
                       Cancel
                     </CancelButton>
+                  </CancelButtonGrid>
+                  <SaveButtonGrid item xs={12} sm={3}>
                     <SaveButton variant="contained" type="submit">
                       Save
                     </SaveButton>
-                  </WrapButton>
+                  </SaveButtonGrid>
                 </Grid>
-              </Grid>
+              </WrapButton>
             </form>
           </Grid>
         </Grid>
