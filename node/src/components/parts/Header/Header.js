@@ -12,6 +12,8 @@ import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
+import logo from "../../../static/images/logo-transparent.png"
+
 const StyledAppBar = styled(AppBar)`
   && {
     background-color: #e3e3e3;
@@ -21,12 +23,17 @@ const StyledAppBar = styled(AppBar)`
 
 const Logo = styled(Typography)`
   && {
+    font-family: "Times New Roman";
     color: #525a65;
     :hover {
       color: #66717e;
     }
   }
 `;
+
+const LogoImage = styled.img`
+  height: 2.5rem;
+`
 
 const AddButton = styled(Fab)`
   && {
@@ -123,7 +130,8 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo variant="h6">Jot down</Logo>
+            <Logo variant="h5">Jot down</Logo>
+            {/* <LogoImage src={logo} alt="jotdown"/> */}
           </StyledLink>
           <WrapAction>
             <AddButton
