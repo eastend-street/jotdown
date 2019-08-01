@@ -23,21 +23,21 @@ const enhancer =
 const store = createStore(reducer, enhancer);
 
 const Content = styled.div`
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 4rem);
 `;
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
+      <Content>
         <Header />
-        <Content>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/new" component={BookmarkForm} />
-            <Route path="/detail/:id" component={BookmarkDetail} />
-          </Switch>
-        </Content>
-        <Footer />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/new" component={BookmarkForm} />
+          <Route path="/detail/:id" component={BookmarkDetail} />
+        </Switch>
+      </Content>
+      <Footer />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

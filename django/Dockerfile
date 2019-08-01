@@ -9,7 +9,7 @@ WORKDIR /${product_name}/django
 
 RUN pip install --upgrade -q \
     pip \
-    django==2.1.7 \
+    django==2.2.4 \
     django-debug-toolbar \
     djangorestframework \
     django-filter \
