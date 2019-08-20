@@ -56,7 +56,7 @@ class NotFound extends Component {
         <Grid item xs={11} sm={12}>
           <StyledH1>404 Page not found</StyledH1>
           <StyledH3>
-            Sorry, we couldn't find the page...
+            Sorry, we couldn't find the page....
             <br />
             Please click the button below to go back to the Homepage.
           </StyledH3>
