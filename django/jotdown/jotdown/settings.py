@@ -18,13 +18,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 if os.environ.get("DEBUG_FLG", "False") == "True":
     DEBUG = True
-    print('--------------------debug true--------------')
+    # print('--------------------debug true--------------')
     try:
         from .local_settings import *
     except ImportError:
         pass
 else:
-    print('--------------------debug false--------------')
+    # print('--------------------debug false--------------')
     DEBUG = False
     try:
         from .production_settings import *
