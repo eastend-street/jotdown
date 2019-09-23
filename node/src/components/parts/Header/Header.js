@@ -130,7 +130,7 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo variant="h5">Jot down</Logo>
+            <Logo variant="h5" component="h1">Jot down</Logo>
             {/* <LogoImage src={logo} alt="jotdown"/> */}
           </StyledLink>
           <WrapAction>

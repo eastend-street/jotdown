@@ -178,7 +178,7 @@ class BookmarkDetail extends Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <WrapTitle>
-                      <Title variant="subtitle1">{bookmark.title}</Title>
+                      <Title variant="subtitle1" component="h2">{bookmark.title}</Title>
                     </WrapTitle>
                   </Grid>
                   <Grid item xs={12}>
