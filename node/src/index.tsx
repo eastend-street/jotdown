@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { createGlobalStyle } from "styled-components";
 
-import "./index.css";
 import Header from "./components/parts/Header/Header";
 import BookmarkDetail from "./components/BookmarkDetail/BookmarkDetail";
 import Home from "./components/Home/Home";
@@ -28,8 +28,18 @@ const Content = styled.div`
   min-height: calc(100vh - 4rem);
 `;
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #e3e3e3;
+  }
+`;
+
 ReactDOM.render(
   <Provider store={store}>
+    <GlobalStyle />
     <BrowserRouter>
       <Content>
         <Header />

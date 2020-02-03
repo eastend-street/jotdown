@@ -48,7 +48,6 @@ export const deleteBookmarkFromLocal = id => {
 };
 
 export const saveSampleBookmarkToLocal = () => {
-  // console.log(sampleBookmark);
   const bookmarks = sampleBookmark;
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   return { type: SAVE_BOOKMARK_TO_LOCAL, bookmarks };

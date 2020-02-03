@@ -12,7 +12,6 @@ export const UPDATE_BOOKMARK_TO_LOCAL = "UPDATE_BOOKMARK_TO_LOCAL";
 export const DELETE_BOOKMARK_FROM_LOCAL = "DELETE_BOOKMARK_FROM_LOCAL";
 
 const ROOT_URL = process.env.REACT_APP_ROOT_URL;
-// const QUERYSTRING = "?token=token123";
 axios.defaults.headers.common["Authorization"] =
   "Bearer google-oauth2 " + localStorage.getItem("token") || "";
 
@@ -32,11 +31,6 @@ export const deleteBookmark = id => async dispatch => {
   dispatch({ type: DELETE_BOOKMARK, response });
   return response;
 };
-
-// export const postBookmark = values => async dispatch => {
-//   const response = await axios.post(`${ROOT_URL}/bookmarks/`, values);
-//   dispatch({ type: CREATE_BOOKMARK, response });
-// };
 
 export const putBookmark = (id, values) => async dispatch => {
   const response = await axios.put(`${ROOT_URL}/bookmarks/${id}/`, values);

@@ -131,6 +131,7 @@ class BookmarkForm extends Component {
 }
 
 const selector = formValueSelector("BookmarkForm");
+
 const mapStateToProps = state => ({
   note: selector(state, "note")
 });
