@@ -12,8 +12,6 @@ import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-// import logo from "../../../static/images/logo-transparent.png"
-
 const StyledAppBar = styled(AppBar)`
   && {
     background-color: #e3e3e3;
@@ -30,10 +28,6 @@ const Logo = styled(Typography)`
     }
   }
 `;
-
-// const LogoImage = styled.img`
-//   height: 2.5rem;
-// `
 
 const AddButton = styled(Fab)`
   && {
@@ -80,13 +74,17 @@ const LoginButton = styled(Button)`
     }
     text-transform: none;
     @media (max-width: 960px) {
-      width: 8rem;      
+      width: 8rem;
     }
     @media (max-width: 600px) {
-      width: 5rem;      
+      width: 5rem;
     }
   }
 `;
+
+// type HeaderProps = {
+//   postBookmark: any;
+// };
 
 class Header extends Component {
   constructor(props) {
@@ -130,8 +128,9 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo variant="h5" component="h1">Jot down</Logo>
-            {/* <LogoImage src={logo} alt="jotdown"/> */}
+            <Logo variant="h5" component="h1">
+              Jot down
+            </Logo>
           </StyledLink>
           <WrapAction>
             <AddButton
@@ -184,7 +183,4 @@ class Header extends Component {
 
 const mapDispatchToProps = { readBookmarks, postBookmark };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Header);
+export default connect(null, mapDispatchToProps)(Header);

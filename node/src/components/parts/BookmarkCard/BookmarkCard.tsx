@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import ReactMarkdown from "react-markdown";
 
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
@@ -87,12 +86,21 @@ const ActionButton = styled(Button)`
   }
 `;
 
-// const StyledReactMarkdown = styled(ReactMarkdown)`
-//   && {
-//   }
-// `;
+type BookmarkCardProps = {
+  bookmark: {
+    created_at: Date;
+    description: string;
+    id: number;
+    img_url: string;
+    note: string;
+    title: string;
+    updated_at: Date;
+    url: string;
+    user: {};
+  };
+};
 
-class BookmarkCard extends Component {
+class BookmarkCard extends Component<BookmarkCardProps, {}> {
   render() {
     const sampleImageList = [
       SampleImage3d5467,
@@ -109,24 +117,14 @@ class BookmarkCard extends Component {
             title={this.props.bookmark.title}
           />
           <CardContent>
-            <Title variant="subtitle2" component="h2">{this.props.bookmark.title}</Title>
+            <Title variant="subtitle2" component="h2">
+              {this.props.bookmark.title}
+            </Title>
           </CardContent>
         </CardActionArea>
         <StyledHr />
-        <Note>
-          {/* <StyledReactMarkdown source={this.props.bookmark.note} /> */}
-          {this.props.bookmark.note}
-        </Note>
+        <Note>{this.props.bookmark.note}</Note>
         <GridActions container>
-          {/* <Grid item>
-            <StyledLink
-              to={{
-                pathname: "/detail/" + this.props.bookmark.id
-              }}
-            >
-              <ActionButton>Edit</ActionButton>
-            </StyledLink>
-          </Grid> */}
           <Grid item>
             <StyledLink
               to={{
@@ -142,11 +140,4 @@ class BookmarkCard extends Component {
   }
 }
 
-// stateの中からどの値を子コンポーネントに渡すのかを定義する。
-// const mapStateToProps = state => ({ bookmarks: state.bookmarks });
-
-// const mapDispatchToProps = { readBookmarks };
-
 export default connect()(BookmarkCard);
-// mapStateToProps
-// mapDispatchToProps

@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 import styled from "styled-components";
-import TextareaAutosize from "react-textarea-autosize";
+import TextareaAutoSize from "react-textarea-autosize";
 
-const FormTextField = styled(TextareaAutosize)`
+const Textarea = styled.div`
+  margin-top: 3rem;
+`;
+
+const FormTextField = styled(TextareaAutoSize)`
   box-sizing: border-box;
   width: 100%;
   border: none;
@@ -19,22 +23,29 @@ const FormTextField = styled(TextareaAutosize)`
   }
 `;
 
+type RenderFieldProps = {
+  input: string;
+  label: string;
+  type: string;
+};
+
 class MarkdownTextarea extends Component {
-  renderField(field) {
-    const { input, label, type } = field;
+  renderField: React.FC<RenderFieldProps> = ({ input, label, type }) => {
     return (
       <FormTextField placeholder={label} type={type} minRows={10} {...input} />
     );
-  }
+  };
 
   render() {
     return (
-      <Field
-        label="Write a note here"
-        name="note"
-        type="text"
-        component={this.renderField}
-      />
+      <Textarea>
+        <Field
+          label="Write a note here"
+          name="note"
+          type="text"
+          component={this.renderField}
+        />
+      </Textarea>
     );
   }
 }
