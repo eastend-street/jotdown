@@ -21,6 +21,10 @@ const Container = styled(Grid)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
+
 const StyledH1 = styled.h1`
   text-align: center;
 `;
@@ -49,7 +53,6 @@ const StyledButton = styled(Button)`
 `;
 
 class NotFound extends Component {
-  goToHome() {}
   render() {
     return (
       <Container container>
@@ -61,9 +64,11 @@ class NotFound extends Component {
             Please click the button below to go back to the Homepage.
           </StyledH3>
           <ContentButton>
-            <StyledButton variant="contained" component={Link} to="/">
-              Go to Homepage
-            </StyledButton>
+            <StyledLink to="/">
+              <StyledButton variant="contained">
+                Go to Homepage
+              </StyledButton>
+            </StyledLink>
           </ContentButton>
         </Grid>
       </Container>
