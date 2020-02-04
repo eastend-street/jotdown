@@ -82,6 +82,25 @@ const LoginButton = styled(Button)`
   }
 `;
 
+const LogoutButton = styled(Button)`
+  && {
+    color: #66717e;
+    width: 10rem;
+    border: 0.1rem solid #66717e;
+    background-color: transparent;
+    :hover {
+      /* opacity: 0.7; */
+    }
+    text-transform: none;
+    @media (max-width: 960px) {
+      width: 8rem;
+    }
+    @media (max-width: 600px) {
+      width: 5rem;
+    }
+  }
+`;
+
 // type HeaderProps = {
 //   postBookmark: any;
 // };
@@ -163,12 +182,12 @@ class Header extends Component {
               <GoogleLogout
                 clientId={clientID}
                 render={renderProps => (
-                  <LoginButton
+                  <LogoutButton
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
                     Logout
-                  </LoginButton>
+                  </LogoutButton>
                 )}
                 buttonText="Logout"
                 onLogoutSuccess={this.logout}

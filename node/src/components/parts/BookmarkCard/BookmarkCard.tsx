@@ -117,7 +117,7 @@ class BookmarkCard extends Component<BookmarkCardProps, {}> {
             title={this.props.bookmark.title}
           />
           <CardContent>
-            <Title variant="subtitle2" component="h2">
+            <Title variant="subtitle2">
               {this.props.bookmark.title}
             </Title>
           </CardContent>

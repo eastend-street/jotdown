@@ -7,12 +7,16 @@ import {
   saveSampleBookmarkToLocal
 } from "../../actions/toLocalStorage";
 import _ from "lodash";
+
 import BookmarkCard from "../parts/BookmarkCard/BookmarkCard";
+import SkeletonCard from "../parts/SkeletonCard/SkeletonCard";
 
 class BookmarkList extends Component {
+  state = { loading: true };
+
   componentDidMount() {
     if (localStorage.getItem("token") != null) {
-      this.props.readBookmarks();
+      this.props.readBookmarks().then(res => this.setState({ loading: false }));
     } else {
       const response = this.props.readBookmarksFromLocal();
       if (
@@ -22,6 +26,7 @@ class BookmarkList extends Component {
         this.props.saveSampleBookmarkToLocal();
         this.props.readBookmarksFromLocal();
       }
+      this.setState({ loading: false });
     }
   }
 
@@ -33,10 +38,26 @@ class BookmarkList extends Component {
     ));
   }
 
+  renderSkeleton() {
+    const skeletons = [];
+    for (let i = 0; i < 4; i++) {
+      skeletons.push(
+        <Grid item={true} xs={12} sm={6} md={4} lg={3} key={i}>
+          <SkeletonCard />
+        </Grid>
+      );
+    }
+    return <>{skeletons}</>;
+  }
+
   render() {
     return (
       <Grid container={true} spacing={4}>
-        {this.renderBookmarks()}
+        {this.state.loading ? (
+          <>{this.renderSkeleton()}</>
+        ) : (
+          <>{this.renderBookmarks()}</>
+        )}
       </Grid>
     );
   }

@@ -50,6 +50,7 @@ const WrapButton = styled.div`
 const FormTextField = styled.input`
   && {
     box-sizing: border-box;
+    border-radius: 0.2rem;
     width: 100%;
     border: none;
     font-size: 1rem;
