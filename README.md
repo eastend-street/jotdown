@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://jotdown.site" target="_blank"><img src="https://user-images.githubusercontent.com/43656115/74611543-b9829e00-50b1-11ea-886d-5444e580bb42.png" alt="jotdown" width="300"></a></h1>
+<h1 align="center"><a href="https://jotdown.site" target="_blank"><img src="https://user-images.githubusercontent.com/43656115/74611765-e932a580-50b3-11ea-9563-214e959df574.png" alt="jotdown" width="300"></a></h1>
 
 <br/>
 
