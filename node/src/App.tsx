@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 import styled, { createGlobalStyle } from "styled-components";
 
+import Theme from "./styles/theme";
 import Header from "./components/parts/Header/Header";
 import BookmarkDetail from "./components/BookmarkDetail/BookmarkDetail";
 import Home from "./components/Home/Home";
@@ -27,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #e3e3e3;
+    background-color: #EFE5D6;
   }
 `;
 
@@ -40,16 +41,18 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <GlobalStyle />
-        <Content>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/new" component={BookmarkForm} />
-            <Route path="/detail/:id" component={BookmarkDetail} />
-            <Route component={NotFound} />
-          </Switch>
-        </Content>
-        <Footer />
+        <Theme>
+          <Content>
+            <Header />
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/new" component={BookmarkForm} />
+              <Route path="/detail/:id" component={BookmarkDetail} />
+              <Route component={NotFound} />
+            </Switch>
+          </Content>
+          <Footer />
+        </Theme>
       </BrowserRouter>
     </Provider>
   );

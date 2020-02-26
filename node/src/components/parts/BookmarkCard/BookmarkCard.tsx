@@ -21,6 +21,7 @@ const StyledCard = styled(Card)`
     height: 100%;
     position: relative;
     padding-bottom: 1rem;
+    border-radius: 1rem;
   }
 `;
 
@@ -117,9 +118,7 @@ class BookmarkCard extends Component<BookmarkCardProps, {}> {
             title={this.props.bookmark.title}
           />
           <CardContent>
-            <Title variant="subtitle2">
-              {this.props.bookmark.title}
-            </Title>
+            <Title variant="subtitle2">{this.props.bookmark.title}</Title>
           </CardContent>
         </CardActionArea>
         <StyledHr />

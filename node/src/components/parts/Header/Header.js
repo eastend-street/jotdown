@@ -10,21 +10,23 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+
+import LogoSvg from "../../../static/images/jotdown-logo.svg";
 
 const StyledAppBar = styled(AppBar)`
   && {
-    background-color: #e3e3e3;
+    background-color: ${props => props.theme.colors.white};
     box-shadow: none;
   }
 `;
 
-const Logo = styled(Typography)`
+const Logo = styled.img`
   && {
-    font-family: "Times New Roman";
-    color: #525a65;
+    margin-left: .5rem;
+    width: 8rem;
+    transition: .5s;
     :hover {
-      color: #66717e;
+      opacity: 0.7;
     }
   }
 `;
@@ -33,10 +35,9 @@ const AddButton = styled(Fab)`
   && {
     margin-right: 3rem;
     box-shadow: none;
-    color: #fff;
-    background-color: #66717e;
+    background-color: ${props => props.theme.colors.green};
     :hover {
-      background-color: #838e9a;
+      opacity: .7s
     }
     @media (max-width: 960px) {
       margin-right: 2rem;
@@ -66,11 +67,11 @@ const WrapAction = styled.div`
 
 const LoginButton = styled(Button)`
   && {
-    color: #fff;
     width: 10rem;
-    background-color: #66717e;
+    color: #fff;
+    background-color: ${props => props.theme.colors.yellow};
     :hover {
-      background-color: #838e9a;
+      opacity: .7s
     }
     text-transform: none;
     @media (max-width: 960px) {
@@ -84,9 +85,9 @@ const LoginButton = styled(Button)`
 
 const LogoutButton = styled(Button)`
   && {
-    color: #66717e;
+    color: ${props => props.theme.colors.yellow};
     width: 10rem;
-    border: 0.1rem solid #66717e;
+    border: 0.1rem solid ${props => props.theme.colors.yellow};
     background-color: transparent;
     :hover {
       /* opacity: 0.7; */
@@ -147,9 +148,10 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo variant="h5" component="h1">
+            <Logo src={LogoSvg} alt="jot down" />
+            {/* <Logo variant="h5" component="h1">
               Jot down
-            </Logo>
+            </Logo> */}
           </StyledLink>
           <WrapAction>
             <AddButton
