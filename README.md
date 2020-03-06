@@ -11,6 +11,7 @@ Website: &nbsp; https://jotdown.site
 
 <br/>
 
+
 ## Technology
 The front end made by React.js, back end made by Python. In front end, using Redux and styled-components, correct style application and state management are realized. In back end, using Django REST framework, Docker and Heroku. It established RESTful API communication.
 
@@ -19,3 +20,15 @@ The front end made by React.js, back end made by Python. In front end, using Red
 - Backend: Django REST framework, Python
 - Infrastructure: Docker, Heroku
 - Others: REST API, Axios, Gunicorn, Netlify
+
+
+## Architecture
+
+
+## Upcoming features
+- Get bookmarks from browser
+- Sync bookmarks to browser when bookmark is edited
+- Show skelton when bookmark is loading (e.g. https://material-ui.com/components/skeleton/) 
+
+
+## License
