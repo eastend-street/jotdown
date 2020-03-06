@@ -26,6 +26,7 @@ The front end made by React.js, back end made by Python. In front end, using Red
 
 ## Architecture
 Writing...
+
 <br/>
 
 ## Upcoming features
