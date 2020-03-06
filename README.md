@@ -21,14 +21,21 @@ The front end made by React.js, back end made by Python. In front end, using Red
 - Infrastructure: Docker, Heroku
 - Others: REST API, Axios, Gunicorn, Netlify
 
+<br/>
+
 
 ## Architecture
-
+Writing...
+<br/>
 
 ## Upcoming features
 - Get bookmarks from browser
 - Sync bookmarks to browser when bookmark is edited
 - Show skelton when bookmark is loading (e.g. https://material-ui.com/components/skeleton/) 
 
+<br/>
 
 ## License
+Writing...
+
+<br/>
