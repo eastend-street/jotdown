@@ -29,6 +29,33 @@ The front end made by React.js, back end made by Python. In front end, using Red
 
 <br/>
 
+### Front end directory Structure
+```
+src/
+ index.tsx
+ App.tsx
+ 
+ actions/  -----Actions to call API and dipatch data to Redux 
+   EACH-CATEGORY.ts/
+ 
+ components/
+   COMPONENT_NAME/
+    |-- COMPONENT_NAME.tsx  -----components with styled-components
+ 
+ reducers/  -----Get data from actions to send it to store 
+   EACH-CATEGORY.ts/
+ 
+ static/
+  images/
+ 
+ styles/
+  |-- theme.tsx  -----Define global style, breakpoints, color variables  
+
+ lib/  -----Sample bookmark data
+```
+
+<br/>
+
 ## Upcoming features
 - Get bookmarks from browser
 - Sync bookmarks to browser when bookmark is edited
