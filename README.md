@@ -81,7 +81,7 @@ Editing...
 
 <br/>
 
-## License
-&copy; eastend-street
+## Author
+[eastend-street](https://github.com/eastend-street)
 
 <br/>
