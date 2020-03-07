@@ -39,7 +39,9 @@ The front end made by React.js, back end made by Python. In front end, using Red
 
 <br/>
 
-### Front end directory Structure
+## Directory Structure
+
+### Front end
 ```
 src/
  index.tsx
@@ -62,6 +64,12 @@ src/
   |-- theme.tsx  -----Define global style, breakpoints, color variables  
 
  lib/  -----Sample bookmark data
+```
+<br/>
+
+### Back end
+```
+Editing...
 ```
 
 <br/>
