@@ -82,6 +82,6 @@ Editing...
 <br/>
 
 ## License
-@eastend-street
+&copy; eastend-street
 
 <br/>
