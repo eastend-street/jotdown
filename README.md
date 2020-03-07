@@ -12,6 +12,10 @@ Website: &nbsp; https://jotdown.site
 
 <br/>
 
+## Why I created this app
+To manage a lot of bookmarks easily. I have been using chrome bookmark manager but sometimes I can't find the bookmark that I'm looking for. So I made this web application to manage bookmarks. Then I often commented on bookmarks and saved them in slack to remember what bookmark is. But also difficult to find it again. Jotdown was born to solve these problems.
+
+<br/>
 
 ## Technology
 The front end made by React.js, back end made by Python. In front end, using Redux and styled-components, correct style application and state management are realized. In back end, using Django REST framework, Docker and Heroku. It established RESTful API communication.
