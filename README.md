@@ -25,7 +25,7 @@ The front end made by React.js, back end made by Python. In front end, using Red
 
 
 ## Architecture
-Writing...
+![architecture-jotdown](https://user-images.githubusercontent.com/43656115/76137120-0e00a580-5fee-11ea-8bce-cfff48684507.png)
 
 <br/>
 
