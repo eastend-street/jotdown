@@ -2,7 +2,8 @@
 
 <br/>
 
-Jot down is a bookmark and note web service📖 You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark.  
+Bookmark and note web service 📖   
+You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark.  
 <br/>
 Website: &nbsp; https://jotdown.site
 
