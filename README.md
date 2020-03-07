@@ -57,7 +57,7 @@ src/
 <br/>
 
 ## Upcoming features
-- Get bookmarks from browser
+- Get bookmarks from browser (Try to make chrome extension!)
 - Sync bookmarks to browser when bookmark is edited
 - Show skelton when bookmark is loading (e.g. https://material-ui.com/components/skeleton/) 
 
