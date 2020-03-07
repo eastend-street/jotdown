@@ -64,6 +64,6 @@ src/
 <br/>
 
 ## License
-Writing...
+@eastend-street
 
 <br/>
