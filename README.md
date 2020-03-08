@@ -41,7 +41,7 @@ The front end made by React.js, back end made by Python. In front end, using Red
 
 ## Directory Structure
 
-### Front end
+### React
 ```
 src/
  index.tsx
@@ -65,13 +65,6 @@ src/
 
  lib/  -----Sample bookmark data
 ```
-<br/>
-
-### Back end
-```
-Editing...
-```
-
 <br/>
 
 ## Upcoming features
