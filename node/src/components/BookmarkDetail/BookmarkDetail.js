@@ -76,15 +76,21 @@ const DeleteButton = styled(Button)`
     width: 100%;
     box-shadow: none;
     color: #fff;
-    background-color: #ef5350;
+    background-color: ${props => props.theme.colors.red};
     text-transform: none;
+    transition: 0.5s;
     :hover {
-      background-color: #f69b99;
+      background-color: ${props => props.theme.colors.red};
+      opacity: 0.7;
+      box-shadow: none;
     }
     @media (max-width: 600px) {
       max-width: none;
-      color: #ef5350;
+      color: ${props => props.theme.colors.red};
       background-color: transparent;
+      :hover {
+        background-color: transparent;
+      }
     }
   }
 `;
@@ -93,11 +99,15 @@ const CancelButton = styled(Button)`
   && {
     width: 100%;
     box-shadow: none;
-    color: #66717e;
-    background-color: #fff;
+    color: ${props => props.theme.colors.green};
     text-transform: none;
+    /* border: 0.05rem solid ${props => props.theme.colors.green}; */
+    background-color: ${props => props.theme.colors.white};
+    transition: 0.5s;
     :hover {
-      background-color: #eeeeee;
+      background-color: ${props => props.theme.colors.white};
+      opacity: 0.7;
+      box-shadow: none;
     }
   }
 `;
@@ -106,11 +116,14 @@ const SaveButton = styled(Button)`
   && {
     width: 100%;
     box-shadow: none;
-    color: #fff;
-    background-color: #66717e;
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
     text-transform: none;
+    transition: 0.5s;
     :hover {
-      background-color: #838e9a;
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
+      box-shadow: none;
     }
   }
 `;
@@ -177,7 +190,9 @@ class BookmarkDetail extends Component {
                 <Grid container>
                   <Grid item xs={12}>
                     <WrapTitle>
-                      <Title variant="subtitle1" component="h2">{bookmark.title}</Title>
+                      <Title variant="subtitle1" component="h2">
+                        {bookmark.title}
+                      </Title>
                     </WrapTitle>
                   </Grid>
                   <Grid item xs={12}>

@@ -20,11 +20,14 @@ const CancelButton = styled(Button)`
     margin: 1rem;
     min-width: 7rem;
     box-shadow: none;
-    color: #66717e;
-    background-color: #fff;
+    color: ${props => props.theme.colors.green};
+    background-color: ${props => props.theme.colors.white};
     text-transform: none;
+    transition: 0.5s;
     :hover {
-      background-color: #eeeeee;
+      background-color: ${props => props.theme.colors.white};
+      opacity: 0.7;
+      box-shadow: none;
     }
   }
 `;
@@ -34,11 +37,14 @@ const SaveButton = styled(Button)`
     margin: 1rem;
     min-width: 7rem;
     box-shadow: none;
-    color: #fff;
-    background-color: #66717e;
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
     text-transform: none;
+    transition: 0.5s;
     :hover {
-      background-color: #838e9a;
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
+      box-shadow: none;
     }
   }
 `;
@@ -55,6 +61,7 @@ const FormTextField = styled.input`
     border: none;
     font-size: 1rem;
     padding: 1rem;
+    /* box-shadow: ${props => props.theme.shadow.normal}; */
     ::placeholder {
       color: #bdbdbd;
     }
@@ -91,13 +98,13 @@ class BookmarkForm extends Component {
       await this.props.saveBookmarkToLocal(bookmark);
     } else {
       const data = {
-          0: bookmark
+        0: bookmark
       };
       await this.props.postBookmark(data);
     }
     this.props.history.push("/");
   }
-  
+
   cancel() {
     this.props.history.push("/");
   }

@@ -10,21 +10,28 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+
+import LogoSvg from "../../../static/images/jotdown-logo-white.svg";
 
 const StyledAppBar = styled(AppBar)`
   && {
-    background-color: #e3e3e3;
+    background-color: ${props => props.theme.colors.green};
     box-shadow: none;
   }
 `;
 
-const Logo = styled(Typography)`
+const WrapLogo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Logo = styled.img`
   && {
-    font-family: "Times New Roman";
-    color: #525a65;
+    margin-left: 0.5rem;
+    width: 7rem;
+    transition: 0.5s;
     :hover {
-      color: #66717e;
+      opacity: 0.7;
     }
   }
 `;
@@ -33,10 +40,13 @@ const AddButton = styled(Fab)`
   && {
     margin-right: 3rem;
     box-shadow: none;
-    color: #fff;
-    background-color: #66717e;
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
+    border: 0.09rem solid ${props => props.theme.colors.white};
+    transition: .5s;
     :hover {
-      background-color: #838e9a;
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
     }
     @media (max-width: 960px) {
       margin-right: 2rem;
@@ -66,13 +76,18 @@ const WrapAction = styled.div`
 
 const LoginButton = styled(Button)`
   && {
-    color: #fff;
-    width: 10rem;
-    background-color: #66717e;
-    :hover {
-      background-color: #838e9a;
-    }
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
+    border: 0.09rem solid ${props => props.theme.colors.white};
     text-transform: none;
+    width: 8rem;
+    transition: 0.5s;
+    box-shadow: none;
+    :hover {
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
+      box-shadow: none;
+    }
     @media (max-width: 960px) {
       width: 8rem;
     }
@@ -84,14 +99,16 @@ const LoginButton = styled(Button)`
 
 const LogoutButton = styled(Button)`
   && {
-    color: #66717e;
-    width: 10rem;
-    border: 0.1rem solid #66717e;
-    background-color: transparent;
-    :hover {
-      /* opacity: 0.7; */
-    }
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
+    border: 0.09rem solid ${props => props.theme.colors.white};
     text-transform: none;
+    width: 8rem;
+    :hover {
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
+      box-shadow: none;
+    }
     @media (max-width: 960px) {
       width: 8rem;
     }
@@ -147,9 +164,9 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo variant="h5" component="h1">
-              Jot down
-            </Logo>
+            <WrapLogo>
+              <Logo src={LogoSvg} alt="jot down" />
+            </WrapLogo>
           </StyledLink>
           <WrapAction>
             <AddButton

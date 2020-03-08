@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  background-color: #e3e3e3;
-  color: #66717e;
   padding: 1rem 1rem 2rem 1rem;
 `;
 
 const Copyright = styled.p`
-  color: #66717e;
+  color: ${props => props.theme.colors.lightGrey};
   text-align: center;
   margin: 0;
 `;
@@ -17,9 +15,7 @@ class Footer extends Component {
   render() {
     return (
       <StyledFooter>
-        <Copyright>
-          Copyright &copy; Jot down All rights reserved.
-        </Copyright>
+        <Copyright>Copyright &copy; Jot down All rights reserved.</Copyright>
       </StyledFooter>
     );
   }

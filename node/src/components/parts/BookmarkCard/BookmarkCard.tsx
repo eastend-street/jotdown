@@ -21,6 +21,7 @@ const StyledCard = styled(Card)`
     height: 100%;
     position: relative;
     padding-bottom: 1rem;
+    /* box-shadow: ${props => props.theme.shadow.normal}; */
   }
 `;
 
@@ -81,8 +82,9 @@ const ActionButton = styled(Button)`
   && {
     text-transform: none;
     padding: 0.2rem 1rem;
-    color: #979797;
+    color: ${props => props.theme.colors.green};
     font-size: 0.8rem;
+    transition: .5s;
   }
 `;
 
@@ -117,9 +119,7 @@ class BookmarkCard extends Component<BookmarkCardProps, {}> {
             title={this.props.bookmark.title}
           />
           <CardContent>
-            <Title variant="subtitle2">
-              {this.props.bookmark.title}
-            </Title>
+            <Title variant="subtitle2">{this.props.bookmark.title}</Title>
           </CardContent>
         </CardActionArea>
         <StyledHr />
