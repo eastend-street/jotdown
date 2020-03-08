@@ -84,6 +84,7 @@ const ActionButton = styled(Button)`
     padding: 0.2rem 1rem;
     color: ${props => props.theme.colors.green};
     font-size: 0.8rem;
+    transition: .5s;
   }
 `;
 

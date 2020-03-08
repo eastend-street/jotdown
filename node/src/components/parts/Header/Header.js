@@ -7,7 +7,7 @@ import { readBookmarks, postBookmark } from "../../../actions";
 
 import AddIcon from "@material-ui/icons/Add";
 import AppBar from "@material-ui/core/AppBar";
-import Button from "../Button/Button";
+import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 
@@ -40,11 +40,12 @@ const AddButton = styled(Fab)`
   && {
     margin-right: 3rem;
     box-shadow: none;
-    color: ${props => props.theme.colors.green};
-    background-color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
+    transition: .5s;
     :hover {
-      background-color: #eee;
-      opacity: 0.7s;
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
     }
     @media (max-width: 960px) {
       margin-right: 2rem;
@@ -74,14 +75,17 @@ const WrapAction = styled.div`
 
 const LoginButton = styled(Button)`
   && {
-    color: ${props => props.theme.colors.green};
-    background-color: transparent;
-    border: 0.05rem solid ${props => props.theme.colors.green};
+    width: 100%;
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
     text-transform: none;
-    width: 10rem;
+    width: 8rem;
     transition: 0.5s;
+    box-shadow: none;
     :hover {
+      background-color: ${props => props.theme.colors.green};
       opacity: 0.7;
+      box-shadow: none;
     }
     @media (max-width: 960px) {
       width: 8rem;
@@ -179,8 +183,9 @@ class Header extends Component {
                   <LoginButton
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
-                    text="Login"
-                  />
+                  >
+                    Login
+                  </LoginButton>
                 )}
                 buttonText="Login"
                 onSuccess={this.responseGoogle}
