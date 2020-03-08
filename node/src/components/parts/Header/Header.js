@@ -7,7 +7,7 @@ import { readBookmarks, postBookmark } from "../../../actions";
 
 import AddIcon from "@material-ui/icons/Add";
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
+import Button from "../Button/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 
@@ -20,11 +20,16 @@ const StyledAppBar = styled(AppBar)`
   }
 `;
 
+const WrapLogo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const Logo = styled.img`
   && {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
     width: 8rem;
-    transition: .5s;
+    transition: 0.5s;
     :hover {
       opacity: 0.7;
     }
@@ -35,9 +40,10 @@ const AddButton = styled(Fab)`
   && {
     margin-right: 3rem;
     box-shadow: none;
-    background-color: ${props => props.theme.colors.green};
+    color: ${props => props.theme.colors.green};
+    background-color: ${props => props.theme.colors.white};
     :hover {
-      opacity: .7s
+      opacity: 0.7s;
     }
     @media (max-width: 960px) {
       margin-right: 2rem;
@@ -67,13 +73,11 @@ const WrapAction = styled.div`
 
 const LoginButton = styled(Button)`
   && {
-    width: 10rem;
-    color: #fff;
-    background-color: ${props => props.theme.colors.yellow};
-    :hover {
-      opacity: .7s
-    }
+    color: ${props => props.theme.colors.green};
+    background-color: ${props => props.theme.colors.white};
+    border: 0.1rem solid ${props => props.theme.colors.green};
     text-transform: none;
+    width: 10rem;
     @media (max-width: 960px) {
       width: 8rem;
     }
@@ -85,9 +89,10 @@ const LoginButton = styled(Button)`
 
 const LogoutButton = styled(Button)`
   && {
-    color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.green};
+    background-color: ${props => props.theme.colors.white};
     width: 10rem;
-    border: 0.1rem solid ${props => props.theme.colors.yellow};
+    border: 0.1rem solid ${props => props.theme.colors.green};
     background-color: transparent;
     :hover {
       /* opacity: 0.7; */
@@ -148,10 +153,9 @@ class Header extends Component {
       <StyledAppBar position="static">
         <Toolbar>
           <StyledLink to="/">
-            <Logo src={LogoSvg} alt="jot down" />
-            {/* <Logo variant="h5" component="h1">
-              Jot down
-            </Logo> */}
+            <WrapLogo>
+              <Logo src={LogoSvg} alt="jot down" />
+            </WrapLogo>
           </StyledLink>
           <WrapAction>
             <AddButton
@@ -170,9 +174,8 @@ class Header extends Component {
                   <LoginButton
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
-                  >
-                    Login
-                  </LoginButton>
+                    text="Login"
+                  />
                 )}
                 buttonText="Login"
                 onSuccess={this.responseGoogle}

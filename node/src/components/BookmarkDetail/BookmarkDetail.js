@@ -28,7 +28,7 @@ const StyledBookmarkDetail = styled.div`
 const StyledCard = styled(Card)`
   && {
     height: 100%;
-    box-shadow: none;
+    /* box-shadow: none; */
   }
 `;
 
