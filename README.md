@@ -9,7 +9,7 @@ You can save some your favorite website or article to Jot down. Also you can wri
 Website: &nbsp; https://jotdown.site
 
 
-[![home-jotdown](https://user-images.githubusercontent.com/43656115/62005283-eeafaa80-b0e5-11e9-80c4-a79dd1c007d5.png)](https://jotdown.site)
+[![home-jotdown](https://user-images.githubusercontent.com/43656115/76158377-2f36c400-60ca-11ea-99e8-909b6363e555.png)](https://jotdown.site)
 
 <br/>
 
