@@ -21,7 +21,6 @@ const StyledCard = styled(Card)`
     height: 100%;
     position: relative;
     padding-bottom: 1rem;
-    border-radius: 1rem;
   }
 `;
 

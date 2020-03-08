@@ -43,6 +43,7 @@ const AddButton = styled(Fab)`
     color: ${props => props.theme.colors.green};
     background-color: ${props => props.theme.colors.white};
     :hover {
+      background-color: #eee;
       opacity: 0.7s;
     }
     @media (max-width: 960px) {
@@ -74,10 +75,14 @@ const WrapAction = styled.div`
 const LoginButton = styled(Button)`
   && {
     color: ${props => props.theme.colors.green};
-    background-color: ${props => props.theme.colors.white};
-    border: 0.1rem solid ${props => props.theme.colors.green};
+    background-color: transparent;
+    border: 0.05rem solid ${props => props.theme.colors.green};
     text-transform: none;
     width: 10rem;
+    transition: 0.5s;
+    :hover {
+      opacity: 0.7;
+    }
     @media (max-width: 960px) {
       width: 8rem;
     }

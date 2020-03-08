@@ -34,11 +34,14 @@ const SaveButton = styled(Button)`
     margin: 1rem;
     min-width: 7rem;
     box-shadow: none;
-    color: #fff;
-    background-color: #66717e;
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
     text-transform: none;
+    transition: 0.5s;
     :hover {
-      background-color: #838e9a;
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
+      box-shadow: none;
     }
   }
 `;
@@ -91,13 +94,13 @@ class BookmarkForm extends Component {
       await this.props.saveBookmarkToLocal(bookmark);
     } else {
       const data = {
-          0: bookmark
+        0: bookmark
       };
       await this.props.postBookmark(data);
     }
     this.props.history.push("/");
   }
-  
+
   cancel() {
     this.props.history.push("/");
   }
