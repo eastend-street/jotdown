@@ -17,11 +17,11 @@ import SampleImage8aa29e from "../../../static/images/sample-#8aa29e.png";
 
 const StyledCard = styled(Card)`
   && {
-    /* box-shadow: none; */
+    box-shadow: none;
     height: 100%;
     position: relative;
     padding-bottom: 1rem;
-    box-shadow: ${props => props.theme.shadow.normal};
+    /* box-shadow: ${props => props.theme.shadow.normal}; */
   }
 `;
 

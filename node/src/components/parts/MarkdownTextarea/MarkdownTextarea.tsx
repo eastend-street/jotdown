@@ -6,7 +6,7 @@ import TextareaAutoSize from "react-textarea-autosize";
 const Textarea = styled.div`
   margin-top: 3rem;
   border-radius: 0.2rem;
-  box-shadow: ${props => props.theme.shadow.normal};
+  /* box-shadow: ${props => props.theme.shadow.normal}; */
 `;
 
 const FormTextField = styled(TextareaAutoSize)`

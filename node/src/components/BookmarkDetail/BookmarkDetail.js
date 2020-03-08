@@ -28,7 +28,7 @@ const StyledBookmarkDetail = styled.div`
 const StyledCard = styled(Card)`
   && {
     height: 100%;
-    /* box-shadow: none; */
+    box-shadow: none;
   }
 `;
 
@@ -101,11 +101,11 @@ const CancelButton = styled(Button)`
     box-shadow: none;
     color: ${props => props.theme.colors.green};
     text-transform: none;
-    border: 0.05rem solid ${props => props.theme.colors.green};
-    background-color: transparent;
+    /* border: 0.05rem solid ${props => props.theme.colors.green}; */
+    background-color: ${props => props.theme.colors.white};
     transition: 0.5s;
     :hover {
-      background-color: transparent;
+      background-color: ${props => props.theme.colors.white};
       opacity: 0.7;
       box-shadow: none;
     }

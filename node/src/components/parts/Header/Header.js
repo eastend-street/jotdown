@@ -11,11 +11,11 @@ import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import LogoSvg from "../../../static/images/jotdown-logo.svg";
+import LogoSvg from "../../../static/images/jotdown-logo-white.svg";
 
 const StyledAppBar = styled(AppBar)`
   && {
-    background-color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
     box-shadow: none;
   }
 `;
@@ -28,7 +28,7 @@ const WrapLogo = styled.div`
 const Logo = styled.img`
   && {
     margin-left: 0.5rem;
-    width: 8rem;
+    width: 7rem;
     transition: 0.5s;
     :hover {
       opacity: 0.7;
@@ -42,6 +42,7 @@ const AddButton = styled(Fab)`
     box-shadow: none;
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.green};
+    border: 0.09rem solid ${props => props.theme.colors.white};
     transition: .5s;
     :hover {
       background-color: ${props => props.theme.colors.green};
@@ -75,9 +76,9 @@ const WrapAction = styled.div`
 
 const LoginButton = styled(Button)`
   && {
-    width: 100%;
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.green};
+    border: 0.09rem solid ${props => props.theme.colors.white};
     text-transform: none;
     width: 8rem;
     transition: 0.5s;
@@ -98,15 +99,16 @@ const LoginButton = styled(Button)`
 
 const LogoutButton = styled(Button)`
   && {
-    color: ${props => props.theme.colors.green};
-    background-color: ${props => props.theme.colors.white};
-    width: 10rem;
-    border: 0.1rem solid ${props => props.theme.colors.green};
-    background-color: transparent;
-    :hover {
-      /* opacity: 0.7; */
-    }
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
+    border: 0.09rem solid ${props => props.theme.colors.white};
     text-transform: none;
+    width: 8rem;
+    :hover {
+      background-color: ${props => props.theme.colors.green};
+      opacity: 0.7;
+      box-shadow: none;
+    }
     @media (max-width: 960px) {
       width: 8rem;
     }

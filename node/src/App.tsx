@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #ffffff;
+    background-color: #f4f0db;
   }
 `;
 
