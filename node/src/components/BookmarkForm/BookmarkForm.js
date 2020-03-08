@@ -58,6 +58,7 @@ const FormTextField = styled.input`
     border: none;
     font-size: 1rem;
     padding: 1rem;
+    box-shadow: ${props => props.theme.shadow.normal};
     ::placeholder {
       color: #bdbdbd;
     }

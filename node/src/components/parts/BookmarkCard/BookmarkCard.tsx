@@ -21,6 +21,7 @@ const StyledCard = styled(Card)`
     height: 100%;
     position: relative;
     padding-bottom: 1rem;
+    box-shadow: ${props => props.theme.shadow.normal};
   }
 `;
 
