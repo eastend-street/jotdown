@@ -6,6 +6,7 @@ const theme = {
     green: "#0c5742",
     white: "#ffffff",
     grey: "#757575",
+    lightGrey: "#979797",
     red: "#EF6461"
   },
   fonts: ["sans-serif", "Roboto"],
