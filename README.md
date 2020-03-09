@@ -1,3 +1,6 @@
+
+<br/>
+
 <h1 align="center"><a href="https://jotdown.site" target="_blank"><img src="https://user-images.githubusercontent.com/43656115/76158436-92285b00-60ca-11ea-8b29-e064f9dcd900.png" alt="jotdown" width="300"></a></h1>
 
 
@@ -18,7 +21,8 @@ To manage a lot of bookmarks easily. I have been using chrome bookmark manager b
 <br/>
 
 ## User Interface
-Editing...
+![jotdown-ui](https://user-images.githubusercontent.com/43656115/76174246-64dbbb80-6163-11ea-9e46-ee29e85081a4.png)
+
 
 <br/>
 
