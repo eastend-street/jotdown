@@ -4,7 +4,6 @@
 <h1 align="center"><a href="https://jotdown.site" target="_blank"><img src="https://user-images.githubusercontent.com/43656115/76158436-92285b00-60ca-11ea-8b29-e064f9dcd900.png" alt="jotdown" width="300"></a></h1>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3dae91ad-e112-44b4-90b1-dbaf1466126a/deploy-status)](https://app.netlify.com/sites/practical-jennings-e11a3b/deploys)
-[![npm version](https://badge.fury.io/js/npm.svg)](https://badge.fury.io/js/npm)  
 
 <br/>
 
