@@ -3,17 +3,19 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
-import SampleImage3d5467 from "../../../static/images/sample-#3d5467.png";
-import SampleImage686963 from "../../../static/images/sample-#686963.png";
-import SampleImage8aa29e from "../../../static/images/sample-#8aa29e.png";
+import SampleImage3d5467 from "static/images/sample-#3d5467.png";
+import SampleImage686963 from "static/images/sample-#686963.png";
+import SampleImage8aa29e from "static/images/sample-#8aa29e.png";
 
 const StyledCard = styled(Card)`
   && {
@@ -21,7 +23,7 @@ const StyledCard = styled(Card)`
     height: 100%;
     position: relative;
     padding-bottom: 1rem;
-    /* box-shadow: ${props => props.theme.shadow.normal}; */
+    /* box-shadow: ${(props) => props.theme.shadow.normal}; */
   }
 `;
 
@@ -82,9 +84,9 @@ const ActionButton = styled(Button)`
   && {
     text-transform: none;
     padding: 0.2rem 1rem;
-    color: ${props => props.theme.colors.green};
+    color: ${(props) => props.theme.colors.green};
     font-size: 0.8rem;
-    transition: .5s;
+    transition: 0.5s;
   }
 `;
 
@@ -107,7 +109,7 @@ class BookmarkCard extends Component<BookmarkCardProps, {}> {
     const sampleImageList = [
       SampleImage3d5467,
       SampleImage686963,
-      SampleImage8aa29e
+      SampleImage8aa29e,
     ];
 
     const randomNum = Math.floor(Math.random() * sampleImageList.length);
@@ -128,7 +130,7 @@ class BookmarkCard extends Component<BookmarkCardProps, {}> {
           <Grid item>
             <StyledLink
               to={{
-                pathname: "/detail/" + this.props.bookmark.id
+                pathname: "/detail/" + this.props.bookmark.id,
               }}
             >
               <ActionButton>See more</ActionButton>

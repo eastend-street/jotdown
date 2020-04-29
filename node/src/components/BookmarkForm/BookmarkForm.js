@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 import styled from "styled-components";
 
-import { postBookmark } from "../../actions";
-import { saveBookmarkToLocal } from "../../actions/toLocalStorage";
+import { postBookmark } from "actions";
+import { saveBookmarkToLocal } from "actions/toLocalStorage";
 
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import { Button, Grid } from "@material-ui/core";
 
-import MarkdownTabs from "../parts/MarkdownTabs/MarkdownTabs";
+import MarkdownTabs from "components/parts/MarkdownTabs/MarkdownTabs";
 
 const Form = styled.form`
   margin-top: 3rem;
@@ -20,12 +19,12 @@ const CancelButton = styled(Button)`
     margin: 1rem;
     min-width: 7rem;
     box-shadow: none;
-    color: ${props => props.theme.colors.green};
-    background-color: ${props => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.green};
+    background-color: ${(props) => props.theme.colors.white};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${props => props.theme.colors.white};
+      background-color: ${(props) => props.theme.colors.white};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -37,12 +36,12 @@ const SaveButton = styled(Button)`
     margin: 1rem;
     min-width: 7rem;
     box-shadow: none;
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.green};
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.green};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${props => props.theme.colors.green};
+      background-color: ${(props) => props.theme.colors.green};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -61,7 +60,7 @@ const FormTextField = styled.input`
     border: none;
     font-size: 1rem;
     padding: 1rem;
-    /* box-shadow: ${props => props.theme.shadow.normal}; */
+    /* box-shadow: ${(props) => props.theme.shadow.normal}; */
     ::placeholder {
       color: #bdbdbd;
     }
@@ -98,7 +97,7 @@ class BookmarkForm extends Component {
       await this.props.saveBookmarkToLocal(bookmark);
     } else {
       const data = {
-        0: bookmark
+        0: bookmark,
       };
       await this.props.postBookmark(data);
     }
@@ -140,8 +139,8 @@ class BookmarkForm extends Component {
 
 const selector = formValueSelector("BookmarkForm");
 
-const mapStateToProps = state => ({
-  note: selector(state, "note")
+const mapStateToProps = (state) => ({
+  note: selector(state, "note"),
 });
 
 const mapDispatchToProps = { postBookmark, saveBookmarkToLocal };

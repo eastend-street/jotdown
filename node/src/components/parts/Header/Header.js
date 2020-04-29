@@ -6,16 +6,13 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { readBookmarks, postBookmark } from "../../../actions";
 
 import AddIcon from "@material-ui/icons/Add";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Fab from "@material-ui/core/Fab";
-import Toolbar from "@material-ui/core/Toolbar";
+import { AppBar, Button, Fab, Toolbar } from "@material-ui/core";
 
-import LogoSvg from "../../../static/images/jotdown-logo-white.svg";
+import LogoSvg from "static/images/jotdown-logo-white.svg";
 
 const StyledAppBar = styled(AppBar)`
   && {
-    background-color: ${props => props.theme.colors.green};
+    background-color: ${(props) => props.theme.colors.green};
     box-shadow: none;
   }
 `;
@@ -40,12 +37,12 @@ const AddButton = styled(Fab)`
   && {
     margin-right: 3rem;
     box-shadow: none;
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.green};
-    border: 0.09rem solid ${props => props.theme.colors.white};
-    transition: .5s;
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.green};
+    border: 0.09rem solid ${(props) => props.theme.colors.white};
+    transition: 0.5s;
     :hover {
-      background-color: ${props => props.theme.colors.green};
+      background-color: ${(props) => props.theme.colors.green};
       opacity: 0.7;
     }
     @media (max-width: 960px) {
@@ -76,15 +73,15 @@ const WrapAction = styled.div`
 
 const LoginButton = styled(Button)`
   && {
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.green};
-    border: 0.09rem solid ${props => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.green};
+    border: 0.09rem solid ${(props) => props.theme.colors.white};
     text-transform: none;
     width: 8rem;
     transition: 0.5s;
     box-shadow: none;
     :hover {
-      background-color: ${props => props.theme.colors.green};
+      background-color: ${(props) => props.theme.colors.green};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -99,13 +96,13 @@ const LoginButton = styled(Button)`
 
 const LogoutButton = styled(Button)`
   && {
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.green};
-    border: 0.09rem solid ${props => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.green};
+    border: 0.09rem solid ${(props) => props.theme.colors.white};
     text-transform: none;
     width: 8rem;
     :hover {
-      background-color: ${props => props.theme.colors.green};
+      background-color: ${(props) => props.theme.colors.green};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -181,7 +178,7 @@ class Header extends Component {
             {localStorage.getItem("token") == null && (
               <GoogleLogin
                 clientId={clientID}
-                render={renderProps => (
+                render={(renderProps) => (
                   <LoginButton
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
@@ -198,7 +195,7 @@ class Header extends Component {
             {localStorage.getItem("token") != null && (
               <GoogleLogout
                 clientId={clientID}
-                render={renderProps => (
+                render={(renderProps) => (
                   <LogoutButton
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
