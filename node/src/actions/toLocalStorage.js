@@ -6,7 +6,7 @@ import {
   UPDATE_BOOKMARK_TO_LOCAL,
   DELETE_BOOKMARK_FROM_LOCAL
 } from ".";
-import sampleBookmark from "../lib/sampleBookmark/sampleBookmark.json";
+import sampleBookmark from "lib/sampleBookmark/sampleBookmark.json";
 
 const ROOT_URL = process.env.REACT_APP_ROOT_URL;
 

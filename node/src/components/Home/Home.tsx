@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import BookmarkList from "../BookmarkList/BookmarkList";
+import BookmarkList from "components/BookmarkList/BookmarkList";
 
 const Container = styled.div`
   margin: 2rem;

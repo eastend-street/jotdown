@@ -1,22 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Grid from "@material-ui/core/Grid";
-import { readBookmarks } from "../../actions";
+import { Grid } from "@material-ui/core";
+import { readBookmarks } from "actions";
 import {
   readBookmarksFromLocal,
-  saveSampleBookmarkToLocal
-} from "../../actions/toLocalStorage";
+  saveSampleBookmarkToLocal,
+} from "actions/toLocalStorage";
 import _ from "lodash";
 
-import BookmarkCard from "../parts/BookmarkCard/BookmarkCard";
-import SkeletonCard from "../parts/SkeletonCard/SkeletonCard";
+import BookmarkCard from "components/parts/BookmarkCard/BookmarkCard";
+import SkeletonCard from "components/parts/SkeletonCard/SkeletonCard";
 
 class BookmarkList extends Component {
   state = { loading: true };
 
   componentDidMount() {
     if (localStorage.getItem("token") != null) {
-      this.props.readBookmarks().then(res => this.setState({ loading: false }));
+      this.props
+        .readBookmarks()
+        .then((res) => this.setState({ loading: false }));
     } else {
       const response = this.props.readBookmarksFromLocal();
       if (
@@ -31,7 +33,7 @@ class BookmarkList extends Component {
   }
 
   renderBookmarks() {
-    return _.map(this.props.bookmarks, bookmark => (
+    return _.map(this.props.bookmarks, (bookmark) => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />
       </Grid>
@@ -63,12 +65,12 @@ class BookmarkList extends Component {
   }
 }
 
-const mapStateToProps = state => ({ bookmarks: state.bookmarks });
+const mapStateToProps = (state) => ({ bookmarks: state.bookmarks });
 
 const mapDispatchToProps = {
   readBookmarks,
   readBookmarksFromLocal,
-  saveSampleBookmarkToLocal
+  saveSampleBookmarkToLocal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookmarkList);

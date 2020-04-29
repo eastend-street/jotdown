@@ -2,24 +2,26 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, formValueSelector } from "redux-form";
 
-import { getBookmark, putBookmark, deleteBookmark } from "../../actions";
+import { getBookmark, putBookmark, deleteBookmark } from "actions";
 import {
   getBookmarkFromLocal,
   putBookmarkToLocal,
-  deleteBookmarkFromLocal
-} from "../../actions/toLocalStorage";
+  deleteBookmarkFromLocal,
+} from "actions/toLocalStorage";
 import styled from "styled-components";
 
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import _ from "lodash";
 
-import MarkdownTabs from "../parts/MarkdownTabs/MarkdownTabs";
-import SampleImage from "../../static/images/sample-grey.jpeg";
+import MarkdownTabs from "components/parts/MarkdownTabs/MarkdownTabs";
+import SampleImage from "static/images/sample-grey.jpeg";
 
 const StyledBookmarkDetail = styled.div`
   padding: 1rem;
@@ -76,17 +78,17 @@ const DeleteButton = styled(Button)`
     width: 100%;
     box-shadow: none;
     color: #fff;
-    background-color: ${props => props.theme.colors.red};
+    background-color: ${(props) => props.theme.colors.red};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${props => props.theme.colors.red};
+      background-color: ${(props) => props.theme.colors.red};
       opacity: 0.7;
       box-shadow: none;
     }
     @media (max-width: 600px) {
       max-width: none;
-      color: ${props => props.theme.colors.red};
+      color: ${(props) => props.theme.colors.red};
       background-color: transparent;
       :hover {
         background-color: transparent;
@@ -99,13 +101,13 @@ const CancelButton = styled(Button)`
   && {
     width: 100%;
     box-shadow: none;
-    color: ${props => props.theme.colors.green};
+    color: ${(props) => props.theme.colors.green};
     text-transform: none;
-    /* border: 0.05rem solid ${props => props.theme.colors.green}; */
-    background-color: ${props => props.theme.colors.white};
+    /* border: 0.05rem solid ${(props) => props.theme.colors.green}; */
+    background-color: ${(props) => props.theme.colors.white};
     transition: 0.5s;
     :hover {
-      background-color: ${props => props.theme.colors.white};
+      background-color: ${(props) => props.theme.colors.white};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -116,12 +118,12 @@ const SaveButton = styled(Button)`
   && {
     width: 100%;
     box-shadow: none;
-    color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.green};
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.green};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${props => props.theme.colors.green};
+      background-color: ${(props) => props.theme.colors.green};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -181,7 +183,7 @@ class BookmarkDetail extends Component {
   }
 
   renderBookmark(note) {
-    return _.map(this.props.bookmarks, bookmark => (
+    return _.map(this.props.bookmarks, (bookmark) => (
       <div key={bookmark.id}>
         <StyledCard>
           <CardActionArea target="_blank" href={bookmark.url}>
@@ -279,9 +281,9 @@ class BookmarkDetail extends Component {
 }
 
 const selector = formValueSelector("BookmarkDetailForm");
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   note: selector(state, "note"),
-  bookmarks: state.bookmarks
+  bookmarks: state.bookmarks,
 });
 
 const mapDispatchToProps = {
@@ -290,7 +292,7 @@ const mapDispatchToProps = {
   deleteBookmark,
   getBookmarkFromLocal,
   putBookmarkToLocal,
-  deleteBookmarkFromLocal
+  deleteBookmarkFromLocal,
 };
 
 export default connect(

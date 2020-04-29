@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import { Button, Grid } from "@material-ui/core";
 
 const Container = styled(Grid)`
   justify-content: center;
@@ -23,7 +22,7 @@ const Container = styled(Grid)`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-`
+`;
 
 const StyledH1 = styled.h1`
   text-align: center;
@@ -65,9 +64,7 @@ class NotFound extends Component {
           </StyledH3>
           <ContentButton>
             <StyledLink to="/">
-              <StyledButton variant="contained">
-                Go to Homepage
-              </StyledButton>
+              <StyledButton variant="contained">Go to Homepage</StyledButton>
             </StyledLink>
           </ContentButton>
         </Grid>
