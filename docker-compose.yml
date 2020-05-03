@@ -1,11 +1,5 @@
 version: "2"
 services:
-  node:
-    build: ./docker/node
-    volumes:
-      - ./node/:/usr/src/app
-    ports:
-      - "3000:3000"
   django:
     build: ./docker/django
     volumes:
