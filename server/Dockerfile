@@ -1,7 +1,7 @@
 FROM python:3.6
 
-ENV product_name="jotdown"
-ENV product_version="0.1"
+ENV product_name="jotdown-server"
+ENV product_version="1"
 
 RUN mkdir /${product_name}/
 COPY /jotdown /${product_name}/django

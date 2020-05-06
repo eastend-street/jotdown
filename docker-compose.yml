@@ -1,8 +1,8 @@
 version: "2"
 services:
-  django:
-    build: ./docker/django
+  jotdown-server:
+    build: ./server/jotdown
     volumes:
-      - ./django/:/usr/src/app
+      - ./server/:/usr/src/app
     ports:
       - "8000:8000"
