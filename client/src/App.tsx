@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useReducer }  from "react";
+import AppContext from "contexts/AppContext";
+
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -25,7 +27,7 @@ const enhancer =
 
 const store = createStore(reducer, enhancer);
 
-const Content = styled.div`
+const Container = styled.div`
   min-height: calc(100vh - 4rem);
 `;
 
@@ -35,7 +37,7 @@ const App = () => {
       <BrowserRouter>
         <GlobalStyle />
         <Theme>
-          <Content>
+          <Container>
             <Header />
             <Switch>
               <Route path="/" exact component={Home} />
@@ -43,7 +45,7 @@ const App = () => {
               <Route path="/detail/:id" component={BookmarkDetail} />
               <Route component={NotFound} />
             </Switch>
-          </Content>
+          </Container>
           <Footer />
         </Theme>
       </BrowserRouter>
