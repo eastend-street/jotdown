@@ -1,11 +1,8 @@
-import React, { useReducer }  from "react";
+import React, { useReducer } from "react";
 import AppContext from "contexts/AppContext";
+import { initialState } from "store/initialState";
 
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { composeWithDevTools } from "redux-devtools-extension";
 import styled from "styled-components";
 
 import GlobalStyle from "styles/GlobalStyle";
@@ -20,20 +17,15 @@ import NotFound from "components/NotFound/NotFound";
 
 import reducer from "reducers";
 
-const enhancer =
-  process.env.NODE_ENV === "development"
-    ? composeWithDevTools(applyMiddleware(thunk))
-    : applyMiddleware(thunk);
-
-const store = createStore(reducer, enhancer);
-
 const Container = styled.div`
   min-height: calc(100vh - 4rem);
 `;
 
 const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <Provider store={store}>
+    <AppContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
         <GlobalStyle />
         <Theme>
@@ -49,7 +41,7 @@ const App = () => {
           <Footer />
         </Theme>
       </BrowserRouter>
-    </Provider>
+    </AppContext.Provider>
   );
 };
 
