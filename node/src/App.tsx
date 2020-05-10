@@ -7,7 +7,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import styled from "styled-components";
 
 import GlobalStyle from "styles/GlobalStyle";
-import Theme from "styles/Theme";
+import Theme from "styles/theme";
 
 import Header from "components/parts/Header/Header";
 import BookmarkDetail from "components/BookmarkDetail/BookmarkDetail";
