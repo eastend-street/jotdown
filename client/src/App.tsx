@@ -31,12 +31,12 @@ const App = () => {
         <Theme>
           <Container>
             <Header />
-            <Switch>
+            {/* <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/new" component={BookmarkForm} />
               <Route path="/detail/:id" component={BookmarkDetail} />
               <Route component={NotFound} />
-            </Switch>
+            </Switch> */}
           </Container>
           <Footer />
         </Theme>

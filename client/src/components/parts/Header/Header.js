@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component, useContext } from "react";
+import AppContext from "contexts/AppContext";
+
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { readBookmarks, postBookmark } from "../../../actions";
+import { readBookmarks, postBookmark } from "actions";
 
 import AddIcon from "@material-ui/icons/Add";
 import { AppBar, Button, Fab, Toolbar } from "@material-ui/core";
@@ -119,101 +120,96 @@ const LogoutButton = styled(Button)`
 //   postBookmark: any;
 // };
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.responseGoogle = this.responseGoogle.bind(this);
-  }
+const Header = () => {
+  const { dispatch, state } = useContext(AppContext);
 
-  async submitLocalBookmarks() {
-    const data = JSON.parse(localStorage.getItem("bookmarks"));
-    await this.props.postBookmark(data);
-    // ここで読み込み中のダイアログ表示する
-    localStorage.removeItem("bookmarks");
-    window.location.href = "/";
-  }
-
-  responseGoogle(response) {
+  const responseGoogle = (response) => {
+    console.log("response", response);
     if ("accessToken" in response) {
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("firstName", response.profileObj.givenName);
       localStorage.setItem("lastName", response.profileObj.familyName);
-      if (localStorage.getItem("bookmarks") != null) {
-        this.submitLocalBookmarks();
+      if (localStorage.getItem("bookmarks") !== null) {
+        submitLocalBookmarks();
       } else {
         window.location.href = "/";
       }
     } else {
       console.log("Login failed");
     }
-  }
+  };
 
-  logout() {
+  const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     window.location.href = "/";
-  }
+  };
 
-  render() {
-    const clientID = process.env.REACT_APP_CLIENT_ID;
-    return (
-      <StyledAppBar position="static">
-        <Toolbar>
-          <StyledLink to="/">
-            <WrapLogo>
-              <Logo src={LogoSvg} alt="jot down" />
-            </WrapLogo>
-          </StyledLink>
-          <WrapAction>
-            <AddButton
-              color="primary"
-              aria-label="Add"
-              component={Link}
-              to="/new"
-              size="small"
-            >
-              <AddIcon />
-            </AddButton>
-            {localStorage.getItem("token") == null && (
-              <GoogleLogin
-                clientId={clientID}
-                render={(renderProps) => (
-                  <LoginButton
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    Login
-                  </LoginButton>
-                )}
-                buttonText="Login"
-                onSuccess={this.responseGoogle}
-                onFailure={this.responseGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
-            )}
-            {localStorage.getItem("token") != null && (
-              <GoogleLogout
-                clientId={clientID}
-                render={(renderProps) => (
-                  <LogoutButton
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    Logout
-                  </LogoutButton>
-                )}
-                buttonText="Logout"
-                onLogoutSuccess={this.logout}
-              />
-            )}
-          </WrapAction>
-        </Toolbar>
-      </StyledAppBar>
-    );
-  }
-}
+  const submitLocalBookmarks = async () => {
+    const data = JSON.parse(localStorage.getItem("bookmarks"));
+    await postBookmark(data);
+    // ここで読み込み中のダイアログ表示する
+    localStorage.removeItem("bookmarks");
+    window.location.href = "/";
+  };
 
-const mapDispatchToProps = { readBookmarks, postBookmark };
+  const clientID = process.env.REACT_APP_CLIENT_ID;
 
-export default connect(null, mapDispatchToProps)(Header);
+  return (
+    <StyledAppBar position="static">
+      <Toolbar>
+        <StyledLink to="/">
+          <WrapLogo>
+            <Logo src={LogoSvg} alt="jot down" />
+          </WrapLogo>
+        </StyledLink>
+        <WrapAction>
+          <AddButton
+            color="primary"
+            aria-label="Add"
+            component={Link}
+            to="/new"
+            size="small"
+          >
+            <AddIcon />
+          </AddButton>
+          {localStorage.getItem("token") === null && (
+            <GoogleLogin
+              clientId={clientID}
+              render={(renderProps) => (
+                <LoginButton
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Login
+                </LoginButton>
+              )}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
+          )}
+          {localStorage.getItem("token") !== null && (
+            <GoogleLogout
+              clientId={clientID}
+              render={(renderProps) => (
+                <LogoutButton
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Logout
+                </LogoutButton>
+              )}
+              buttonText="Logout"
+              onLogoutSuccess={logout}
+            />
+          )}
+        </WrapAction>
+      </Toolbar>
+    </StyledAppBar>
+  );
+};
+
+export default Header;
