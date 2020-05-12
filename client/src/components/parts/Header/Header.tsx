@@ -4,12 +4,96 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { postBookmark } from "actions";
-import { bookmarks as bookmarksType } from "store/types";
 
 import AddIcon from "@material-ui/icons/Add";
 import { AppBar, Button, Fab, Toolbar } from "@material-ui/core";
 
 import LogoSvg from "static/images/jotdown-logo-white.svg";
+
+const Header: React.FC = () => {
+  const responseGoogle = (response: any) => {
+    if ("accessToken" in response) {
+      localStorage.setItem("token", response.accessToken);
+      localStorage.setItem("firstName", response.profileObj.givenName);
+      localStorage.setItem("lastName", response.profileObj.familyName);
+
+      if (!localStorage.getItem("bookmarks")) window.location.href = "/";
+      else submitLocalBookmarks();
+    } else {
+      console.log("Login failed");
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    window.location.href = "/";
+  };
+
+  const submitLocalBookmarks = async () => {
+    let data = localStorage.getItem("bookmarks");
+    data = data !== null && JSON.parse(data);
+
+    // TODO: #63 Show Skelton when loading bookmarks
+    // Show skelton here
+    await postBookmark(data);
+    localStorage.removeItem("bookmarks");
+    window.location.href = "/";
+  };
+
+  const clientID = process.env.REACT_APP_CLIENT_ID || "";
+
+  return (
+    <StyledAppBar position="static">
+      <Toolbar>
+        <StyledLink to="/">
+          <WrapLogo>
+            <Logo src={LogoSvg} alt="Jot down" />
+          </WrapLogo>
+        </StyledLink>
+        <WrapAction>
+          <Link to="/new">
+            <AddButton color="primary" aria-label="Add" size="small">
+              <AddIcon />
+            </AddButton>
+          </Link>
+          {!localStorage.getItem("token") ? (
+            <GoogleLogin
+              clientId={clientID}
+              render={(renderProps) => (
+                <LoginButton
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Login
+                </LoginButton>
+              )}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
+          ) : (
+            <GoogleLogout
+              clientId={clientID}
+              render={(renderProps) => (
+                <LogoutButton
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Logout
+                </LogoutButton>
+              )}
+              buttonText="Logout"
+              onLogoutSuccess={logout}
+            />
+          )}
+        </WrapAction>
+      </Toolbar>
+    </StyledAppBar>
+  );
+};
 
 const StyledAppBar = styled(AppBar)`
   && {
@@ -115,94 +199,5 @@ const LogoutButton = styled(Button)`
     }
   }
 `;
-
-// type HeaderProps = {
-//   postBookmark: any;
-// };
-
-const Header: React.FC = () => {
-  const responseGoogle = (response: any) => {
-    if ("accessToken" in response) {
-      localStorage.setItem("token", response.accessToken);
-      localStorage.setItem("firstName", response.profileObj.givenName);
-      localStorage.setItem("lastName", response.profileObj.familyName);
-
-      if (!localStorage.getItem("bookmarks")) window.location.href = "/";
-      else submitLocalBookmarks();
-    } else {
-      console.log("Login failed");
-    }
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
-    window.location.href = "/";
-  };
-
-  const submitLocalBookmarks = async () => {
-    let data = localStorage.getItem("bookmarks");
-    data = data !== null && JSON.parse(data);
-
-    // TODO: #63 Show Skelton when loading bookmarks
-    // Show skelton here
-    await postBookmark(data);
-    localStorage.removeItem("bookmarks");
-    window.location.href = "/";
-  };
-
-  const clientID = process.env.REACT_APP_CLIENT_ID || "";
-
-  return (
-    <StyledAppBar position="static">
-      <Toolbar>
-        <StyledLink to="/">
-          <WrapLogo>
-            <Logo src={LogoSvg} alt="Jot down" />
-          </WrapLogo>
-        </StyledLink>
-        <WrapAction>
-          <Link to="/new">
-            <AddButton color="primary" aria-label="Add" size="small">
-              <AddIcon />
-            </AddButton>
-          </Link>
-          {!localStorage.getItem("token") ? (
-            <GoogleLogin
-              clientId={clientID}
-              render={(renderProps) => (
-                <LoginButton
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Login
-                </LoginButton>
-              )}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-          ) : (
-            <GoogleLogout
-              clientId={clientID}
-              render={(renderProps) => (
-                <LogoutButton
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Logout
-                </LogoutButton>
-              )}
-              buttonText="Logout"
-              onLogoutSuccess={logout}
-            />
-          )}
-        </WrapAction>
-      </Toolbar>
-    </StyledAppBar>
-  );
-};
 
 export default Header;

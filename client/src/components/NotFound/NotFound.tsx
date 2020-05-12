@@ -1,8 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { Button, Grid } from "@material-ui/core";
+
+const NotFound = () => (
+  <Container container>
+    <Grid item xs={11} sm={12}>
+      <StyledH1>404 Page not found</StyledH1>
+      <StyledH3>
+        Sorry, we couldn't find the page....
+        <br />
+        Please click the button below to go back to the Homepage.
+      </StyledH3>
+      <ContentButton>
+        <StyledLink to="/">
+          <StyledButton variant="contained">Go to Homepage</StyledButton>
+        </StyledLink>
+      </ContentButton>
+    </Grid>
+  </Container>
+);
 
 const Container = styled(Grid)`
   justify-content: center;
@@ -43,34 +61,13 @@ const StyledButton = styled(Button)`
     min-width: 12rem;
     box-shadow: none;
     color: #fff;
-    background-color: #66717e;
+    background-color: ${(props) => props.theme.colors.green};
     text-transform: none;
     :hover {
-      background-color: #838e9a;
+      background-color: ${(props) => props.theme.colors.green};
+      opacity: 0.7;
     }
   }
 `;
-
-class NotFound extends Component {
-  render() {
-    return (
-      <Container container>
-        <Grid item xs={11} sm={12}>
-          <StyledH1>404 Page not found</StyledH1>
-          <StyledH3>
-            Sorry, we couldn't find the page....
-            <br />
-            Please click the button below to go back to the Homepage.
-          </StyledH3>
-          <ContentButton>
-            <StyledLink to="/">
-              <StyledButton variant="contained">Go to Homepage</StyledButton>
-            </StyledLink>
-          </ContentButton>
-        </Grid>
-      </Container>
-    );
-  }
-}
 
 export default NotFound;
