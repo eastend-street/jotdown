@@ -17,10 +17,6 @@ import NotFound from "components/NotFound/NotFound";
 
 import reducer from "reducers";
 
-const Container = styled.div`
-  min-height: calc(100vh - 4rem);
-`;
-
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -44,5 +40,9 @@ const App = () => {
     </AppContext.Provider>
   );
 };
+
+const Container = styled.div`
+  min-height: calc(100vh - 4rem);
+`;
 
 export default App;

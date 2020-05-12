@@ -23,8 +23,8 @@ const NotFound = () => (
 );
 
 const Container = styled(Grid)`
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-height: calc(100vh - 4rem - 66px);
   @media (max-width: 600px) {
     min-height: calc(
@@ -57,11 +57,11 @@ const ContentButton = styled.div`
 
 const StyledButton = styled(Button)`
   && {
-    margin: 1rem;
-    min-width: 12rem;
+    background-color: ${(props) => props.theme.colors.green};
     box-shadow: none;
     color: #fff;
-    background-color: ${(props) => props.theme.colors.green};
+    margin: 1rem;
+    min-width: 12rem;
     text-transform: none;
     :hover {
       background-color: ${(props) => props.theme.colors.green};
