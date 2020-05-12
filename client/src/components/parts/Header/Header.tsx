@@ -1,10 +1,10 @@
-import React, { Component, useContext } from "react";
-import AppContext from "contexts/AppContext";
+import React from "react";
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { readBookmarks, postBookmark } from "actions";
+import { postBookmark } from "actions";
+import { bookmarks as bookmarksType } from "store/types";
 
 import AddIcon from "@material-ui/icons/Add";
 import { AppBar, Button, Fab, Toolbar } from "@material-ui/core";
@@ -120,20 +120,15 @@ const LogoutButton = styled(Button)`
 //   postBookmark: any;
 // };
 
-const Header = () => {
-  const { dispatch, state } = useContext(AppContext);
-
-  const responseGoogle = (response) => {
-    console.log("response", response);
+const Header: React.FC = () => {
+  const responseGoogle = (response: any) => {
     if ("accessToken" in response) {
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("firstName", response.profileObj.givenName);
       localStorage.setItem("lastName", response.profileObj.familyName);
-      if (localStorage.getItem("bookmarks") !== null) {
-        submitLocalBookmarks();
-      } else {
-        window.location.href = "/";
-      }
+
+      if (!localStorage.getItem("bookmarks")) window.location.href = "/";
+      else submitLocalBookmarks();
     } else {
       console.log("Login failed");
     }
@@ -147,34 +142,33 @@ const Header = () => {
   };
 
   const submitLocalBookmarks = async () => {
-    const data = JSON.parse(localStorage.getItem("bookmarks"));
+    let data = localStorage.getItem("bookmarks");
+    data = data !== null && JSON.parse(data);
+
+    // TODO: #63 Show Skelton when loading bookmarks
+    // Show skelton here
     await postBookmark(data);
-    // ここで読み込み中のダイアログ表示する
     localStorage.removeItem("bookmarks");
     window.location.href = "/";
   };
 
-  const clientID = process.env.REACT_APP_CLIENT_ID;
+  const clientID = process.env.REACT_APP_CLIENT_ID || "";
 
   return (
     <StyledAppBar position="static">
       <Toolbar>
         <StyledLink to="/">
           <WrapLogo>
-            <Logo src={LogoSvg} alt="jot down" />
+            <Logo src={LogoSvg} alt="Jot down" />
           </WrapLogo>
         </StyledLink>
         <WrapAction>
-          <AddButton
-            color="primary"
-            aria-label="Add"
-            component={Link}
-            to="/new"
-            size="small"
-          >
-            <AddIcon />
-          </AddButton>
-          {localStorage.getItem("token") === null && (
+          <Link to="/new">
+            <AddButton color="primary" aria-label="Add" size="small">
+              <AddIcon />
+            </AddButton>
+          </Link>
+          {!localStorage.getItem("token") ? (
             <GoogleLogin
               clientId={clientID}
               render={(renderProps) => (
@@ -190,8 +184,7 @@ const Header = () => {
               onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
-          )}
-          {localStorage.getItem("token") !== null && (
+          ) : (
             <GoogleLogout
               clientId={clientID}
               render={(renderProps) => (
