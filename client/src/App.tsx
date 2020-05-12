@@ -28,9 +28,9 @@ const App = () => {
           <Container>
             <Header />
             <Switch>
-              {/* <Route path="/" exact component={Home} />
+              {/* <Route path="/" exact component={Home} /> */}
               <Route path="/new" component={BookmarkForm} />
-              <Route path="/detail/:id" component={BookmarkDetail} /> */}
+              {/* <Route path="/detail/:id" component={BookmarkDetail} /> */}
               <Route component={NotFound} />
             </Switch>
           </Container>
