@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Grid } from "@material-ui/core";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import AppContext from "contexts/AppContext";
 import { readBookmarks } from "actions";
 import {
   readBookmarksFromLocal,
@@ -8,69 +7,54 @@ import {
 } from "actions/toLocalStorage";
 import _ from "lodash";
 
+import { Grid } from "@material-ui/core";
+
 import BookmarkCard from "components/parts/BookmarkCard/BookmarkCard";
 import SkeletonCard from "components/parts/SkeletonCard/SkeletonCard";
 
-class BookmarkList extends Component {
-  state = { loading: true };
+const BookmarkList = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const { dispatch, state } = useContext(AppContext);
 
-  componentDidMount() {
-    if (localStorage.getItem("token") != null) {
-      this.props
-        .readBookmarks()
-        .then((res) => this.setState({ loading: false }));
-    } else {
-      const response = this.props.readBookmarksFromLocal();
-      if (
-        response.bookmarks == null ||
-        Object.keys(response.bookmarks).length === 0
-      ) {
-        this.props.saveSampleBookmarkToLocal();
-        this.props.readBookmarksFromLocal();
+  useEffect(() => {
+    const fetchBookmark = async () => {
+      if (!localStorage.getItem("token")) {
+        // not login
+        const response = await readBookmarksFromLocal();
+        if (Object.keys(response.bookmarks).length > 0) {
+          await saveSampleBookmarkToLocal();
+          await readBookmarksFromLocal();
+        }
+        setIsLoading(false);
+      } else {
+        // logged in
+        await readBookmarks();
+        setIsLoading(false);
       }
-      this.setState({ loading: false });
-    }
-  }
+    };
+    fetchBookmark();
+  }, [state.bookmarks]);
 
-  renderBookmarks() {
-    return _.map(this.props.bookmarks, (bookmark) => (
+  const renderBookmarks = () => {
+    return _.map(state.bookmarks, (bookmark) => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />
       </Grid>
     ));
-  }
+  };
 
-  renderSkeleton() {
-    const skeletons = [];
-    for (let i = 0; i < 4; i++) {
-      skeletons.push(
-        <Grid item={true} xs={12} sm={6} md={4} lg={3} key={i}>
-          <SkeletonCard />
-        </Grid>
-      );
-    }
-    return <>{skeletons}</>;
-  }
-
-  render() {
-    return (
-      <Grid container={true} spacing={4}>
-        {this.state.loading ? (
-          <>{this.renderSkeleton()}</>
-        ) : (
-          <>{this.renderBookmarks()}</>
-        )}
+  const renderSkeleton = () =>
+    [...Array(8).keys()].map((i) => (
+      <Grid item={true} xs={12} sm={6} md={4} lg={3} key={i}>
+        <SkeletonCard />
       </Grid>
-    );
-  }
-}
+    ));
 
-const mapStateToProps = (state) => ({ bookmarks: state.bookmarks });
-
-const mapDispatchToProps = {
-  readBookmarks,
-  readBookmarksFromLocal,
-  saveSampleBookmarkToLocal,
+  return (
+    <Grid container={true} spacing={4}>
+      {isLoading ? renderSkeleton() : renderBookmarks()}
+    </Grid>
+  );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookmarkList);
+export default BookmarkList;

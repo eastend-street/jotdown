@@ -10,7 +10,7 @@ import {
   UPDATE_BOOKMARK_TO_LOCAL,
 } from "actions";
 
-import { InitialState } from "store/types";
+import { InitialState } from "types/types";
 
 export default (bookmarks: InitialState, action: any) => {
   switch (action.type) {
@@ -27,6 +27,7 @@ export default (bookmarks: InitialState, action: any) => {
     case SAVE_BOOKMARK_TO_LOCAL:
     case READ_BOOKMARKS_FROM_LOCAL:
     case UPDATE_BOOKMARK_TO_LOCAL:
+      console.log(action.bookmarks);
       return action.bookmarks;
 
     case READ_BOOKMARK_FROM_LOCAL:
