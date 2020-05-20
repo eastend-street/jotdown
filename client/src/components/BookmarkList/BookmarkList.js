@@ -21,10 +21,12 @@ const BookmarkList = () => {
       if (!localStorage.getItem("token")) {
         // not login
         const response = await readBookmarksFromLocal();
-        if (Object.keys(response.bookmarks).length > 0) {
+        if (!response.bookmarks) {
+          // nothing in local storage → save sample bookmark to local storage
           await saveSampleBookmarkToLocal();
           await readBookmarksFromLocal();
         }
+        console.log(state);
         setIsLoading(false);
       } else {
         // logged in
@@ -33,7 +35,7 @@ const BookmarkList = () => {
       }
     };
     fetchBookmark();
-  }, [state.bookmarks]);
+  }, [state, state.bookmarks]);
 
   const renderBookmarks = () => {
     return _.map(state.bookmarks, (bookmark) => (
