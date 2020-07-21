@@ -1,16 +1,16 @@
 
 <br/>
 
-<h1 align="center"><a href="https://jotdown.site" target="_blank"><img src="https://user-images.githubusercontent.com/43656115/76158436-92285b00-60ca-11ea-8b29-e064f9dcd900.png" alt="jotdown" width="300"></a></h1>
+<h1 align="center"><a href="https://jotdown.netlify.app" target="_blank"><img src="https://user-images.githubusercontent.com/43656115/76158436-92285b00-60ca-11ea-8b29-e064f9dcd900.png" alt="jotdown" width="300"></a></h1>
 
 <br/>
 
 Jot down is a bookmark and note web service 📗 You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark.  
 <br/>
-Website: &nbsp; https://jotdown.site
+Website: &nbsp; https://jotdown.netlify.app
 
 
-[![home-jotdown](https://user-images.githubusercontent.com/43656115/76158377-2f36c400-60ca-11ea-99e8-909b6363e555.png)](https://jotdown.site)
+[![home-jotdown](https://user-images.githubusercontent.com/43656115/76158377-2f36c400-60ca-11ea-99e8-909b6363e555.png)](https://jotdown.netlify.app)
 
 <br/>
 
