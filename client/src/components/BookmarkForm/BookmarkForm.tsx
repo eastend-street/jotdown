@@ -1,35 +1,38 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import AppContext from 'contexts/AppContext';
 
-import { postBookmark } from "actions";
-import { saveBookmarkToLocal } from "actions/toLocalStorage";
+import { postBookmark } from 'actions';
+import { saveBookmarkToLocal } from 'actions/toLocalStorage';
 
-import { Button, Grid } from "@material-ui/core";
-import InputNote from "components/parts/InputNote/InputNote";
+import { Button, Grid } from '@material-ui/core';
+import InputNote from 'components/parts/InputNote/InputNote';
 
 const BookmarkForm = () => {
-  const [url, setUrl] = useState<string>("");
-  const [note, setNote] = useState<string>("");
+  const [url, setUrl] = useState<string>('');
+  const [note, setNote] = useState<string>('');
+  const { dispatch } = useContext(AppContext);
   const history = useHistory();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     const bookmark = { note: note, url: url };
-    if (!localStorage.getItem("token")) {
-      await saveBookmarkToLocal(bookmark);
+    if (!localStorage.getItem('token')) {
+      await saveBookmarkToLocal(dispatch, bookmark);
     } else {
       const data = { 0: bookmark };
-      await postBookmark(data);
+      await postBookmark(dispatch, data);
     }
     history.push("/");
   };
 
-  const cancel = () => history.push("/");
+  const cancel = () => history.push('/');
 
   return (
     <Grid container justify="center">
       <Grid item xs={11} md={8}>
-        <Form>
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <Input
             type="text"
             placeholder="bookmark URL"
@@ -44,7 +47,6 @@ const BookmarkForm = () => {
               variant="contained"
               color="primary"
               type="submit"
-              onClick={handleSubmit}
             >
               Save
             </SaveButton>

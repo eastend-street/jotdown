@@ -10,7 +10,7 @@ import sampleBookmark from 'lib/sampleBookmark/sampleBookmark.json';
 
 const ROOT_URL = process.env.REACT_APP_ROOT_URL;
 
-export const saveBookmarkToLocal = (values) => async (dispatch) => {
+export const saveBookmarkToLocal = async (dispatch, values) => {
   let bookmarks = {};
   if (localStorage.getItem('bookmarks') !== null) {
     bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
