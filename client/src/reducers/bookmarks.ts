@@ -13,16 +13,15 @@ import {
 import { InitialState } from 'types/types';
 
 export default (state: any = {}, action: any) => {
-  console.log('action', action);
   switch (action.type) {
     case CREATE_BOOKMARK:
     case READ_BOOKMARKS:
     case UPDATE_BOOKMARK:
     case DELETE_BOOKMARK:
-      return action.response.data;
+      return action.payload;
 
     case READ_BOOKMARK:
-      const data = action.response.data;
+      const data = action.payload;
       return { [data.id]: data };
 
     case SAVE_BOOKMARK_TO_LOCAL:
@@ -31,7 +30,7 @@ export default (state: any = {}, action: any) => {
       return action.payload;
 
     case READ_BOOKMARK_FROM_LOCAL:
-      const dataLocal = action.bookmark;
+      const dataLocal = action.payload;
       return { [dataLocal.id]: dataLocal };
 
     default:

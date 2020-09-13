@@ -15,9 +15,9 @@ const ROOT_URL = process.env.REACT_APP_ROOT_URL;
 axios.defaults.headers.common["Authorization"] =
   "Bearer google-oauth2 " + localStorage.getItem("token") || "";
 
-export const readBookmarks = () => async dispatch => {
+export const readBookmarks = async dispatch => {
   const response = await axios.get(`${ROOT_URL}/bookmarks/`);
-  dispatch({ type: READ_BOOKMARKS, response });
+  dispatch({ type: READ_BOOKMARKS, payload: response.data });
 };
 
 export const getBookmark = id => async dispatch => {

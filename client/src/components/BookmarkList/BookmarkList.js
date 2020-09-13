@@ -16,7 +16,6 @@ import SkeletonCard from 'components/parts/SkeletonCard/SkeletonCard';
 const BookmarkList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { state, dispatch } = useContext(AppContext);
-  console.log('state', state);
 
   useEffect(() => {
     const fetchBookmark = async () => {
@@ -32,8 +31,8 @@ const BookmarkList = () => {
         setIsLoading(false);
       } else {
         // logged in
-        // await readBookmarks();
-        // setIsLoading(false);
+        await readBookmarks(dispatch);
+        setIsLoading(false);
       }
     };
     fetchBookmark();
