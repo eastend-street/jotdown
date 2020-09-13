@@ -20,7 +20,7 @@ export const saveBookmarkToLocal = async (dispatch, values) => {
 
   bookmarks[id] = ogp.data;
   localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-  dispatch({ type: SAVE_BOOKMARK_TO_LOCAL, bookmarks });
+  dispatch({ type: SAVE_BOOKMARK_TO_LOCAL, payload: bookmarks });
 };
 
 export const readBookmarksFromLocal = (dispatch) => {

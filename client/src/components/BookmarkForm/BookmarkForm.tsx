@@ -9,13 +9,15 @@ import { saveBookmarkToLocal } from 'actions/toLocalStorage';
 import { Button, Grid } from '@material-ui/core';
 import InputNote from 'components/parts/InputNote/InputNote';
 
-const BookmarkForm = () => {
+type HandleSubmit = (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+
+const BookmarkForm: React.FC = () => {
   const [url, setUrl] = useState<string>('');
   const [note, setNote] = useState<string>('');
   const { dispatch } = useContext(AppContext);
   const history = useHistory();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit: HandleSubmit = async (e) => {
     e.preventDefault();
     const bookmark = { note: note, url: url };
     if (!localStorage.getItem('token')) {
@@ -24,7 +26,7 @@ const BookmarkForm = () => {
       const data = { 0: bookmark };
       await postBookmark(dispatch, data);
     }
-    history.push("/");
+    history.push('/');
   };
 
   const cancel = () => history.push('/');
@@ -43,11 +45,7 @@ const BookmarkForm = () => {
             <CancelButton variant="contained" onClick={cancel}>
               Cancel
             </CancelButton>
-            <SaveButton
-              variant="contained"
-              color="primary"
-              type="submit"
-            >
+            <SaveButton variant="contained" color="primary" type="submit">
               Save
             </SaveButton>
           </WrapButton>

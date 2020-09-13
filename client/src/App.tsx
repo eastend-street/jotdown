@@ -29,7 +29,7 @@ const App = () => {
             <Header />
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/new" component={BookmarkForm} />
+              <Route path="/add" component={BookmarkForm} />
               {/* <Route path="/detail/:id" component={BookmarkDetail} /> */}
               <Route component={NotFound} />
             </Switch>

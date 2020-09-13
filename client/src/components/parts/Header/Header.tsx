@@ -53,7 +53,7 @@ const Header: React.FC = () => {
           </WrapLogo>
         </StyledLink>
         <WrapAction>
-          <Link to="/new">
+          <Link to="/add">
             <AddButton color="primary" aria-label="Add" size="small">
               <AddIcon />
             </AddButton>
