@@ -3,11 +3,11 @@
     "created_at": null,
     "description": "This is a sample description. When you save some bookmark, description is automatically loaded.",
     "id": 0,
-    "img_url": "https://jotdown.site/logo.png",
+    "img_url": "https://jotdown.netlify.app/logo.png",
     "note": "Here is a note with bookmark. Click see more then you can see the whole sentences in the bookmark detail page. In bookmark detail page, you can edit note or delete.",
     "title": "Welcome to Jot down! Let's try to click add icon upper right to save bookmark and note. ",
     "updated_at": null,
-    "url": "https://jotdown.site",
+    "url": "https://jotdown.netlify.app/",
     "user": null,
     "isSample": true
   },

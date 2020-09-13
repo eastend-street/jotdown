@@ -8,11 +8,12 @@ import {
   READ_BOOKMARKS_FROM_LOCAL,
   READ_BOOKMARK_FROM_LOCAL,
   UPDATE_BOOKMARK_TO_LOCAL,
-} from "actions";
+} from 'actions';
 
-import { InitialState } from "types/types";
+import { InitialState } from 'types/types';
 
-export default (bookmarks: InitialState, action: any) => {
+export default (state: any = {}, action: any) => {
+  console.log('action', action);
   switch (action.type) {
     case CREATE_BOOKMARK:
     case READ_BOOKMARKS:
@@ -27,14 +28,13 @@ export default (bookmarks: InitialState, action: any) => {
     case SAVE_BOOKMARK_TO_LOCAL:
     case READ_BOOKMARKS_FROM_LOCAL:
     case UPDATE_BOOKMARK_TO_LOCAL:
-      console.log(action.bookmarks);
-      return action.bookmarks;
+      return action.payload;
 
     case READ_BOOKMARK_FROM_LOCAL:
       const dataLocal = action.bookmark;
       return { [dataLocal.id]: dataLocal };
 
     default:
-      return bookmarks;
+      return state;
   }
 };

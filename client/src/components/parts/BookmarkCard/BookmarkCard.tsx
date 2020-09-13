@@ -142,4 +142,4 @@ class BookmarkCard extends Component<BookmarkCardProps, {}> {
   }
 }
 
-export default connect()(BookmarkCard);
+export default BookmarkCard;

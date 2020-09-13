@@ -1,41 +1,43 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import AppContext from "contexts/AppContext";
-import { readBookmarks } from "actions";
+import React, { useContext, useEffect, useState } from 'react';
+
+import AppContext from 'contexts/AppContext';
+import { readBookmarks } from 'actions';
 import {
   readBookmarksFromLocal,
   saveSampleBookmarkToLocal,
-} from "actions/toLocalStorage";
-import _ from "lodash";
+} from 'actions/toLocalStorage';
+import _ from 'lodash';
 
-import { Grid } from "@material-ui/core";
+import { Grid } from '@material-ui/core';
 
-import BookmarkCard from "components/parts/BookmarkCard/BookmarkCard";
-import SkeletonCard from "components/parts/SkeletonCard/SkeletonCard";
+import BookmarkCard from 'components/parts/BookmarkCard/BookmarkCard';
+import SkeletonCard from 'components/parts/SkeletonCard/SkeletonCard';
 
 const BookmarkList = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { dispatch, state } = useContext(AppContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const { state, dispatch } = useContext(AppContext);
+  console.log('state', state);
 
   useEffect(() => {
     const fetchBookmark = async () => {
-      if (!localStorage.getItem("token")) {
+      setIsLoading(true);
+      if (!localStorage.getItem('token')) {
         // not login
-        const response = await readBookmarksFromLocal();
-        if (!response.bookmarks) {
-          // nothing in local storage → save sample bookmark to local storage
-          await saveSampleBookmarkToLocal();
-          await readBookmarksFromLocal();
+        const bookmarks = await readBookmarksFromLocal(dispatch);
+        if (!bookmarks) {
+         // nothing in local storage → save sample bookmark to local storage
+          await saveSampleBookmarkToLocal(dispatch);
+          await readBookmarksFromLocal(dispatch);
         }
-        console.log(state);
         setIsLoading(false);
       } else {
         // logged in
-        await readBookmarks();
-        setIsLoading(false);
+        // await readBookmarks();
+        // setIsLoading(false);
       }
     };
     fetchBookmark();
-  }, [state, state.bookmarks]);
+  }, [dispatch]);
 
   const renderBookmarks = () => {
     return _.map(state.bookmarks, (bookmark) => (
