@@ -1,7 +1,24 @@
-import React from "react";
-import styled from "styled-components";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Card from "@material-ui/core/Card";
+import React from 'react';
+import styled from 'styled-components';
+import Skeleton from '@material-ui/lab/Skeleton';
+import Card from '@material-ui/core/Card';
+
+const SkeletonCard: React.FC = () => (
+  <StyledCard>
+    <StyledRect variant="rect" animation="wave" />
+    <TitleArea>
+      <Skeleton variant="text" animation="wave" />
+      <HalfText variant="text" animation="wave" />
+    </TitleArea>
+    <TitleArea>
+      <Skeleton variant="text" animation="wave" />
+      <HalfText variant="text" animation="wave" />
+      <SkeletonButton variant="rect" animation="wave" />
+    </TitleArea>
+  </StyledCard>
+);
+
+export default SkeletonCard;
 
 const StyledCard = styled(Card)`
   && {
@@ -37,20 +54,3 @@ const HalfText = styled(Skeleton)`
     width: 70%;
   }
 `;
-
-const SkeletonCard: React.FC = () => (
-  <StyledCard>
-    <StyledRect variant="rect" animation="wave" />
-    <TitleArea>
-      <Skeleton variant="text" animation="wave" />
-      <HalfText variant="text" animation="wave" />
-    </TitleArea>
-    <TitleArea>
-      <Skeleton variant="text" animation="wave" />
-      <HalfText variant="text" animation="wave" />
-      <SkeletonButton variant="rect" animation="wave" />
-    </TitleArea>
-  </StyledCard>
-);
-
-export default SkeletonCard;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ROOT_URL } from 'constants/urls';
-
+import sampleBookmarks from 'constants/sampleBookmarks';
 import { Bookmarks } from 'types';
 
 type UseGetBookmarks = ({
@@ -28,7 +28,12 @@ const useGetBookmarks: UseGetBookmarks = ({ bookmarkId = '', isLoggedIn }) => {
         });
       } else {
         const bookmarksJSON = localStorage.getItem('bookmarks');
-        setBookmarks(bookmarksJSON ? JSON.parse(bookmarksJSON) : {});
+        if (bookmarksJSON) {
+          setBookmarks(JSON.parse(bookmarksJSON));
+        } else {
+          localStorage.setItem('bookmarks', JSON.stringify(sampleBookmarks));
+          setBookmarks(sampleBookmarks);
+        }
       }
     };
     getBookmark();

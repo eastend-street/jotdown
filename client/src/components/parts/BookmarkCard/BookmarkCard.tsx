@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   Button,
   Card,
@@ -11,11 +11,65 @@ import {
   CardMedia,
   Grid,
   Typography,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
-import SampleImage3d5467 from "static/images/sample-#3d5467.png";
-import SampleImage686963 from "static/images/sample-#686963.png";
-import SampleImage8aa29e from "static/images/sample-#8aa29e.png";
+import SampleImage3d5467 from 'static/images/sample-#3d5467.png';
+import SampleImage686963 from 'static/images/sample-#686963.png';
+import SampleImage8aa29e from 'static/images/sample-#8aa29e.png';
+
+type BookmarkCardProps = {
+  bookmark: {
+    created_at: Date;
+    description: string;
+    id: number;
+    img_url: string;
+    note: string;
+    title: string;
+    updated_at: Date;
+    url: string;
+    user: {};
+  };
+};
+
+class BookmarkCard extends Component<BookmarkCardProps, {}> {
+  render() {
+    const sampleImageList = [
+      SampleImage3d5467,
+      SampleImage686963,
+      SampleImage8aa29e,
+    ];
+
+    const randomNum = Math.floor(Math.random() * sampleImageList.length);
+    return (
+      <StyledCard>
+        <CardActionArea target="_blank" href={this.props.bookmark.url}>
+          <StyledCardMedia
+            image={this.props.bookmark.img_url || sampleImageList[randomNum]}
+            title={this.props.bookmark.title}
+          />
+          <CardContent>
+            <Title variant="subtitle2">{this.props.bookmark.title}</Title>
+          </CardContent>
+        </CardActionArea>
+        <StyledHr />
+        <Note>{this.props.bookmark.note}</Note>
+        <GridActions container>
+          <Grid item>
+            <StyledLink
+              to={{
+                pathname: `/${this.props.bookmark.id}`,
+              }}
+            >
+              <ActionButton>See more</ActionButton>
+            </StyledLink>
+          </Grid>
+        </GridActions>
+      </StyledCard>
+    );
+  }
+}
+
+export default BookmarkCard;
 
 const StyledCard = styled(Card)`
   && {
@@ -89,57 +143,3 @@ const ActionButton = styled(Button)`
     transition: 0.5s;
   }
 `;
-
-type BookmarkCardProps = {
-  bookmark: {
-    created_at: Date;
-    description: string;
-    id: number;
-    img_url: string;
-    note: string;
-    title: string;
-    updated_at: Date;
-    url: string;
-    user: {};
-  };
-};
-
-class BookmarkCard extends Component<BookmarkCardProps, {}> {
-  render() {
-    const sampleImageList = [
-      SampleImage3d5467,
-      SampleImage686963,
-      SampleImage8aa29e,
-    ];
-
-    const randomNum = Math.floor(Math.random() * sampleImageList.length);
-    return (
-      <StyledCard>
-        <CardActionArea target="_blank" href={this.props.bookmark.url}>
-          <StyledCardMedia
-            image={this.props.bookmark.img_url || sampleImageList[randomNum]}
-            title={this.props.bookmark.title}
-          />
-          <CardContent>
-            <Title variant="subtitle2">{this.props.bookmark.title}</Title>
-          </CardContent>
-        </CardActionArea>
-        <StyledHr />
-        <Note>{this.props.bookmark.note}</Note>
-        <GridActions container>
-          <Grid item>
-            <StyledLink
-              to={{
-                pathname: `/${this.props.bookmark.id}`,
-              }}
-            >
-              <ActionButton>See more</ActionButton>
-            </StyledLink>
-          </Grid>
-        </GridActions>
-      </StyledCard>
-    );
-  }
-}
-
-export default BookmarkCard;

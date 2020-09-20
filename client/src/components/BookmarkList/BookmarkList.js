@@ -17,7 +17,7 @@ import SkeletonCard from 'components/parts/SkeletonCard/SkeletonCard';
 const BookmarkList = () => {
   // const { state, dispatch } = useContext(AppContext);
   const { isLoading, bookmarks } = useGetBookmarks({isLoggedIn: false});
-
+  console.log("bookmarks", bookmarks)
   // useEffect(() => {
   //   const fetchBookmark = async () => {
   //     // setIsLoading(true);

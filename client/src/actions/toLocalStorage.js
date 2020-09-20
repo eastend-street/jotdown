@@ -6,7 +6,6 @@ import {
   UPDATE_BOOKMARK_TO_LOCAL,
   DELETE_BOOKMARK_FROM_LOCAL,
 } from '.';
-import sampleBookmark from 'lib/sampleBookmark/sampleBookmark.json';
 
 const ROOT_URL = process.env.REACT_APP_ROOT_URL;
 
@@ -47,10 +46,4 @@ export const deleteBookmarkFromLocal = (id) => {
   delete bookmarks[id];
   localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
   return { type: DELETE_BOOKMARK_FROM_LOCAL, bookmarks };
-};
-
-export const saveSampleBookmarkToLocal = (dispatch) => {
-  const bookmarks = sampleBookmark;
-  localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-  dispatch({ type: SAVE_BOOKMARK_TO_LOCAL, payload: bookmarks });
 };

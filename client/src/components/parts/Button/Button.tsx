@@ -1,14 +1,20 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 type ButtonProps = {
   text: string;
   className?: any;
 };
 
+const Button: React.FC<ButtonProps> = ({ text, className }) => (
+  <StyledButton className={className}>{text}</StyledButton>
+);
+
+export default Button;
+
 const StyledButton = styled.button`
-  color: "#fff";
-  background-color: ${props => props.theme.colors.yellow};
+  color: '#fff';
+  background-color: ${(props) => props.theme.colors.yellow};
   outline: none;
   border: none;
   cursor: pointer;
@@ -20,9 +26,3 @@ const StyledButton = styled.button`
     opacity: 0.7;
   }
 `;
-
-const Button: React.FC<ButtonProps> = ({ text, className }) => {
-  return <StyledButton className={className}>{text}</StyledButton>;
-};
-
-export default Button;

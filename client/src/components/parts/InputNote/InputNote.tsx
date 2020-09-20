@@ -1,25 +1,23 @@
-import React from "react";
-import styled from "styled-components";
-import TextareaAutoSize from "react-textarea-autosize";
+import React from 'react';
+import styled from 'styled-components';
+import TextareaAutoSize from 'react-textarea-autosize';
 
 type InputNoteProps = {
   note: string;
   setNote: any; // TODO: define useState setNote type
 };
 
-const InputNote: React.FC<InputNoteProps> = ({ note, setNote }) => {
-  return (
-    <Container>
-      <Textarea
-        placeholder="Write note here"
-        type="text"
-        minRows={10}
-        value={note}
-        onChange={(e) => setNote(e.target.value)}
-      />
-    </Container>
-  );
-};
+const InputNote: React.FC<InputNoteProps> = ({ note, setNote }) => (
+  <Container>
+    <Textarea
+      placeholder="Write note here"
+      type="text"
+      minRows={10}
+      value={note}
+      onChange={(e) => setNote(e.target.value)}
+    />
+  </Container>
+);
 
 const Container = styled.div`
   margin-top: 3rem;
