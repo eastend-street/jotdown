@@ -18,3 +18,13 @@ export type Bookmarks = {
 export type InitialState = {
   bookmarks: Bookmarks;
 };
+
+export type User = {
+  email: string;
+  familyName: string;
+  givenName: string;
+  googleId: string;
+  imageUrl: string;
+  name: string;
+  token: string;
+};

@@ -1,48 +1,27 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { postBookmark } from 'actions';
 
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { postBookmark } from "actions";
+import { useLogin } from 'hooks';
 
-import AddIcon from "@material-ui/icons/Add";
-import { AppBar, Button, Fab, Toolbar } from "@material-ui/core";
+import AddIcon from '@material-ui/icons/Add';
+import { AppBar, Fab, Toolbar } from '@material-ui/core';
 
-import LogoSvg from "static/images/jotdown-logo-white.svg";
+import LogoSvg from 'static/images/jotdown-logo-white.svg';
 
 const Header: React.FC = () => {
-  const responseGoogle = (response: any) => {
-    if ("accessToken" in response) {
-      localStorage.setItem("token", response.accessToken);
-      localStorage.setItem("firstName", response.profileObj.givenName);
-      localStorage.setItem("lastName", response.profileObj.familyName);
-
-      if (!localStorage.getItem("bookmarks")) window.location.href = "/";
-      else submitLocalBookmarks();
-    } else {
-      console.log("Login failed");
-    }
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
-    window.location.href = "/";
-  };
-
+  const { isLoggedIn, isLoading, login, logout } = useLogin();
   const submitLocalBookmarks = async () => {
-    let data = localStorage.getItem("bookmarks");
+    let data = localStorage.getItem('bookmarks');
     data = data !== null && JSON.parse(data);
 
     // TODO: #63 Show Skelton when loading bookmarks
     // Show skelton here
     await postBookmark(data);
-    localStorage.removeItem("bookmarks");
-    window.location.href = "/";
+    localStorage.removeItem('bookmarks');
+    window.location.href = '/';
   };
-
-  const clientID = process.env.REACT_APP_CLIENT_ID || "";
 
   return (
     <StyledAppBar position="static">
@@ -58,37 +37,9 @@ const Header: React.FC = () => {
               <AddIcon />
             </AddButton>
           </Link>
-          {!localStorage.getItem("token") ? (
-            <GoogleLogin
-              clientId={clientID}
-              render={(renderProps) => (
-                <LoginButton
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Login
-                </LoginButton>
-              )}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-          ) : (
-            <GoogleLogout
-              clientId={clientID}
-              render={(renderProps) => (
-                <LogoutButton
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Logout
-                </LogoutButton>
-              )}
-              buttonText="Logout"
-              onLogoutSuccess={logout}
-            />
-          )}
+          <LoginButton onClick={isLoggedIn ? logout : login}>
+            {isLoggedIn ? 'Logout' : 'Login'}
+          </LoginButton>
         </WrapAction>
       </Toolbar>
     </StyledAppBar>
@@ -156,47 +107,28 @@ const WrapAction = styled.div`
   margin: 0 0 0 auto;
 `;
 
-const LoginButton = styled(Button)`
-  && {
-    color: ${(props) => props.theme.colors.white};
-    background-color: ${(props) => props.theme.colors.green};
-    border: 0.09rem solid ${(props) => props.theme.colors.white};
-    text-transform: none;
+const LoginButton = styled.button`
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.green};
+  border: 1px solid ${(props) => props.theme.colors.white};
+  border-radius: 0rem;
+  padding: 0.7rem 0.5rem;
+  margin: 0.5rem 1rem;
+  width: 8rem;
+  transition: 0.3s;
+  cursor: pointer;
+  outline: none;
+  @media (max-width: 960px) {
     width: 8rem;
-    transition: 0.5s;
-    box-shadow: none;
-    :hover {
-      background-color: ${(props) => props.theme.colors.green};
-      opacity: 0.7;
-      box-shadow: none;
-    }
-    @media (max-width: 960px) {
-      width: 8rem;
-    }
-    @media (max-width: 600px) {
-      width: 5rem;
-    }
   }
-`;
+  @media (max-width: 600px) {
+    width: 5rem;
+  }
 
-const LogoutButton = styled(Button)`
-  && {
-    color: ${(props) => props.theme.colors.white};
+  &:hover {
+    opacity: 0.7;
     background-color: ${(props) => props.theme.colors.green};
-    border: 0.09rem solid ${(props) => props.theme.colors.white};
-    text-transform: none;
-    width: 8rem;
-    :hover {
-      background-color: ${(props) => props.theme.colors.green};
-      opacity: 0.7;
-      box-shadow: none;
-    }
-    @media (max-width: 960px) {
-      width: 8rem;
-    }
-    @media (max-width: 600px) {
-      width: 5rem;
-    }
+    opacity: 0.7;
   }
 `;
 
