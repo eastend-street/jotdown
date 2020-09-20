@@ -7,6 +7,7 @@ import {
   saveSampleBookmarkToLocal,
 } from 'actions/toLocalStorage';
 import _ from 'lodash';
+import { useGetBookmarks } from 'hooks';
 
 import { Grid } from '@material-ui/core';
 
@@ -14,32 +15,34 @@ import BookmarkCard from 'components/parts/BookmarkCard/BookmarkCard';
 import SkeletonCard from 'components/parts/SkeletonCard/SkeletonCard';
 
 const BookmarkList = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { state, dispatch } = useContext(AppContext);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const { state, dispatch } = useContext(AppContext);
+  const { isLoading, bookmarks } = useGetBookmarks({isLoggedIn: false});
 
-  useEffect(() => {
-    const fetchBookmark = async () => {
-      setIsLoading(true);
-      if (!localStorage.getItem('token')) {
-        // not login
-        const bookmarks = await readBookmarksFromLocal(dispatch);
-        if (!bookmarks) {
-         // nothing in local storage → save sample bookmark to local storage
-          await saveSampleBookmarkToLocal(dispatch);
-          await readBookmarksFromLocal(dispatch);
-        }
-        setIsLoading(false);
-      } else {
-        // logged in
-        await readBookmarks(dispatch);
-        setIsLoading(false);
-      }
-    };
-    fetchBookmark();
-  }, [dispatch]);
+  console.log(isLoading, bookmarks);
+  // useEffect(() => {
+  //   const fetchBookmark = async () => {
+  //     // setIsLoading(true);
+  //     if (!localStorage.getItem('token')) {
+  //       // not login
+  //       const bookmarks = await readBookmarksFromLocal(dispatch);
+  //       if (!bookmarks) {
+  //         // nothing in local storage → save sample bookmark to local storage
+  //         await saveSampleBookmarkToLocal(dispatch);
+  //         await readBookmarksFromLocal(dispatch);
+  //       }
+  //       // setIsLoading(false);
+  //     } else {
+  //       // logged in
+  //       await readBookmarks(dispatch);
+  //       // setIsLoading(false);
+  //     }
+  //   };
+  //   fetchBookmark();
+  // }, [dispatch]);
 
   const renderBookmarks = () => {
-    return _.map(state.bookmarks, (bookmark) => (
+    return _.map(bookmarks, (bookmark) => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />
       </Grid>

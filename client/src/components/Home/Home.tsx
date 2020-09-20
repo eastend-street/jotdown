@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import BookmarkList from "components/BookmarkList/BookmarkList";
+import React from 'react';
+import styled from 'styled-components';
+import BookmarkList from 'components/BookmarkList/BookmarkList';
 
-const Home = () => (
+const Home: React.FC = () => (
   <Container>
     <BookmarkList />
   </Container>

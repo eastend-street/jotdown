@@ -29,10 +29,11 @@ export const readBookmarksFromLocal = (dispatch) => {
   return bookmarks;
 };
 
-export const getBookmarkFromLocal = (id) => {
+export const getBookmarkFromLocal = (dispatch, id) => {
   const bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
   const bookmark = bookmarks[id];
-  return { type: READ_BOOKMARK_FROM_LOCAL, bookmark };
+  dispatch({ type: READ_BOOKMARK_FROM_LOCAL, payload: bookmark });
+  return bookmark;
 };
 
 export const putBookmarkToLocal = (id, values) => {
