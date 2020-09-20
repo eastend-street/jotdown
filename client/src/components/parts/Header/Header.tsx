@@ -1,110 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { postBookmark } from 'actions';
-
+// import { postBookmark } from 'actions';
 import { useLogin } from 'hooks';
-
-import AddIcon from '@material-ui/icons/Add';
-import { AppBar, Fab, Toolbar } from '@material-ui/core';
-
 import LogoSvg from 'static/images/jotdown-logo-white.svg';
 
 const Header: React.FC = () => {
-  const { isLoggedIn, isLoading, login, logout } = useLogin();
-  const submitLocalBookmarks = async () => {
-    let data = localStorage.getItem('bookmarks');
-    data = data !== null && JSON.parse(data);
-
-    // TODO: #63 Show Skelton when loading bookmarks
-    // Show skelton here
-    await postBookmark(data);
-    localStorage.removeItem('bookmarks');
-    window.location.href = '/';
-  };
-
+  const { isLoggedIn, login, logout } = useLogin();
   return (
-    <StyledAppBar position="static">
-      <Toolbar>
-        <StyledLink to="/">
-          <WrapLogo>
-            <Logo src={LogoSvg} alt="Jot down" />
-          </WrapLogo>
-        </StyledLink>
-        <WrapAction>
-          <Link to="/add">
-            <AddButton color="primary" aria-label="Add" size="small">
-              <AddIcon />
-            </AddButton>
-          </Link>
-          <LoginButton onClick={isLoggedIn ? logout : login}>
-            {isLoggedIn ? 'Logout' : 'Login'}
-          </LoginButton>
-        </WrapAction>
-      </Toolbar>
-    </StyledAppBar>
+    <Container>
+      <LogoLink to="/">
+        <Logo src={LogoSvg} alt="Jot down" />
+      </LogoLink>
+      <Actions>
+        <AddButton>&#43;</AddButton>
+        <LoginButton onClick={isLoggedIn ? logout : login}>
+          {isLoggedIn ? 'Logout' : 'Login'}
+        </LoginButton>
+      </Actions>
+    </Container>
   );
 };
 
-const StyledAppBar = styled(AppBar)`
-  && {
-    background-color: ${(props) => props.theme.colors.green};
-    box-shadow: none;
-  }
+const Container = styled.header`
+  background-color: ${(props) => props.theme.colors.green};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
 `;
 
-const WrapLogo = styled.div`
+const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
 `;
 
 const Logo = styled.img`
-  && {
-    margin-left: 0.5rem;
-    width: 7rem;
-    transition: 0.5s;
-    :hover {
-      opacity: 0.7;
-    }
+  width: 7rem;
+  transition: 0.5s;
+  &:hover {
+    opacity: 0.7;
   }
 `;
 
-const AddButton = styled(Fab)`
-  && {
-    margin-right: 3rem;
-    box-shadow: none;
-    color: ${(props) => props.theme.colors.white};
+const Actions = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const AddButton = styled.button`
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.green};
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-right: 2rem;
+  font-size: 2.5rem;
+  outline: none;
+  &:hover {
     background-color: ${(props) => props.theme.colors.green};
-    border: 0.09rem solid ${(props) => props.theme.colors.white};
-    transition: 0.5s;
-    :hover {
-      background-color: ${(props) => props.theme.colors.green};
-      opacity: 0.7;
-    }
-    @media (max-width: 960px) {
-      margin-right: 2rem;
-    }
-    @media (max-width: 600px) {
-      margin-right: 1.5rem;
-    }
+    opacity: 0.7;
   }
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
+  @media (max-width: 960px) {
+    margin-right: 2rem;
   }
-`;
-
-const WrapAction = styled.div`
-  margin: 0 0 0 auto;
+  @media (max-width: 600px) {
+    margin-right: 1.5rem;
+  }
 `;
 
 const LoginButton = styled.button`
@@ -127,9 +89,18 @@ const LoginButton = styled.button`
 
   &:hover {
     opacity: 0.7;
-    background-color: ${(props) => props.theme.colors.green};
-    opacity: 0.7;
   }
 `;
 
 export default Header;
+
+// const submitLocalBookmarks = async () => {
+//   let data = localStorage.getItem('bookmarks');
+//   data = data !== null && JSON.parse(data);
+
+//   // TODO: #63 Show Skelton when loading bookmarks
+//   // Show skelton here
+//   await postBookmark(data);
+//   localStorage.removeItem('bookmarks');
+//   window.location.href = '/';
+// };
