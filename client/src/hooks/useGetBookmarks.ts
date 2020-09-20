@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ROOT_URL } from 'constants/urls';
 
+import { Bookmarks } from 'types';
+
 type UseGetBookmarks = ({
   bookmarkId,
   isLoggedIn,
@@ -10,11 +12,11 @@ type UseGetBookmarks = ({
   isLoggedIn: boolean | undefined;
 }) => {
   isLoading: boolean;
-  bookmarks: {};
+  bookmarks: Bookmarks;
 };
 
 const useGetBookmarks: UseGetBookmarks = ({ bookmarkId = '', isLoggedIn }) => {
-  const [bookmarks, setBookmarks] = useState({});
+  const [bookmarks, setBookmarks] = useState<Bookmarks>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {

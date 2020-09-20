@@ -10,8 +10,6 @@ import {
   UPDATE_BOOKMARK_TO_LOCAL,
 } from 'actions';
 
-import { InitialState } from 'types/types';
-
 export default (state: any = {}, action: any) => {
   switch (action.type) {
     case CREATE_BOOKMARK:

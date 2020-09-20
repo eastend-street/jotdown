@@ -1,4 +1,4 @@
-export type bookmark = {
+export type Bookmark = {
   created_at: any;
   description: string;
   id: number;
@@ -11,10 +11,10 @@ export type bookmark = {
   isSample: boolean;
 };
 
-export type bookmarks = {
-  [key: number]: bookmark;
+export type Bookmarks = {
+  [key: number]: Bookmark;
 };
 
 export type InitialState = {
-  bookmarks: bookmarks;
+  bookmarks: Bookmarks;
 };

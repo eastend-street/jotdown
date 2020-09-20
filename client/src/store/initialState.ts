@@ -1,4 +1,4 @@
-import { InitialState } from "types/types";
+import { InitialState } from "types";
 
 export const initialState: InitialState = {
   "bookmarks": {}
