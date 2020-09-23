@@ -8,12 +8,12 @@ import styled from 'styled-components';
 import GlobalStyle from 'styles/GlobalStyle';
 import Theme from 'styles/theme';
 
-import Header from 'components/parts/Header/Header';
 import Home from 'pages/Home';
 import BookmarkDetail from 'pages/BookmarkDetail';
 import NotFound from 'pages/NotFound';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 import BookmarkForm from 'components/BookmarkForm/BookmarkForm';
-import Footer from 'components/parts/Footer/Footer';
 
 import reducer from 'reducers';
 

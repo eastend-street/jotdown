@@ -4,20 +4,20 @@ import AppContext from 'contexts/AppContext';
 import { readBookmarks } from 'actions';
 import {
   readBookmarksFromLocal,
-  saveSampleBookmarkToLocal,
+  saveSampleBookmarkToLocal
 } from 'actions/toLocalStorage';
-import _ from 'pages/BookmarkDetail/node_modules/lodash';
+import _ from 'lodash';
 import { useGetBookmarks } from 'hooks';
 
 import { Grid } from '@material-ui/core';
 
-import BookmarkCard from 'components/BookmarkCard/BookmarkCard';
-import SkeletonCard from 'components/parts/SkeletonCard/SkeletonCard';
+import BookmarkCard from 'components/BookmarkCard';
+import SkeletonCard from 'components/SkeletonCard';
 
 const BookmarkList = () => {
   // const { state, dispatch } = useContext(AppContext);
-  const { isLoading, bookmarks } = useGetBookmarks({isLoggedIn: false});
-  console.log("bookmarks", bookmarks)
+  const { isLoading, bookmarks } = useGetBookmarks({ isLoggedIn: false });
+  console.log('bookmarks', bookmarks);
   // useEffect(() => {
   //   const fetchBookmark = async () => {
   //     // setIsLoading(true);
@@ -40,7 +40,7 @@ const BookmarkList = () => {
   // }, [dispatch]);
 
   const renderBookmarks = () => {
-    return _.map(bookmarks, (bookmark) => (
+    return _.map(bookmarks, bookmark => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={bookmark.id}>
         <BookmarkCard bookmark={bookmark} />
       </Grid>
@@ -48,7 +48,7 @@ const BookmarkList = () => {
   };
 
   const renderSkeleton = () =>
-    [...Array(8).keys()].map((i) => (
+    [...Array(8).keys()].map(i => (
       <Grid item={true} xs={12} sm={6} md={4} lg={3} key={i}>
         <SkeletonCard />
       </Grid>

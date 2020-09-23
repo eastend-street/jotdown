@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import AppContext from 'contexts/AppContext';
+import { AppContext } from 'contexts';
 
 import { postBookmark } from 'actions';
 import { saveBookmarkToLocal } from 'actions/toLocalStorage';
 
 import { Button, Grid } from '@material-ui/core';
-import InputNote from 'components/parts/InputNote/InputNote';
+import InputNote from 'components/InputNote';
 
 type HandleSubmit = (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 
@@ -17,7 +17,7 @@ const BookmarkForm: React.FC = () => {
   const { dispatch } = useContext(AppContext);
   const history = useHistory();
 
-  const handleSubmit: HandleSubmit = async (e) => {
+  const handleSubmit: HandleSubmit = async e => {
     e.preventDefault();
     const bookmark = { note: note, url: url };
     if (!localStorage.getItem('token')) {
@@ -34,11 +34,11 @@ const BookmarkForm: React.FC = () => {
   return (
     <Grid container justify="center">
       <Grid item xs={11} md={8}>
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form onSubmit={e => handleSubmit(e)}>
           <Input
             type="text"
             placeholder="bookmark URL"
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={e => setUrl(e.target.value)}
           />
           <InputNote note={note} setNote={setNote} />
           <WrapButton>
@@ -64,12 +64,12 @@ const CancelButton = styled(Button)`
     margin: 1rem;
     min-width: 7rem;
     box-shadow: none;
-    color: ${(props) => props.theme.colors.green};
-    background-color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.green};
+    background-color: ${props => props.theme.colors.white};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${(props) => props.theme.colors.white};
+      background-color: ${props => props.theme.colors.white};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -81,12 +81,12 @@ const SaveButton = styled(Button)`
     margin: 1rem;
     min-width: 7rem;
     box-shadow: none;
-    color: ${(props) => props.theme.colors.white};
-    background-color: ${(props) => props.theme.colors.green};
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${(props) => props.theme.colors.green};
+      background-color: ${props => props.theme.colors.green};
       opacity: 0.7;
       box-shadow: none;
     }

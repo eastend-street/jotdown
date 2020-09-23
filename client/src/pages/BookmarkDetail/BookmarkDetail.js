@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AppContext from 'contexts/AppContext';
+import { AppContext } from 'contexts';
 import { getBookmark, putBookmark, deleteBookmark } from 'actions';
 import {
   getBookmarkFromLocal,
   putBookmarkToLocal,
-  deleteBookmarkFromLocal,
+  deleteBookmarkFromLocal
 } from 'actions/toLocalStorage';
 import styled from 'styled-components';
 
@@ -15,7 +15,7 @@ import {
   CardActionArea,
   CardMedia,
   Grid,
-  Typography,
+  Typography
 } from '@material-ui/core';
 import _ from 'lodash';
 
@@ -36,7 +36,7 @@ const BookmarkDetail = () => {
         // note = response.data.note;
       } else {
         const data = await getBookmarkFromLocal(dispatch, id);
-        console.log(data)
+        console.log(data);
         // note = data.bookmark.note;
       }
       // return this.props.initialize({ note: note });
@@ -44,9 +44,7 @@ const BookmarkDetail = () => {
     loadBookmark();
   }, [dispatch, id]);
 
-  return (
-    <div>aaaa</div>
-  )
+  return <div>aaaa</div>;
 
   // const renderBookmark = (note) => {
   //   return _.map(this.props.bookmarks, (bookmark) => (
@@ -216,17 +214,17 @@ const DeleteButton = styled(Button)`
     width: 100%;
     box-shadow: none;
     color: #fff;
-    background-color: ${(props) => props.theme.colors.red};
+    background-color: ${props => props.theme.colors.red};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${(props) => props.theme.colors.red};
+      background-color: ${props => props.theme.colors.red};
       opacity: 0.7;
       box-shadow: none;
     }
     @media (max-width: 600px) {
       max-width: none;
-      color: ${(props) => props.theme.colors.red};
+      color: ${props => props.theme.colors.red};
       background-color: transparent;
       :hover {
         background-color: transparent;
@@ -239,13 +237,13 @@ const CancelButton = styled(Button)`
   && {
     width: 100%;
     box-shadow: none;
-    color: ${(props) => props.theme.colors.green};
+    color: ${props => props.theme.colors.green};
     text-transform: none;
-    /* border: 0.05rem solid ${(props) => props.theme.colors.green}; */
-    background-color: ${(props) => props.theme.colors.white};
+    /* border: 0.05rem solid ${props => props.theme.colors.green}; */
+    background-color: ${props => props.theme.colors.white};
     transition: 0.5s;
     :hover {
-      background-color: ${(props) => props.theme.colors.white};
+      background-color: ${props => props.theme.colors.white};
       opacity: 0.7;
       box-shadow: none;
     }
@@ -256,12 +254,12 @@ const SaveButton = styled(Button)`
   && {
     width: 100%;
     box-shadow: none;
-    color: ${(props) => props.theme.colors.white};
-    background-color: ${(props) => props.theme.colors.green};
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.green};
     text-transform: none;
     transition: 0.5s;
     :hover {
-      background-color: ${(props) => props.theme.colors.green};
+      background-color: ${props => props.theme.colors.green};
       opacity: 0.7;
       box-shadow: none;
     }
