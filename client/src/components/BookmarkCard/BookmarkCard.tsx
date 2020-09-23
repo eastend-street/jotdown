@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -10,7 +9,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  Typography,
+  Typography
 } from '@material-ui/core';
 
 import SampleImage3d5467 from 'static/images/sample-#3d5467.png';
@@ -31,54 +30,50 @@ type BookmarkCardProps = {
   };
 };
 
-class BookmarkCard extends Component<BookmarkCardProps, {}> {
-  render() {
-    const sampleImageList = [
-      SampleImage3d5467,
-      SampleImage686963,
-      SampleImage8aa29e,
-    ];
+const BookmarkCard: React.FC<BookmarkCardProps> = ({ bookmark }) => {
+  const sampleImageList = [
+    SampleImage3d5467,
+    SampleImage686963,
+    SampleImage8aa29e
+  ];
 
-    const randomNum = Math.floor(Math.random() * sampleImageList.length);
-    return (
-      <StyledCard>
-        <CardActionArea target="_blank" href={this.props.bookmark.url}>
-          <StyledCardMedia
-            image={this.props.bookmark.img_url || sampleImageList[randomNum]}
-            title={this.props.bookmark.title}
-          />
-          <CardContent>
-            <Title variant="subtitle2">{this.props.bookmark.title}</Title>
-          </CardContent>
-        </CardActionArea>
-        <StyledHr />
-        <Note>{this.props.bookmark.note}</Note>
-        <GridActions container>
-          <Grid item>
-            <StyledLink
-              to={{
-                pathname: `/${this.props.bookmark.id}`,
-              }}
-            >
-              <ActionButton>See more</ActionButton>
-            </StyledLink>
-          </Grid>
-        </GridActions>
-      </StyledCard>
-    );
-  }
-}
+  const randomNum = Math.floor(Math.random() * sampleImageList.length);
+  return (
+    <Container>
+      <CardActionArea target="_blank" href={bookmark.url}>
+        <StyledCardMedia
+          image={bookmark.img_url || sampleImageList[randomNum]}
+          title={bookmark.title}
+        />
+        <CardContent>
+          <Title variant="subtitle2">{bookmark.title}</Title>
+        </CardContent>
+      </CardActionArea>
+      <StyledHr />
+      <Note>{bookmark.note}</Note>
+      <GridActions container>
+        <Grid item>
+          <StyledLink
+            to={{
+              pathname: `/${bookmark.id}`
+            }}
+          >
+            <ActionButton>See more</ActionButton>
+          </StyledLink>
+        </Grid>
+      </GridActions>
+    </Container>
+  );
+};
 
 export default BookmarkCard;
 
-const StyledCard = styled(Card)`
-  && {
-    box-shadow: none;
-    height: 100%;
-    position: relative;
-    padding-bottom: 1rem;
-    /* box-shadow: ${(props) => props.theme.shadow.normal}; */
-  }
+const Container = styled.div`
+  background-color: #fff;
+  box-shadow: none;
+  height: auto;
+  position: relative;
+  margin: 0.5rem;
 `;
 
 const StyledCardMedia = styled(CardMedia)`
@@ -138,7 +133,7 @@ const ActionButton = styled(Button)`
   && {
     text-transform: none;
     padding: 0.2rem 1rem;
-    color: ${(props) => props.theme.colors.green};
+    color: ${props => props.theme.colors.green};
     font-size: 0.8rem;
     transition: 0.5s;
   }
