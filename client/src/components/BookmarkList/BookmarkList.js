@@ -6,12 +6,12 @@ import {
   readBookmarksFromLocal,
   saveSampleBookmarkToLocal,
 } from 'actions/toLocalStorage';
-import _ from 'lodash';
+import _ from 'pages/BookmarkDetail/node_modules/lodash';
 import { useGetBookmarks } from 'hooks';
 
 import { Grid } from '@material-ui/core';
 
-import BookmarkCard from 'components/parts/BookmarkCard/BookmarkCard';
+import BookmarkCard from 'components/BookmarkCard/BookmarkCard';
 import SkeletonCard from 'components/parts/SkeletonCard/SkeletonCard';
 
 const BookmarkList = () => {

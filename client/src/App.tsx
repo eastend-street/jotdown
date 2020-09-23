@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import AppContext from 'contexts/AppContext';
+import { AppContext } from 'contexts';
 import { initialState } from 'store/initialState';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -9,11 +9,11 @@ import GlobalStyle from 'styles/GlobalStyle';
 import Theme from 'styles/theme';
 
 import Header from 'components/parts/Header/Header';
-import BookmarkDetail from 'components/BookmarkDetail/BookmarkDetail';
-import Home from 'components/Home/Home';
+import Home from 'pages/Home';
+import BookmarkDetail from 'pages/BookmarkDetail';
+import NotFound from 'pages/NotFound';
 import BookmarkForm from 'components/BookmarkForm/BookmarkForm';
 import Footer from 'components/parts/Footer/Footer';
-import NotFound from 'components/NotFound/NotFound';
 
 import reducer from 'reducers';
 

@@ -6,7 +6,7 @@ import { Bookmarks } from 'types';
 
 type UseGetBookmarks = ({
   bookmarkId,
-  isLoggedIn,
+  isLoggedIn
 }: {
   bookmarkId?: string | undefined;
   isLoggedIn: boolean | undefined;
@@ -23,9 +23,11 @@ const useGetBookmarks: UseGetBookmarks = ({ bookmarkId = '', isLoggedIn }) => {
     setIsLoading(true);
     const getBookmark = async () => {
       if (isLoggedIn) {
-        await axios.get(`${ROOT_URL}/bookmarks/${bookmarkId}`).then((res) => {
-          setBookmarks(res.data);
-        });
+        await axios
+          .get(`${ROOT_URL}/bookmarks/${bookmarkId}`)
+          .then((res: any) => {
+            setBookmarks(res.data);
+          });
       } else {
         const bookmarksJSON = localStorage.getItem('bookmarks');
         if (bookmarksJSON) {
