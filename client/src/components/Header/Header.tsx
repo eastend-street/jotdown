@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-// import { postBookmark } from 'actions';
 import { useLogin } from 'hooks';
 import LogoSvg from 'static/images/jotdown-logo-white.svg';
 

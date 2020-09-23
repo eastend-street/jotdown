@@ -17,7 +17,6 @@ import {
   Grid,
   Typography
 } from '@material-ui/core';
-import _ from 'lodash';
 
 // import MarkdownTabs from 'components/parts/MarkdownTabs/MarkdownTabs';
 import SampleImage from 'static/images/sample-grey.jpeg';
