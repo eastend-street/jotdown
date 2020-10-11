@@ -2,27 +2,33 @@ import React from 'react';
 import styled from 'styled-components';
 
 type ButtonProps = {
-  text: string;
-  className?: any;
-};
+  children?: HTMLCollection | string;
+  onClick: (e?: React.MouseEvent) => void;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button: React.FC<ButtonProps> = ({ text, className }) => (
-  <StyledButton className={className}>{text}</StyledButton>
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  children,
+  ...otherProps
+}) => (
+  <StyledButton onClick={onClick} {...otherProps}>
+    {children}
+  </StyledButton>
 );
 
 export default Button;
 
-const StyledButton = styled.button`
-  color: '#fff';
-  background-color: ${(props) => props.theme.colors.yellow};
-  outline: none;
+const StyledButton = styled.button<ButtonProps>`
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.green};
   border: none;
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  transition: 0.3s;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  width: 5rem;
+  font-size: 1rem;
+  outline: none;
   &:hover {
-    transition: 0.5s;
     opacity: 0.7;
   }
 `;

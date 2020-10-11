@@ -2,66 +2,40 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography
-} from '@material-ui/core';
+import { Bookmark } from 'types';
 
 import SampleImage3d5467 from 'static/images/sample-#3d5467.png';
 import SampleImage686963 from 'static/images/sample-#686963.png';
 import SampleImage8aa29e from 'static/images/sample-#8aa29e.png';
 
 type BookmarkCardProps = {
-  bookmark: {
-    created_at: Date;
-    description: string;
-    id: number;
-    img_url: string;
-    note: string;
-    title: string;
-    updated_at: Date;
-    url: string;
-    user: {};
-  };
+  bookmark: Bookmark;
 };
 
 const BookmarkCard: React.FC<BookmarkCardProps> = ({ bookmark }) => {
   const sampleImageList = [
     SampleImage3d5467,
     SampleImage686963,
-    SampleImage8aa29e
+    SampleImage8aa29e,
   ];
 
   const randomNum = Math.floor(Math.random() * sampleImageList.length);
   return (
     <Container>
-      <CardActionArea target="_blank" href={bookmark.url}>
-        <StyledCardMedia
-          image={bookmark.img_url || sampleImageList[randomNum]}
-          title={bookmark.title}
+      <A target="_blank" href={bookmark.url}>
+        <Thumbnail
+          src={bookmark.img_url || sampleImageList[randomNum]}
+          alt={bookmark.title}
         />
-        <CardContent>
-          <Title variant="subtitle2">{bookmark.title}</Title>
-        </CardContent>
-      </CardActionArea>
+        <Title>{bookmark.title}</Title>
+      </A>
       <StyledHr />
       <Note>{bookmark.note}</Note>
-      <GridActions container>
-        <Grid item>
-          <StyledLink
-            to={{
-              pathname: `/${bookmark.id}`
-            }}
-          >
-            <ActionButton>See more</ActionButton>
-          </StyledLink>
-        </Grid>
-      </GridActions>
+      <Actions>
+        <StyledLink to={`/${bookmark.id}`}>
+          <SeeMore>See more</SeeMore>
+        </StyledLink>
+      </Actions>
     </Container>
   );
 };
@@ -76,22 +50,30 @@ const Container = styled.div`
   margin: 0.5rem;
 `;
 
-const StyledCardMedia = styled(CardMedia)`
-  && {
-    height: 0;
-    padding-top: 52.5%;
+const A = styled.a`
+  display: block;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.7;
   }
 `;
 
-const Title = styled(Typography)`
-  && {
-    font-weight: bold;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-    min-height: 4rem;
-  }
+const Thumbnail = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-height: 14rem;
+`;
+
+const Title = styled.p`
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  min-height: 3rem;
+  padding: 0.5rem;
 `;
 
 const Note = styled.div`
@@ -120,21 +102,19 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const GridActions = styled(Grid)`
-  && {
-    padding: 0.5rem 1rem 0.3rem 0.5rem;
-    position: absolute;
-    bottom: 0;
-    justify-content: flex-end;
-  }
+const Actions = styled.div`
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: flex-end;
 `;
 
-const ActionButton = styled(Button)`
-  && {
-    text-transform: none;
-    padding: 0.2rem 1rem;
-    color: ${props => props.theme.colors.green};
-    font-size: 0.8rem;
-    transition: 0.5s;
+const SeeMore = styled.a`
+  display: block;
+  margin: 0.5rem 1rem;
+  color: ${(props) => props.theme.colors.green};
+  font-size: 0.8rem;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.7;
   }
 `;
