@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLogin } from 'hooks';
+
+import Button from 'components/shared/Button';
 import LogoSvg from 'static/images/jotdown-logo-white.svg';
 
 const Header: React.FC = () => {
@@ -68,26 +70,12 @@ const AddButton = styled.button`
   }
 `;
 
-const LoginButton = styled.button`
-  color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors.green};
+const LoginButton = styled(Button)`
   border: 1px solid ${(props) => props.theme.colors.white};
-  border-radius: 0rem;
-  padding: 0.7rem 0.5rem;
   margin: 0.5rem 1rem;
   width: 8rem;
-  transition: 0.3s;
-  cursor: pointer;
-  outline: none;
-  @media (max-width: 960px) {
-    width: 8rem;
-  }
   @media (max-width: 600px) {
     width: 5rem;
-  }
-
-  &:hover {
-    opacity: 0.7;
   }
 `;
 

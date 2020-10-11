@@ -18,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
       text-decoration: none;
     }
     }
+    textarea {
+      font-family: sans-serif;
+    }
   }
 `;
 

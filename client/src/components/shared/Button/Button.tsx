@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type ButtonProps = {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: HTMLCollection | string;
   onClick: (e?: React.MouseEvent) => void;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+}
 
 const Button: React.FC<ButtonProps> = ({
   onClick,
