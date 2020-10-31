@@ -5,7 +5,7 @@
 
 <br/>
 
-Jot down is a bookmark and note web service 📗 You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark.  
+Jot down is a bookmark and note web application 📗 You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark.  
 <br/>
 Website: &nbsp; https://jotdown.netlify.app
 
@@ -15,7 +15,7 @@ Website: &nbsp; https://jotdown.netlify.app
 <br/>
 
 ## Why I created this app
-To manage a lot of bookmarks easily. I have been using chrome bookmark manager but sometimes I can't find the bookmark that I'm looking for. Then I often commented on bookmarks and saved them in slack to remember what bookmark is. But also difficult to find it again. Jotdown was born to solve these problems.
+To manage a lot of bookmarks easily. I have been using chrome bookmark manager but sometimes I can't find the bookmark that I'm looking for. Then I often commented on bookmarks and saved them in Slack to remember what bookmark is, but it's difficult to find it again as well. Jotdown was born to solve these problems.
 
 <br/>
 
@@ -26,9 +26,6 @@ To manage a lot of bookmarks easily. I have been using chrome bookmark manager b
 <br/>
 
 ## Technology
-The front end made by React.js, back end made by Python. In front end, using Redux and styled-components, correct style application and state management are realized. In back end, using Django REST framework, Docker and Heroku. It established RESTful API communication.
-
-
 - Front-end: React.js, Redux, React Router, styled-components, Material-ui
 - Backend: Django REST framework, Python
 - Infrastructure: Docker, Heroku
