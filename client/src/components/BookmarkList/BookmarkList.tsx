@@ -11,13 +11,13 @@ const BookmarkList: React.FC = () => {
 
   const renderBookmarks = () =>
     Object.entries(bookmarks).map(([key, bookmark]) => (
-      <CardWrapper>
-        <BookmarkCard bookmark={bookmark} key={key} />
+      <CardWrapper key={key}>
+        <BookmarkCard bookmark={bookmark} />
       </CardWrapper>
     ));
 
   const renderSkeleton = () =>
-    [...Array(8)].map(i => (
+    [...Array(8)].map((i) => (
       <CardWrapper>
         <SkeletonCard />
       </CardWrapper>

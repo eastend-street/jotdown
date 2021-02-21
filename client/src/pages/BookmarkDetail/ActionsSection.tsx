@@ -1,14 +1,34 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from 'components/shared/Button';
 
-const ActionsSection = () => {
+import { useDeleteBookmark } from 'hooks';
+import { Bookmark } from 'types';
+
+interface ActionsSectionProps {
+  bookmark: Bookmark;
+}
+
+const ActionsSection: React.FC<ActionsSectionProps> = ({ bookmark }) => {
+  const history = useHistory();
+  const { deleteBookmark } = useDeleteBookmark(false);
+
+  const handleCancel = () => {
+    history.push('/');
+  };
+
+  const handleDelete = () => {
+    deleteBookmark(bookmark.id);
+    history.push('/');
+  };
+
   return (
     <Container>
-      <DeleteButton onClick={() => {}}>Delete</DeleteButton>
+      <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
       <div>
-        <CancelButton onClick={() => {}}>Cancel</CancelButton>
+        <CancelButton onClick={handleCancel}>Cancel</CancelButton>
         <SaveButton type="submit" onClick={() => {}}>
           Save
         </SaveButton>

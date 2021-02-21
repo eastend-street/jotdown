@@ -14,7 +14,9 @@ const Header: React.FC = () => {
         <Logo src={LogoSvg} alt="Jot down" />
       </LogoLink>
       <Actions>
-        <AddButton>&#43;</AddButton>
+        <Link to="/add">
+          <AddButton>&#43;</AddButton>
+        </Link>
         <LoginButton onClick={isLoggedIn ? logout : login}>
           {isLoggedIn ? 'Logout' : 'Login'}
         </LoginButton>

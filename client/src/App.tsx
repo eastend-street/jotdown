@@ -18,6 +18,7 @@ import BookmarkForm from 'components/BookmarkForm/BookmarkForm';
 import reducer from 'reducers';
 
 const App: React.FC = () => {
+  // const { isLoggedIn, login, logout } = useLogin();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

@@ -108,7 +108,7 @@ const Actions = styled.div`
   justify-content: flex-end;
 `;
 
-const SeeMore = styled.a`
+const SeeMore = styled.div`
   display: block;
   margin: 0.5rem 1rem;
   color: ${(props) => props.theme.colors.green};

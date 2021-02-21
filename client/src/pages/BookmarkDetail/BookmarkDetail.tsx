@@ -10,7 +10,7 @@ import NoteSection from './NoteSection';
 
 const BookmarkDetail = () => {
   const { id }: { id: string } = useParams();
-  const { isLoading, bookmarks } = useGetBookmarks({
+  const { bookmarks } = useGetBookmarks({
     bookmarkId: id,
     isLoggedIn: false,
   });
@@ -24,7 +24,7 @@ const BookmarkDetail = () => {
     <Container>
       {bookmarks[0] && <BookmarkSection bookmark={bookmarks[0]} />}
       <NoteSection note={note} onChange={(e: any) => setNote(e.target.value)} />
-      <ActionsSection />
+      <ActionsSection bookmark={bookmarks[0]} />
     </Container>
   );
 };
