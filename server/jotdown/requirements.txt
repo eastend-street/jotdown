@@ -11,7 +11,7 @@ django-filter==2.2.0
 django-heroku==0.3.1
 django-oauth-toolkit==1.2.0
 django-rest-framework-social-oauth2==1.1.0
-djangorestframework==3.10.1
+djangorestframework==3.11.2
 gevent==1.4.0
 greenlet==0.4.15
 gunicorn==19.9.0
