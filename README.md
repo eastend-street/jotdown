@@ -5,7 +5,7 @@
 
 <br/>
 
-Jot down is a bookmark and note web application 📗 You can save some your favorite website or article to Jot down. Also you can write a note with your bookmark.  
+Jot down is a bookmark and note web service📗 You can save your favorite websites or articles to Jot down. Also, you can write a note with your bookmarks.  
 <br/>
 Website: &nbsp; https://jotdown.netlify.app
 
@@ -15,7 +15,7 @@ Website: &nbsp; https://jotdown.netlify.app
 <br/>
 
 ## Why I created this app
-To manage a lot of bookmarks easily. I have been using chrome bookmark manager but sometimes I can't find the bookmark that I'm looking for. Then I often commented on bookmarks and saved them in Slack to remember what bookmark is, but it's difficult to find it again as well. Jotdown was born to solve these problems.
+To manage a lot of bookmarks easily. I had been using Chrome bookmark manager but sometimes I couldn't find the bookmark that I was looking for. Also, I wanted to write a note with bookmarks to remember what the bookmarks are, but Chrome bookmark manager doesn't have that. To solve these problems, I made Jot down.
 
 <br/>
 
@@ -26,10 +26,10 @@ To manage a lot of bookmarks easily. I have been using chrome bookmark manager b
 <br/>
 
 ## Technology
-- Front-end: React.js, Redux, React Router, styled-components, Material-ui
-- Backend: Django REST framework, Python
-- Infrastructure: Docker, Heroku
-- Others: REST API, Axios, Gunicorn, Netlify
+- Front-end: React.js, Redux, React Router, styled-components, and Material-ui
+- Backend: Django REST framework, and Python
+- Infrastructure: Docker and Heroku
+- Others: REST API, Axios, Gunicorn, and Netlify
 
 <br/>
 
@@ -68,9 +68,9 @@ src/
 <br/>
 
 ## Upcoming features
-- Get bookmarks from browser (Try to make chrome extension!)
-- Sync bookmarks to browser when bookmark is edited
-- Show skelton when bookmark is loading (e.g. https://material-ui.com/components/skeleton/) 
+- Get bookmarks from browsers (Try to make chrome extension!)
+- Sync bookmarks to a browser when a bookmark is edited
+- Show skelton when bookmarks are loading (e.g. https://material-ui.com/components/skeleton/) 
 
 <br/>
 
